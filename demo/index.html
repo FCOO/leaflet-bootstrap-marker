@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="da" style="font-size: 100%">
+<head>
+    <title>fcoo.dk - leaflet-bootstrap-marker - Demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv='x-dns-prefetch-control' content='on'>
+
+    <meta name='copyright' content='FCOO'>
+    <meta name='owner' content='FCOO'>
+
+    <link  href="bower_components.css" rel="stylesheet">
+    <link  href="../src/leaflet-bootstrap-marker.css" rel="stylesheet">
+    <!-- <link  href="test.css" rel="stylesheet"> -->
+    <link  href="css/fontawesome-all.css" rel="stylesheet">
+    <style>
+        html, body, #map {
+            padding: 0; margin: 0; width:100%; height:100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="map" style="cursor: pointer; _width: 800px; _height: 600px"></div>
+
+
+
+
+    <script src="bower_components.js"></script>
+    <script src="../src/leaflet-bootstrap-marker.js"></script>
+    <script>
+    window.bsIsTouch = false;
+    window.bsIsTouch = (window.location.search =='?touch');
+
+    i18next.init();
+    i18next.changeLanguage('en');
+
+    var map = L.map('map', {
+
+    }).setView([56.2, 11.5], 6);
+
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>'
+    }).addTo(map);
+
+
+    //**************************************
+    var tooltip = [
+            $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Dansk', en:'Eng'}}),
+            $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Lang Dansk', en:'LongEng'}})
+        ];
+    function addMarker( latlng){
+        var isRoundAndOrange = Math.random() >= 0.5;
+
+        var marker = L.bsMarker( latlng, {
+                    round: isRoundAndOrange,
+                    iconSize: 2, iconClass: 'fa-home',
+                    _shadow: true,
+                    draggable: true,
+                    colorName    : isRoundAndOrange ? 'orange' : 'danger',
+                    thickBorder : isRoundAndOrange,
+                    //borderColorName: 'black',
+                    puls: true,
+                    transparent: true,
+                    hover: true,
+                    bigIconWhenTouch: true,
+                    tooltip: tooltip,
+                    _tooltipPermanent: true,
+                    tooltipHideWhenDragging: true,
+                    tooltipHideWhenPopupOpen: true,
+                    shadowWhenPopupOpen: true
+            }).addTo( map );
+
+            marker.on('click', function(){
+                this._tooltip.setContent('<p style="background-color:red">NY'+Math.round(Math.random()*10000)+'</p>');
+
+                //this.setColor('black');
+                //this.setBorderColor('orange');
+                this.toggleOption('puls');
+                //this.setIconClass('fa-home', 1);
+                //this.setSize(1);
+                this.setNumber('123456789', 1);
+
+                },
+                marker
+            );
+            marker.bindPopup(
+//                'Dette er 1. linie<br>Dette er 2. linie'
+            {
+                width: 234,
+                closeButton: false,
+                header: {
+                    icon: marker.asIcon(),
+                    text: 'Davs',
+                },
+                fixable: true,
+                _icons: {
+                    back: { onClick: function(){ console.log('BACK!'); } },
+                    forward: { onClick: function(){ console.log('FORWARD!'); } }
+                },
+                buttons: [
+                {
+                    icon: 'fa-map',
+                    text:'Inds.',
+                    onClick: function(){
+                        marker._popup.changeContent({
+                            content: 'NY'+Math.round(Math.random()*10000),
+                            extended: {
+                                content: 'NY EXTENDED'+Math.round(Math.random()*10000)
+                            }
+                        });
+                    }
+                },
+                {
+                    icon:'fa-home',
+                    text:{da:'Skift', en:'Change'},
+                    onClick: function(){
+                        marker._popup.setContent({
+                            closeButton: true,
+                            header:'Davs igen',
+                            fixable: true,
+                            content: 'NIELS:'+Math.round(Math.random()*10000),
+                            _extended: {
+                                content: 'Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>'
+                            }
+                        });
+                    }
+           }],
+                content: {icon: 'fa-home', text: 'Tekst_og_ikon_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord'}, scroll: true,
+
+                extended: {
+                    content: ['<p>Dette er en p</p>', 'Jeg vil i span', 'Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>']
+                }
+            }
+            );
+    }
+
+
+    map.on('click', function( mouseEvent ){ addMarker( mouseEvent.latlng ); });
+
+
+    </script>
+</body>
+</html>

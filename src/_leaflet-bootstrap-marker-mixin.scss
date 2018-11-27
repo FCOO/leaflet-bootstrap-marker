@@ -1,0 +1,80 @@
+/***********************************************
+leaflet-bootstrap-marker-mixin.scss
+Style for bsMarker estimated to look like Google Maps
+
+The pulsate is an adjusted version of leaflet-icon-pulse by Filip Zavadil
+https://github.com/mapshakers/leaflet-icon-pulse
+
+lbm-icon lbm-COLOR [lbm-border-COLOR] [lbm-transparent] [lbm-puls] [lbm-hover]
+
+lbm-icon          : Standard icon with black border and tin white shadow
+lbm-[COLOR]       : Sets inner color to [COLOR]
+lbm-border-[COLOR]: border-color = [COLOR]
+
+lbm-shadow        : Shadow in same color as inner color
+lbm-puls          : Has a pulsing ring
+lbm-transparent   : Inner color get opacity: 0.7
+lbm-hover         : When hover: get shadow and opacity: 0.9 for ibm-transparent
+************************************************/
+@mixin marker-color( $background-color: white ){
+    background-color: $background-color;
+    color           : ch-best-color-contrast($background-color);
+
+    &.lbm-transparent {
+        background-color: rgba($background-color, 0.7);
+        &.lbm-hover:hover {
+            background-color: rgba($background-color, 0.9);
+        }
+    }
+
+    //Shadow in same color
+    &.lbm-shadow, &.leaflet-drag-target, &.lbm-hover:hover {
+        box-shadow: 0px 0px 0px 5px rgba($background-color, .28); //.28 = estimate to look like google maps
+    }
+
+    //Color for puls
+    &:before { box-shadow: 0 0 6px 2px $background-color; }
+}
+@mixin marker-name-color( $name, $background-color: white ){
+    .lbm-#{$name} {
+        @include marker-color($background-color);
+    }
+}
+
+@mixin marker-border-color($border-color: black ){
+    border-color: $border-color;
+}
+@mixin marker-name-border-color( $name, $border-color: black ){
+    .lbm-border-#{$name} {
+        @include marker-border-color($border-color);
+    }
+}
+
+
+@mixin icon-color( $color: black ){
+    color: $color;
+}
+@mixin icon-name-color( $name, $color: white ){
+    .fa-lbm-icon-#{$name} {
+        @include icon-color($color);
+    }
+}
+@mixin icon-name-border-color( $name, $border-color ){
+    .fa-lbm-icon-border-#{$name} {
+        @include icon-color($border-color);
+    }
+}
+
+
+/**********************************************************
+lbm-marker-and-icon-classes
+**********************************************************/
+@mixin lbm-marker-and-icon-classes( $name, $color, $border-color ){
+
+    @include marker-name-color( $name, $color );
+    @include marker-name-border-color( $name, $border-color );
+
+    @include icon-name-color( $name, $color );
+    @include icon-name-border-color( $name, $border-color );
+
+}
