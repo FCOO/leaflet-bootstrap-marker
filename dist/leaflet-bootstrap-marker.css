@@ -58,7 +58,7 @@ lbm-marker-and-icon-classes
   border-color: black;
   text-align: center; }
   .lbm-icon.lbm-thick-border {
-    border: 3px solid black; }
+    border-width: 3px; }
   .lbm-icon.lbm-round {
     border-radius: 100%; }
     .lbm-icon.lbm-round:before {

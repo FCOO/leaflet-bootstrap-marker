@@ -65,7 +65,7 @@ $thick-border-width: 3px;
     box-shadow  : 0px 0px 0px 1px rgba(white, .5); //.5 = estimate to look like google maps
 
     &.lbm-thick-border {
-        border: $thick-border-width solid black;
+        border-width: $thick-border-width;
     }
 
     &.lbm-round {
