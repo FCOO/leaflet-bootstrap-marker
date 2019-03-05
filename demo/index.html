@@ -11,25 +11,34 @@
 
     <link  href="bower_components.css" rel="stylesheet">
     <link  href="../src/leaflet-bootstrap-marker.css" rel="stylesheet">
-    <!-- <link  href="test.css" rel="stylesheet"> -->
-    <link  href="css/fontawesome-all.css" rel="stylesheet">
+
+    <!-- <link  href="fcoo-fontawesome.css" rel="stylesheet"> -->
+    <!-- <link  href="css/all.css" rel="stylesheet"> -->
     <style>
         html, body, #map {
             padding: 0; margin: 0; width:100%; height:100%;
+            cursor: default !important;
         }
     </style>
-
 </head>
 
 <body>
     <div id="map" style="cursor: pointer; _width: 800px; _height: 600px"></div>
 
-
-
-
     <script src="bower_components.js"></script>
-    <script src="../src/leaflet-bootstrap-marker.js"></script>
+
+    <script src="../src/leaflet-bootstrap-marker-base.js"></script>
+    <script src="../src/leaflet-bootstrap-marker-redcross.js"></script>
+    <script src="../src/leaflet-bootstrap-marker-circle.js"></script>
+    <script src="../src/leaflet-bootstrap-marker-icon.js"></script>
+
+
+    <script src="../src/leaflet-map-ignoreNextEvent.js"></script>
+
     <script>
+
+    $.FONTAWESOME_PREFIX = 'far';
+
     window.bsIsTouch = false;
     window.bsIsTouch = (window.location.search =='?touch');
 
@@ -51,90 +60,170 @@
             $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Dansk', en:'Eng'}}),
             $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Lang Dansk', en:'LongEng'}})
         ];
-    function addMarker( latlng){
-        var isRoundAndOrange = Math.random() >= 0.5;
+    var
+        allSize = false,
+        size = allSize ? 'xs' : 'xl',
+        markerList = [
+            {constructor: L.bsMarkerIcon, options: {
+                iconClass: 'fa-octagon', //'fa-rectangle-wide',
+                innerIconClass: 'fa-home',
+            }},
 
-        var marker = L.bsMarker( latlng, {
-                    round: isRoundAndOrange,
-                    iconSize: 2, iconClass: 'fa-home',
-                    _shadow: true,
-                    draggable: true,
-                    colorName    : isRoundAndOrange ? 'orange' : 'danger',
-                    thickBorder : isRoundAndOrange,
-                    //borderColorName: 'black',
-                    puls: true,
-                    transparent: true,
-                    hover: true,
-                    bigIconWhenTouch: true,
-                    tooltip: tooltip,
-                    _tooltipPermanent: true,
-                    tooltipHideWhenDragging: true,
-                    tooltipHideWhenPopupOpen: true,
-                    shadowWhenPopupOpen: true
-            }).addTo( map );
+            {constructor: L.bsMarkerIcon, options: {
+                iconClass: 'fa-badge',
+                innerIconClass: 'fa-home',
+            }},
+
+            {constructor: L.bsMarkerIcon, options: {
+                iconClass: 'fa-certificate',
+                innerIconClass: 'fa-home',
+            }},
+
+            {constructor: L.bsMarkerIcon, options: {
+scale: 120,
+                iconClass: 'fa-map-marker',
+                innerIconClass: 'fa-home',
+innerCss: {
+    "font-size": "0.42em",
+    "margin-top": "-1.6em"
+},
+                iconAnchor : {width: 0.5, height: 1},
+                popupAnchor: {width: 0,   height: -0.5  },
+            }},
+
+
+            {constructor: L.bsMarkerIcon, options: {
+                iconClass: 'fa-fighter-jet',
+                scale: 80,
+                directionOffset: -90,
+                rotatable: true
+            }},
+            {constructor: L.bsMarkerIcon, options: {
+                iconClass: 'fa-map-pin',
+                iconAnchor : {width: 0.5, height: 1},
+                popupAnchor: {width: 0,   height: -0.5  },
+            }},
+            {constructor: L.bsMarkerIcon, options: {
+                iconClass: 'fa-arrow-alt-up',
+                rotatable: true,
+
+            }},
+            {constructor: L.bsMarkerCircle, options: {
+                iconClass: 'fa-home',
+            }},
+
+            {constructor: L.bsMarkerCircle, options: {
+                iconClass: 'fa-home',
+                round: false
+
+            }},
+
+            {constructor: L.bsMarkerRedCross, options: {
+                addPopup: true
+            }},
+
+
+        ],
+
+        mfIndex = 0;
+
+    function addMarker( latlng){
+        var options = $.extend({}, markerList[mfIndex].options, {
+                size: size,
+                shadow: false,
+                draggable: true,
+                colorName    : 'green',
+                thickBorder : false,
+                borderColorName: 'black',
+
+                puls: true,
+                transparent: true,
+                hover: true,
+                bigIconWhenTouch: true,
+                _tooltip: tooltip,
+                _tooltipPermanent: true,
+                tooltipHideWhenDragging: true,
+                tooltipHideWhenPopupOpen: true,
+                shadowWhenPopupOpen: true
+            }),
+
+            marker = markerList[mfIndex].constructor(latlng, options).addTo( map );
 
             marker.on('click', function(){
-                this._tooltip.setContent('<p style="background-color:red">NY'+Math.round(Math.random()*10000)+'</p>');
+                //this._tooltip.setContent('<p style="background-color:red">NY'+Math.round(Math.random()*10000)+'</p>');
 
-                //this.setColor('black');
-                //this.setBorderColor('orange');
+                this.setColor('white');
+                this.setBorderColor('orange');
+                this.setDeltaDirection( 22 );
+
                 this.toggleOption('puls');
-                //this.setIconClass('fa-home', 1);
-                //this.setSize(1);
-                this.setNumber('123456789', 1);
+//HER                this.setIconClass('fa-tachometer-alt');
+                //this.setSize('lg');
+                this.setNumber('12');
 
                 },
                 marker
             );
-            marker.bindPopup(
-//                'Dette er 1. linie<br>Dette er 2. linie'
-            {
-                width: 234,
-                closeButton: false,
-                header: {
-                    icon: marker.asIcon(),
-                    text: 'Davs',
-                },
-                fixable: true,
-                _icons: {
-                    back: { onClick: function(){ console.log('BACK!'); } },
-                    forward: { onClick: function(){ console.log('FORWARD!'); } }
-                },
-                buttons: [
-                {
-                    icon: 'fa-map',
-                    text:'Inds.',
-                    onClick: function(){
-                        marker._popup.changeContent({
-                            content: 'NY'+Math.round(Math.random()*10000),
-                            extended: {
-                                content: 'NY EXTENDED'+Math.round(Math.random()*10000)
-                            }
-                        });
-                    }
-                },
-                {
-                    icon:'fa-home',
-                    text:{da:'Skift', en:'Change'},
-                    onClick: function(){
-                        marker._popup.setContent({
-                            closeButton: true,
-                            header:'Davs igen',
-                            fixable: true,
-                            content: 'NIELS:'+Math.round(Math.random()*10000),
-                            _extended: {
-                                content: 'Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>'
-                            }
-                        });
-                    }
-           }],
-                content: {icon: 'fa-home', text: 'Tekst_og_ikon_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord'}, scroll: true,
 
-                extended: {
-                    content: ['<p>Dette er en p</p>', 'Jeg vil i span', 'Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>']
-                }
+            if (options.addPopup)
+                marker.bindPopup({
+                    width: 234,
+                    closeButton: false,
+                    header: {
+                        icon: marker.asIcon(),
+                        text: 'Davs',
+                    },
+                    fixable: true,
+                    _icons: {
+                        back: { onClick: function(){ console.log('BACK!'); } },
+                        forward: { onClick: function(){ console.log('FORWARD!'); } }
+                    },
+                    buttons: [
+                    {
+                        icon: 'fa-map',
+                        text:'Inds.',
+                        onClick: function(){
+                            marker._popup.changeContent({
+                                content: 'NY'+Math.round(Math.random()*10000),
+                                extended: {
+                                    content: 'NY EXTENDED'+Math.round(Math.random()*10000)
+                                }
+                            });
+                        }
+                    },
+                    {
+                        icon:'fa-home',
+                        text:{da:'Skift', en:'Change'},
+                        onClick: function(){
+                            marker._popup.setContent({
+                                closeButton: true,
+                                header:'Davs igen',
+                                fixable: true,
+                                content: 'NIELS:'+Math.round(Math.random()*10000),
+                                _extended: {
+                                    content: 'Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>'
+                                }
+                            });
+                        }
+                    }],
+                    content: {icon: 'fa-home', text: 'Tekst_og_ikon_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord'}, scroll: true,
+
+                    extended: {
+                        content: ['<p>Dette er en p</p>', 'Jeg vil i span', 'Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>']
+                    }
+                });
+
+            switch (size){
+                case 'xs':  size = 'sm'; break;
+                case 'sm':  size = 'nl'; break;
+                case 'nl':  size = 'lg'; break;
+                case 'lg':  size = 'xl';break;
+                case 'xl':  size = allSize ? 'xs' : 'xl';
+                            mfIndex = (mfIndex+1) % markerList.length;
+                            break;
             }
-            );
+
+
     }
 
 

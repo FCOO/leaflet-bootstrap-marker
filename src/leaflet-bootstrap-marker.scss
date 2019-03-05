@@ -1,15 +1,10 @@
 /***********************************************
+
 leaflet-bootstrap-marker.scss
-Style for bsMarker estimated to look like Google Maps
 
-The pulsate is a djusted version of leaflet-icon-pulse by Filip Zavadil
-https://github.com/mapshakers/leaflet-icon-pulse
+lbm-type-TYPE lbm-color-COLOR [lbm-border-color-COLOR] [lbm-transparent] [lbm-puls] [lbm-hover]
 
-
-lbm-icon lbm-COLOR [lbm-border-COLOR] [lbm-transparent] [lbm-puls] [lbm-hover]
-
-
-lbm-icon          : Standard icon with black border and tin white shadow
+lbm-type-TYPE     : Sets the different type of bsMarker
 lbm-[COLOR]       : Sets inner color to [COLOR]
 lbm-border-[COLOR]: border-color = [COLOR]
 
@@ -36,129 +31,71 @@ lbm-hover         : When hover: get shadow and opacity: 0.9 for ibm-transparent
 //COLOR-HELPER - https://github.com/voxpelli/sass-color-helpers
 @import "../bower_components/sass-color-helpers/stylesheets/color-helpers";
 
-//Style for bsMarker
+
+//List of available color
+@import "leaflet-bootstrap-marker-color-list";
+
+//Generel mixins (tooltip etc)
 @import "leaflet-bootstrap-marker-mixin";
 
+//Create all colors in $color-list as class for fa-icons
+@each $name, $color in $lbm-color-list {
+    @include fa-lbm-color(
+        $name        : $name,
+        $color       : $color,
+        $border-color: $color
+    );
+}
 
-$markerSizeList: 14px, 20px, 24px; //MUST match markerSizeList in leaflet-bootstrap-marker.js AND _leaflet-bootstrap-tooltip.scss
-
-$border-width      : 2px;
-$thick-border-width: 3px;
-
-@keyframes pulsate {
-    0% {
-        transform: scale(0.1, 0.1);
-        opacity: 0;
+.lbm-base {
+    //Container to hold number or fa-icon
+    .inner {
+        text-align      : center;
+        width           : 100%;
+        background-color: transparent;
+        &.text {
+            font-family   : $font-family-monospace !important;
+            letter-spacing: 0px;
+            font-weight   : bold;
+            white-space   : nowrap;
+            width         : 100%;
+            overflow      : hidden;
+        }
     }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1.2, 1.2);
-        opacity: 0;
+
+    //text-color for number and fa-icon
+    &.lbm-text-is-black .inner { color: $black; }
+    &.lbm-text-is-white .inner { color: $white; }
+}
+
+//Create different font-size
+@each $size-id, $size in $size-list {
+    .lbm-base.lbm-size-#{$size-id} {
+        font-size: $size * 1px;
+
+        &.lbm-scale-80  { font-size: round($size * 0.8px); }
+        &.lbm-scale-80  { font-size: round($size * 0.9px); }
+        &.lbm-scale-120 { font-size: round($size * 1.2px); }
+        &.lbm-scale-130 { font-size: round($size * 1.3px); }
+        &.lbm-scale-150 { font-size: round($size * 1.5px); }
     }
 }
 
-.lbm-icon {
-    opacity      : 1;
-    border       : $border-width solid black;
-    box-shadow  : 0px 0px 0px 1px rgba(white, .5); //.5 = estimate to look like google maps
 
-    &.lbm-thick-border {
-        border-width: $thick-border-width;
-    }
-
-    &.lbm-round {
-        border-radius: 100%;
-        &:before { border-radius: 100%; }
-    }
-
-    @include marker-color();
-    @include marker-border-color();
-
-    //Text
-    text-align: center;
-    .inner-text {
-        font-family   : $font-family-monospace;
-        letter-spacing: 0px;
-        font-weight   : bold;
-        overflow      : visible;
-        white-space   : nowrap;
-        width         : calc(100% + 2*#{$border-width});
-        margin-left   : -1 * $border-width;
-        overflow      : hidden;
-    }
-
-    //The puls
-    &:before {
-        display : none;
-        position: absolute;
-        content : "";
-        height  : 300%;
-        width   : 300%;
-        margin  : -100% 0 0 -100%;
-    }
-
-    &.lbm-puls:before {
-        display  : block;
-        animation: pulsate 1s ease-out;
-        animation-iteration-count: infinite;
+//Create margin for tooltips for the different sizes
+@each $size-id, $size in $size-list {
+    $margin: $size / 2 + 3px;
+    .leaflet-tooltip-icon-#{$size-id} {
+        &.leaflet-tooltip-bottom { margin-top :      $margin; }
+        &.leaflet-tooltip-top    { margin-top : -1 * $margin; }
+        &.leaflet-tooltip-left   { margin-left: -1 * $margin; }
+        &.leaflet-tooltip-right  { margin-left:      $margin; }
     }
 }
 
-//Create different size
-@each $size in $markerSizeList {
-    $index: index($markerSizeList, $size) - 1;
+//Styles for bsMarkerCircle
+@import "leaflet-bootstrap-marker-circle";
 
-    $innerHeight: $size - 2 * $border-width;
-    $font-size  : floor($innerHeight / 1.41) - 1px;
+//Styles for bsMarkerIcon
+@import "leaflet-bootstrap-marker-icon";
 
-    .lbm-icon-#{$index} {
-        font-size: $font-size;
-        line-height: $innerHeight / $font-size;
-    }
-}
-
-/*
-*/
-//Create standard and bootstrap colors
-@each $name, $color in (
-    "pink"      : pink,
-    "purple"    : purple,
-    "red"       : red,
-    "orange"    : orange,
-    "yellow"    : yellow,
-    "green"     : green,
-    "cyan"      : cyan,
-    "blue"      : blue,
-    "brown"     : brown,
-    "white"     : white,
-    "grey"      : grey,
-    "black"     : black,
-    "indigo"    : indigo,
-    "teal"      : teal,
-    "darkgray"  : darkgray,
-    "primary"   : $primary,
-    "secondary" : $secondary,
-    "success"   : $success,
-    "info"      : $info,
-    "warning"   : $warning,
-    "danger"    : $danger,
-    "light"     : $light,
-    "dark"      : $dark,
-    "standard"  : #4285F4 //= rgba(66, 133, 244) = google maps color for location icon
-
-){
-    @include lbm-marker-and-icon-classes( $name, $color, $color );
-}
-
-/*
-//fa-pulsate - fontawesome class for pulsate icons
-.fa-pulsate {
-
-    animation: pulsate 1s ease-out;
-    animation-iteration-count: infinite;
-    animation-delay: 1.1s;
-}
-
-*/

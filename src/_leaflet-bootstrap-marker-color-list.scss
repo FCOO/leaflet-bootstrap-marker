@@ -1,0 +1,33 @@
+/***********************************************
+
+leaflet-bootstrap-marker-colors.scss
+List of avaible color-name and values
+
+************************************************/
+
+$lbm-color-list: (
+    "pink"      : pink,
+    "purple"    : purple,
+    "red"       : red,
+    "orange"    : orange,
+    "yellow"    : yellow,
+    "green"     : green,
+    "cyan"      : cyan,
+    "blue"      : blue,
+    "brown"     : brown,
+    "white"     : white,
+    "grey"      : grey,
+    "black"     : black,
+    "indigo"    : indigo,
+    "teal"      : teal,
+    "darkgray"  : darkgray,
+    "primary"   : $primary,
+    "secondary" : $secondary,
+    "success"   : $success,
+    "info"      : $info,
+    "warning"   : $warning,
+    "danger"    : $danger,
+    "light"     : $light,
+    "dark"      : $dark,
+    "standard"  : #4285F4 //= rgba(66, 133, 244) = google maps color for location icon
+);

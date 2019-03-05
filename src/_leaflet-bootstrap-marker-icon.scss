@@ -1,0 +1,125 @@
+/***********************************************
+
+_leaflet-bootstrap-marker-icon.scss,
+
+************************************************/
+@keyframes icon-pulsate {
+    0% {
+        transform: scale(1, 1);
+        opacity: 0;
+    }
+    50% {
+        opacity: .5;
+    }
+    100% {
+        transform: scale(1.8, 1.8);
+        opacity: 0;
+    }
+}
+
+.lbm-type-icon {
+    .lbm-content-outer {
+        width : 100%;
+        height: 100%;
+    }
+
+    .lbm-content {
+        display : block;
+        position: relative;
+        left: 0;
+        top : 0;
+        width: 100%;
+        height: 100%;
+
+        text-align: center;
+
+        //Puls
+        &.lbm-content-puls {
+            font-size : 1em;
+            top       : 0;
+            visibility: hidden;
+        }
+
+       //White border and shadow of the marker
+        &.lbm-content-shadow {
+            font-size: 1em;
+            top      : -1em;
+
+            //Thin white outer border
+            -webkit-text-stroke-color: $outer-border-color;
+            -moz-text-stroke-color   : $outer-border-color;
+            -webkit-text-stroke-width: 2px;
+            -moz-text-stroke-width   : 2px;
+        }
+
+        //The background of the marker
+        &.lbm-content-background {
+            font-size:  1em;
+            top      : -2em;
+
+        }
+
+        //The border of the marker
+        &.lbm-content-border {
+            font-size:  1em;
+            top      : -3em;
+        }
+    }
+
+    //Container for inner icon or number
+    .inner {
+        $inner-font-size: 0.5;
+
+        position: relative;
+        left  : 0;
+        top   : calc(-4em / #{$inner-font-size});
+        width : 100%;
+        height: 100%;
+        line-height: 1/$inner-font-size;
+        font-size  : #{$inner-font-size}em;
+    }
+
+
+    &.lbm-transparent {
+        .lbm-content-background {
+            opacity: 0.7;
+        }
+        &.lbm-hover:hover {
+            .lbm-content-background {
+                opacity: 0.9;
+            }
+        }
+    }
+
+    //Show puls
+    &.lbm-puls {
+        .lbm-content-puls {
+            visibility : visible;
+            animation: icon-pulsate 1s ease-out;
+            animation-iteration-count: infinite;
+        }
+    }
+
+    //Shadow in same color
+    &.lbm-shadow, &.leaflet-drag-target, &.lbm-hover:hover {
+        .lbm-content-shadow {
+            -webkit-text-stroke-color: $outer-border-color;
+            -moz-text-stroke-color   : $outer-border-color;
+
+            -webkit-text-stroke-width: 2 * $shadow-width;
+            -moz-text-stroke-width   : 2 * $shadow-width;
+        }
+    }
+}
+
+//Create shadow-color for all colors
+@each $name, $color in $lbm-color-list {
+    .lbm-type-icon.lbm-color-#{$name} {
+        &.lbm-shadow, &.leaflet-drag-target, &.lbm-hover:hover {
+            .lbm-content-shadow {
+                -webkit-text-stroke-color: rgba($color, $shadow-opacity);
+                -moz-text-stroke-color   : rgba($color, $shadow-opacity);
+            }
+        }
+    }
+}
