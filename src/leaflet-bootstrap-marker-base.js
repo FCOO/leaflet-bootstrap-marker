@@ -477,5 +477,20 @@ Base object-class for all type of markers
         return new L.BsMarkerBase(latlng, options);
     };
 
+    /*****************************************************
+    L.bsMarker - Create a bsMarker[TYPE]
+    *****************************************************/
+    L.bsMarker = function bsMarker(latlng, options) {
+        var Constructor;
+        switch (options.type){
+            case 'circle'  : Constructor = L.BsMarkerCircle;   break;
+            case 'redcross': Constructor = L.BsMarkerRedCross; break;
+            case 'icon'    : Constructor = L.BsMarkerIcon;     break;
+            default        : Constructor = L.BsMarkerBase;
+        }
+
+        return new Constructor(latlng, options);
+    };
+
 }(jQuery, L, this, document));
 
