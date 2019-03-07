@@ -31,6 +31,7 @@
     <script src="../src/leaflet-bootstrap-marker-redcross.js"></script>
     <script src="../src/leaflet-bootstrap-marker-circle.js"></script>
     <script src="../src/leaflet-bootstrap-marker-icon.js"></script>
+    <script src="../src/leaflet-bootstrap-marker-icon2.js"></script>
 
 
     <script src="../src/leaflet-map-ignoreNextEvent.js"></script>
@@ -60,60 +61,67 @@
             $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Dansk', en:'Eng'}}),
             $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Lang Dansk', en:'LongEng'}})
         ];
-    var
-        allSize = false,
+//HER    var allSize = false,
+    var allSize = true,
         size = allSize ? 'xs' : 'xl',
         markerList = [
+
+            {constructor: L.bsMarkerIcon, options: {
+                iconClass: 'fa-arrow-up',
+                noFill   : true,
+            }},
+
+            {constructor: L.bsMarkerIcon, options: {
+                iconClass: 'fa-caret-up',
+                scaleY   : 50,
+                scaleX   : 60
+            }},
             {constructor: L.bsMarkerIcon, options: {
                 iconClass: 'fa-octagon', //'fa-rectangle-wide',
-                innerIconClass: 'fa-home',
+                innerIconClass: 'fa-square',
             }},
 
             {constructor: L.bsMarkerIcon, options: {
                 iconClass: 'fa-badge',
-                innerIconClass: 'fa-home',
+                innerIconClass: 'fa-square',
             }},
 
             {constructor: L.bsMarkerIcon, options: {
                 iconClass: 'fa-certificate',
-                innerIconClass: 'fa-home',
+                innerIconClass: 'fa-square',
             }},
 
-            {constructor: L.bsMarkerIcon, options: {
-scale: 120,
-                iconClass: 'fa-map-marker',
-                innerIconClass: 'fa-home',
-innerCss: {
-    "font-size": "0.42em",
-    "margin-top": "-1.6em"
-},
-                iconAnchor : {width: 0.5, height: 1},
-                popupAnchor: {width: 0,   height: -0.5  },
+            {constructor: L.bsMarkerStandard, options: {
+                iconClass: 'fa-home',
             }},
 
 
             {constructor: L.bsMarkerIcon, options: {
                 iconClass: 'fa-fighter-jet',
                 scale: 80,
-                directionOffset: -90,
-                rotatable: true
+                directionOffset: -90
             }},
             {constructor: L.bsMarkerIcon, options: {
                 iconClass: 'fa-map-pin',
                 iconAnchor : {width: 0.5, height: 1},
                 popupAnchor: {width: 0,   height: -0.5  },
+                rotationOrigin: 'center bottom',
             }},
             {constructor: L.bsMarkerIcon, options: {
-                iconClass: 'fa-arrow-alt-up',
-                rotatable: true,
+                iconClass: 'fa-arrow-alt-up'
 
-            }},
-            {constructor: L.bsMarkerCircle, options: {
-                iconClass: 'fa-home',
             }},
 
             {constructor: L.bsMarkerCircle, options: {
-                iconClass: 'fa-home',
+                iconClass: 'fa-square',
+                scaleInner: 80,
+            }},
+
+            {constructor: L.bsMarkerCircle, options: {
+                iconClass: 'fa-fighter-jet',
+                rotateInner: -90,
+                scaleInner: 40,
+                scale: 150,
                 round: false
 
             }},
@@ -136,10 +144,10 @@ innerCss: {
                 thickBorder : false,
                 borderColorName: 'black',
 
-                puls: true,
+//                puls: true,
                 transparent: true,
                 hover: true,
-                bigIconWhenTouch: true,
+
                 _tooltip: tooltip,
                 _tooltipPermanent: true,
                 tooltipHideWhenDragging: true,
@@ -149,23 +157,23 @@ innerCss: {
 
             marker = markerList[mfIndex].constructor(latlng, options).addTo( map );
 
+
             marker.on('click', function(){
                 //this._tooltip.setContent('<p style="background-color:red">NY'+Math.round(Math.random()*10000)+'</p>');
 
                 this.setColor('white');
                 this.setBorderColor('orange');
-                this.setDeltaDirection( 22 );
+                this.setDeltaDirection( 22.5 );
 
                 this.toggleOption('puls');
-//HER                this.setIconClass('fa-tachometer-alt');
-                //this.setSize('lg');
                 this.setNumber('12');
 
                 },
                 marker
             );
 
-            if (options.addPopup)
+//HER            if (options.addPopup)
+
                 marker.bindPopup({
                     width: 234,
                     closeButton: false,
@@ -192,7 +200,7 @@ innerCss: {
                         }
                     },
                     {
-                        icon:'fa-home',
+                        icon:'fa-square',
                         text:{da:'Skift', en:'Change'},
                         onClick: function(){
                             marker._popup.setContent({
@@ -206,12 +214,15 @@ innerCss: {
                             });
                         }
                     }],
-                    content: {icon: 'fa-home', text: 'Tekst_og_ikon_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord'}, scroll: true,
+                    content: {icon: 'fa-square', text: 'Tekst_og_ikon_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord'}, scroll: true,
 
                     extended: {
                         content: ['<p>Dette er en p</p>', 'Jeg vil i span', 'Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>']
                     }
                 });
+
+
+
 
             switch (size){
                 case 'xs':  size = 'sm'; break;

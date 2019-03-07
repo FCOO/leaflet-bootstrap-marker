@@ -89,12 +89,15 @@ Base object-class for all type of markers
             type       : 'base',  //Type of the marker
             size       : 'nl',    //Size of the marker. Possble values: 'extrasmall'/'sx', 'small'/'sm', '', 'large'/'lg', 'xlarge'*'xl'
 
-            scale      : null,    //Value = 80, 90, 120, 130 or 150: Scale specific icons to fit the other icons. Only for icon-marker
+            scale      : null,    //Value = 40, 50, 60, 70, 80, 90, 120, 130, or 150: Scale specific icons to fit the other icons. Only for icon-marker
+            scaleY     : null,    //Value = 40, 50, 60, 70, 80, 90, 120, 130, or 150: Scale height of specific icons to better fit icons with very low height
+            scaleInner : null,    //Value = 40, 50, 60, 70, 80, 90, 120, 130, or 150: Scale inner icon in type=circle
 
             iconClass     : '',          //Fontawesome Font class-name ("fa-marker") for icon
             innerIconClass: '',          //Fontawesome Font class-name ("fa-home") for icon inside the marker
             faClassName   : 'fa-circle', //fa-class to be used when create the marker as fa-icon. Default is fa-circle
 
+            markerClassName: '', //Extra class added to the marker
 
 //HER            iconSize        : 0,         //0: normal, 1. larger with icon or number, 2: Very large (touch-mode)
 //HER            round           : true,      //If false the icon is square
@@ -119,6 +122,8 @@ Base object-class for all type of markers
             colorName      : '',    //or fillColor: Name of inside fill-color of the marker
             borderColorName: '',    //or lineColor: Name of border/line-color of the marker
 
+            noFill         : false, //When true only colorName is used and no background-icon is used
+
             setColor : {
                 alsoAsCss  : false, //color are set by class-name, true: color are also set directly by css-attr using cssAttrName
                 cssAttrName: 'background-color'
@@ -131,14 +136,15 @@ Base object-class for all type of markers
             //Default FACTORS for size and anchor for the icon
             iconSize   : {width: 1, height: 1},
             iconAnchor : null, //{width: 0, height: 0},
-            popupAnchor: null, //{width: 0, height: 0},
+            popupAnchor: {width: 0, height: 0},
 
             //Css for inner text-div. Used to adjust font-size and/or top-position for specific icon-class
             innerCss: {}, //{"font-size": "0.4em", top: "-4.2em" }
 
-            rotatable      : false, //If true the marker can be rotated using .setDirection(...)
+            rotationOrigin : 'center', //Origion around witch the marker is rotated
             direction      : 0, //direction
             directionOffset: 0, //Offset for direction if the icon is not N-S
+            rotateInner    : 0, //Rotation of the inner-icon
 
             tooltip                 : null,     //Content of tooltip
             tooltipPermanent        : false,    //Whether to open the tooltip permanently or only on mouseover.
@@ -201,32 +207,51 @@ Base object-class for all type of markers
         getIcon - return the icon-object in given size
         *****************************************************/
         getIcon: function( sizeId ){
-            function point( width, whFactor ){
+            function point( width, height, whFactor ){
                 return  whFactor ?
                         L.point(
                             Math.round( (whFactor.width  || 0)*width ),
-                            Math.round( (whFactor.height || 0)*width )
+                            Math.round( (whFactor.height || 0)*height )
                         ) :
                         null;
             }
 
             var iconList = ns.iconList[this.options.type] = ns.iconList[this.options.type] || [],
                 width = ns.size[sizeId],
+                height = width,
                 className = 'lbm-type-'+this.options.type;
+
+
+            if (this.options.markerClassName)
+                className = className + ' ' + this.options.markerClassName;
 
             if (this.options.scale){
                 width = Math.round( width * this.options.scale / 100 );
+                height = Math.round( height * this.options.scale / 100 );
                 className = className + ' lbm-scale-'+this.options.scale;
             }
+            if (this.options.scaleX){
+                width = Math.round( width * this.options.scaleX / 100 );
+                className = className + ' lbm-scale-x-'+this.options.scaleX;
+            }
+            if (this.options.scaleY){
+                height = Math.round( height * this.options.scaleY / 100 );
+                className = className + ' lbm-scale-y-'+this.options.scaleY;
+            }
+            if (this.options.scaleInner){
+                className = className + ' lbm-scale-inner-'+this.options.scaleInner;
+            }
+            if (this.options.noFill)
+                className = className + ' lbm-no-fill';
 
             var iconOptions = {
                     className  : className,
                     html       : '',
-                    iconSize   : point( width, this.options.iconSize    ),
-                    iconAnchor : point( width, this.options.iconAnchor  ),
-                    popupAnchor: point( width, this.options.popupAnchor ),
+                    iconSize   : point( width, height, this.options.iconSize    ),
+                    iconAnchor : point( width, height, this.options.iconAnchor  ),
+                    popupAnchor: point( width, height, this.options.popupAnchor ),
                 },
-                iconId = sizeId + '_' + (this.options.iconClass || ''),
+                iconId = sizeId + '_' + (this.options.iconClass || '') + '_' + (this.options.innerIconClass || '') + (this.options.round ? '_round' : ''),
                 result = iconList[iconId] = iconList[iconId] || this.createIcon(sizeId, iconOptions);
             return result;
         },
@@ -240,7 +265,6 @@ Base object-class for all type of markers
             this.$border      = this.$icon;
             this.$innerParent = this.$icon;
             this.$inner       = this.$icon.find('.inner');
-            this.$direction   = null;
         },
 
         /*****************************************************
@@ -271,7 +295,7 @@ Base object-class for all type of markers
                 this.setInnerIconClass(this.options.innerIconClass);
 
             if (this.options.direction || this.options.directionOffset)
-                this.setDirection( this.options.direction, !!this.options.directionOffset );
+                this.setDirection( this.options.direction );
 
         },
 
@@ -386,12 +410,15 @@ Base object-class for all type of markers
 
         setInnerIconClass: function( innerIconClass ){
             //If this.$inner don't exists => create it
-            if (!this.$inner || !this.$inner.length)
+            if (!this.$inner || !this.$inner.length){
                 this.$inner =
                     $('<div/>')
                         .addClass('inner')
                         .css(this.options.innerCss)
                         .appendTo(this.$innerParent);
+            }
+            if (this.options.rotateInner || this.$inner.css('transform'))
+                this.$inner.css('transform', 'rotate('+this.options.rotateInner+'deg)');
 
             this.$inner.empty().removeClass('text');
             this.options.innerIconClass = innerIconClass || '';
@@ -414,11 +441,10 @@ Base object-class for all type of markers
         /*****************************************************
         setDirection( direction )
         *****************************************************/
-        setDirection: function( direction, force ){
+        setDirection: function( direction ){
             this.options.direction = (direction || 0) % 360;
-            if (this.$direction && (this.options.rotatable || force))
-                this.$direction.css('transform', 'rotate(' + ( this.options.direction + (this.options.directionOffset || 0) ) +'deg)');
-
+            direction = (this.options.direction + this.options.directionOffset) % 360;
+            this.setRotationAngle(direction);
             return this;
         },
 
@@ -492,5 +518,57 @@ Base object-class for all type of markers
         return new Constructor(latlng, options);
     };
 
-}(jQuery, L, this, document));
+    /***************************************************************
+    Leaflet.RotadedMarker
+    (c) https://github.com/bbecquet/Leaflet.RotatedMarker
 
+    Removed the IE9 support
+    ***************************************************************/
+    // save these original methods before they are overwritten
+    var proto_initIcon = L.Marker.prototype._initIcon;
+    var proto_setPos = L.Marker.prototype._setPos;
+
+    L.Marker.addInitHook(function () {
+        var iconOptions = this.options.icon && this.options.icon.options;
+        var iconAnchor = iconOptions && this.options.icon.options.iconAnchor;
+        if (iconAnchor) {
+            iconAnchor = (iconAnchor[0] + 'px ' + iconAnchor[1] + 'px');
+        }
+        this.options.rotationOrigin = this.options.rotationOrigin || iconAnchor || 'center bottom' ;
+        this.options.rotationAngle = this.options.rotationAngle || 0;
+
+        // Ensure marker keeps rotated during dragging
+        this.on('drag', function(e) { e.target._applyRotation(); });
+    });
+
+    L.Marker.include({
+        _initIcon: function() {
+            proto_initIcon.call(this);
+        },
+
+        _setPos: function (pos) {
+            proto_setPos.call(this, pos);
+            this._applyRotation();
+        },
+
+        _applyRotation: function () {
+            if(this.options.rotationAngle) {
+                this._icon.style[L.DomUtil.TRANSFORM+'Origin'] = this.options.rotationOrigin;
+                this._icon.style[L.DomUtil.TRANSFORM] += ' rotateZ(' + this.options.rotationAngle + 'deg)';
+            }
+        },
+
+        setRotationAngle: function(angle) {
+            this.options.rotationAngle = angle;
+            this.update();
+            return this;
+        },
+
+        setRotationOrigin: function(origin) {
+            this.options.rotationOrigin = origin;
+            this.update();
+            return this;
+        }
+    });
+
+}(jQuery, L, this, document));

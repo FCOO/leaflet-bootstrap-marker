@@ -1,5 +1,4 @@
 /***********************************************
-
 leaflet-bootstrap-marker.scss
 
 lbm-type-TYPE lbm-color-COLOR [lbm-border-color-COLOR] [lbm-transparent] [lbm-puls] [lbm-hover]
@@ -50,8 +49,12 @@ lbm-hover         : When hover: get shadow and opacity: 0.9 for ibm-transparent
 .lbm-base {
     //Container to hold number or fa-icon
     .inner {
-        text-align      : center;
-        width           : 100%;
+        display        : flex;
+        align-items    : center;
+        justify-content: center;
+        width          : 100%;
+        height         : 100%;
+
         background-color: transparent;
         &.text {
             font-family   : $font-family-monospace !important;
@@ -66,21 +69,25 @@ lbm-hover         : When hover: get shadow and opacity: 0.9 for ibm-transparent
     //text-color for number and fa-icon
     &.lbm-text-is-black .inner { color: $black; }
     &.lbm-text-is-white .inner { color: $white; }
-}
 
-//Create different font-size
-@each $size-id, $size in $size-list {
-    .lbm-base.lbm-size-#{$size-id} {
-        font-size: $size * 1px;
+    //Create different font-size
+    @each $size-id, $size in $size-list {
+        &.lbm-base.lbm-size-#{$size-id} {
+            font-size: $size * 1px;
 
-        &.lbm-scale-80  { font-size: round($size * 0.8px); }
-        &.lbm-scale-90  { font-size: round($size * 0.9px); }
-        &.lbm-scale-120 { font-size: round($size * 1.2px); }
-        &.lbm-scale-130 { font-size: round($size * 1.3px); }
-        &.lbm-scale-150 { font-size: round($size * 1.5px); }
+            @each $scale in $scale-list {
+                &.lbm-scale-#{$scale}  { font-size: round($size * $scale / 100 * 1px); }
+            }
+        }
+    }
+
+    //Scale the inner content
+    @each $scale in $scale-list {
+        &.lbm-scale-inner-#{$scale} .inner * {
+            font-size: 1em * $scale / 100;
+        }
     }
 }
-
 
 //Create margin for tooltips for the different sizes
 @each $size-id, $size in $size-list {
@@ -99,3 +106,5 @@ lbm-hover         : When hover: get shadow and opacity: 0.9 for ibm-transparent
 //Styles for bsMarkerIcon
 @import "leaflet-bootstrap-marker-icon";
 
+//Styles for bsMarkerStandard
+@import "leaflet-bootstrap-marker-standard";

@@ -44,9 +44,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
         display : none;
         position: absolute;
         content : "";
-        height: calc(100% + #{$puls-width});
-        width: calc(100% + #{$puls-width});
-        margin: #{-0.5 * $puls-width} 0 0 #{-0.5 * $puls-width};
+        height  : calc(100% + #{$puls-width});
+        width   : calc(100% + #{$puls-width});
+        margin  : #{-0.5 * $puls-width} 0 0 #{-0.5 * $puls-width};
     }
 
     &.lbm-puls:before {
@@ -58,7 +58,6 @@ https://github.com/mapshakers/leaflet-icon-pulse
     .inner {
         font-size: calc(.7em - #{2 * $border-width});
     }
-
 }
 
 //Create circle-classes for all colors

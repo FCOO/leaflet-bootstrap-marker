@@ -14,16 +14,6 @@ $puls-width: .8em;
 
 $outer-border-color: rgba(white, 0.5); //Thin white border around icns to make contrast to background. //.5 = estimate to look like google maps
 
-/*
-$ORIGINAL_size-list: (
-    "xs": 8,
-    "sm": 14,
-    "nl": 20,
-    "lg": 26,
-    "xl": 32,
-);
-*/
-
 $size-list: (
     xs:  8,
     sm: 14,
@@ -31,6 +21,10 @@ $size-list: (
     lg: 32,
     xl: 42,
 );
+
+
+//$scale-list = list of possible scale-factors
+$scale-list: (40, 50, 60, 70, 80, 90, 120, 130, 150);
 
 /***********************************************************************
 marker-circle-color

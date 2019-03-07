@@ -42,7 +42,7 @@ _leaflet-bootstrap-marker-icon.scss,
 
        //White border and shadow of the marker
         &.lbm-content-shadow {
-            font-size: 1em;
+            font-size:  1em;
             top      : -1em;
 
             //Thin white outer border
@@ -56,7 +56,6 @@ _leaflet-bootstrap-marker-icon.scss,
         &.lbm-content-background {
             font-size:  1em;
             top      : -2em;
-
         }
 
         //The border of the marker
@@ -78,7 +77,6 @@ _leaflet-bootstrap-marker-icon.scss,
         line-height: 1/$inner-font-size;
         font-size  : #{$inner-font-size}em;
     }
-
 
     &.lbm-transparent {
         .lbm-content-background {
@@ -108,6 +106,23 @@ _leaflet-bootstrap-marker-icon.scss,
 
             -webkit-text-stroke-width: 2 * $shadow-width;
             -moz-text-stroke-width   : 2 * $shadow-width;
+        }
+    }
+
+    //Adjust top when options.noFill == true
+    &.lbm-no-fill .lbm-content-border { top: -2em; }
+
+    //Ajdust line-height and top for lbm-scale-y-FACTOR
+    @each $scale in $scale-list {
+        &.lbm-scale-y-#{$scale} {
+            $factor: $scale/100;
+            .lbm-content {
+                line-height: $factor;
+                &.lbm-content-puls       {top: 0;}
+                &.lbm-content-shadow     {top: -1em * $factor;}
+                &.lbm-content-background {top: -2em * $factor;}
+                &.lbm-content-border     {top: -3em * $factor;}
+            }
         }
     }
 }

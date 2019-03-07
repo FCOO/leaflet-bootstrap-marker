@@ -9,6 +9,7 @@ There are the following types of marker:
 
 - **`bsMarkerCircle`** Round or square marker with optional fill and border color and icon or text
 - **`bsMarkerIcon`** Fontawesome icons as marker with optional fill and border color and icon or text
+- **`bsMarkerStandard`** A standard Leaflet marker with optional fill and border color and icon or text
 - **`bsMarkerRedCross`** Special marker as a red cross on the map
 
 ## Installation
@@ -29,7 +30,9 @@ http://FCOO.github.io/leaflet-bootstrap-marker/demo/
             type       : 'base',  //Type of the marker
             size       : 'nl',    //Size of the marker. Possble values: 'sx', 'sm', '', 'lg', or 'xl'
 
-            scale      : null,    //Value = 80, 90, 120, 130 or 150: Scale specific icons to fit the other icons. Only for icon-marker
+            scale      : null,    //Value = 40, 50, 60, 70, 80, 90, 120, 130, or 150: Scale specific icons to fit the other icons. Only for icon-marker
+            scaleY     : null,    //Value = 40, 50, 60, 70, 80, 90, 120, 130, or 150: Scale height of specific icons to better fit icons with very low height
+            scaleInner : null,    //Value = 40, 50, 60, 70, 80, 90, 120, 130, or 150: Scale inner icon in type=circle
 
             iconClass     : '',          //Fontawesome Font class-name ("fa-marker") for icon
             innerIconClass: '',          //Fontawesome Font class-name ("fa-home") for icon inside the marker
@@ -46,6 +49,8 @@ http://FCOO.github.io/leaflet-bootstrap-marker/demo/
             colorName      : '',    //or fillColor: Name of inside fill-color of the marker
             borderColorName: '',    //or lineColor: Name of border/line-color of the marker
 
+            noFill         : false, //When true only colorName is used and no background-icon is used
+
             //Default FACTORS for size and anchor for the icon
             iconSize   : {width: 1, height: 1},
             iconAnchor : null, //{width: 0, height: 0},
@@ -54,9 +59,10 @@ http://FCOO.github.io/leaflet-bootstrap-marker/demo/
             //Css for inner text-div. Used to adjust font-size and/or top-position for specific icon-class
             innerCss: {}, //{"font-size": "0.4em", top: "-4.2em" }
 
-            rotatable      : false, //If true the marker can be rotated using .setDirection(...)
+            rotationOrigin : 'center', //Origion around witch the marker is rotated
             direction      : 0, //direction
             directionOffset: 0, //Offset for direction if the icon is not N-S
+            rotateInner    : 0, //Rotation of the inner-icon
 
             tooltip                 : null,     //Content of tooltip
             tooltipPermanent        : false,    //Whether to open the tooltip permanently or only on mouseover.

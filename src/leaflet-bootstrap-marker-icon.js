@@ -29,14 +29,11 @@ Create L.bsMarkerIcon = a marker with only a fa-icon
                 solid : 'fas',
                 border: ''    //Default is set to $.FONTAWESOME_PREFIX on creation
             },
-
             //iconClassExtra = Extra class-names added to the different icons
             iconClassExtra: {
                 solid : '',
                 border: ''
             }
-
-
         },
 
         initialize: function(latLng, options){
@@ -46,27 +43,35 @@ Create L.bsMarkerIcon = a marker with only a fa-icon
         },
 
         createIcon: function( sizeId, options ){
-            var iconClassPrefixSolid  =  this.options.iconClassPrefix.solid,
+            var iconClassPrefixSolid  =  this.options.iconClassPrefix.solid + ' ' + this.options.iconClass,
                 iconClassPrefixBorder =  this.options.iconClassPrefix.border || ($.FONTAWESOME_PREFIX == 'fa' ? 'fas' : 'fal');
 
-                options.html =
-                    '<div class="lbm-content-outer">' +
-                        '<i class="' + iconClassPrefixBorder + ' ' + this.options.iconClass + ' ' + this.options.iconClassExtra.border + ' lbm-content lbm-content-puls"></i>' +
-                        '<i class="' + iconClassPrefixBorder + ' ' + this.options.iconClass + ' ' + this.options.iconClassExtra.border + ' lbm-content lbm-content-shadow"></i>' +
-                        '<i class="' + iconClassPrefixSolid  + ' ' + this.options.iconClass + ' ' + this.options.iconClassExtra.solid  + ' lbm-content lbm-content-background"></i>' +
-                        '<i class="' + iconClassPrefixBorder + ' ' + this.options.iconClass + ' ' + this.options.iconClassExtra.border + ' lbm-content lbm-content-border"></i>' +
-                    '</div>';
+            iconClassPrefixSolid  +=  ' ' + this.options.iconClass + ' ' + (this.options.iconClassExtra.solid || '');
+            iconClassPrefixBorder +=  ' ' + this.options.iconClass + ' ' + (this.options.iconClassExtra.border || '');
 
-                return L.divIcon( options );
+            options.html =
+                '<div class="lbm-content-outer">' +
+                    '<i class="' + iconClassPrefixBorder + ' lbm-content lbm-content-puls"></i>' +
+                    '<i class="' + iconClassPrefixBorder + ' lbm-content lbm-content-shadow"></i>' +
+                    (this.options.noFill ? '' : '<i class="' + iconClassPrefixSolid  + ' lbm-content lbm-content-background"></i>') +
+                    '<i class="' + iconClassPrefixBorder + ' lbm-content lbm-content-border"></i>' +
+                '</div>';
+
+            return L.divIcon( options );
         },
 
         getElements: function(){
             this.$icon        = $(this._icon);
-            this.$background  = this.$icon.find('.lbm-content-background, .lbm-content-shadow, .lbm-content-puls');
-            this.$border      = this.$icon.find('.lbm-content-border');
+            if (this.options.noFill){
+                this.$background  = this.$icon.find('.lbm-content-border, .lbm-content-shadow, .lbm-content-puls');
+                this.$border      = $();//Empty $-element
+            }
+            else {
+                this.$background  = this.$icon.find('.lbm-content-background, .lbm-content-shadow, .lbm-content-puls');
+                this.$border      = this.$icon.find('.lbm-content-border');
+            }
             this.$inner       = this.$icon.find('.inner');
             this.$innerParent = this.$icon.find('.lbm-content-outer');
-            this.$direction   = this.$innerParent;
         },
     });
 

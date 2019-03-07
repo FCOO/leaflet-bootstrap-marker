@@ -1,0 +1,14 @@
+/***********************************************
+
+_leaflet-bootstrap-marker-standard.scss,
+
+Adjust font-size and top for .inner to fit inside a fa-map-marker icon
+************************************************/
+.lbm-type-icon-standard {
+    .lbm-content-outer {
+        .inner {
+            font-size: calc(.5em / 1.2);
+            top      : calc(-4.1em / 0.5 * 1.2);
+        }
+    }
+}
