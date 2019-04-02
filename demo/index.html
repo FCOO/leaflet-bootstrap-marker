@@ -13,7 +13,7 @@
     <link  href="../src/leaflet-bootstrap-marker.css" rel="stylesheet">
 
     <!-- <link  href="fcoo-fontawesome.css" rel="stylesheet"> -->
-    <!-- <link  href="css/all.css" rel="stylesheet"> -->
+    <link  href="css/all.css" rel="stylesheet">
     <style>
         html, body, #map {
             padding: 0; margin: 0; width:100%; height:100%;
@@ -38,7 +38,7 @@
 
     <script>
 
-    $.FONTAWESOME_PREFIX = 'far';
+//    $.FONTAWESOME_PREFIX = 'far';
 
     window.bsIsTouch = false;
     window.bsIsTouch = (window.location.search =='?touch');
@@ -155,8 +155,9 @@
                 shadowWhenPopupOpen: true
             }),
 
-            marker = markerList[mfIndex].constructor(latlng, options).addTo( map );
 
+            marker = markerList[mfIndex].constructor(latlng, options).addTo( map );
+console.log(options, marker);
 
             marker.on('click', function(){
                 //this._tooltip.setContent('<p style="background-color:red">NY'+Math.round(Math.random()*10000)+'</p>');

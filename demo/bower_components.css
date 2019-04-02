@@ -5123,7 +5123,7 @@ Adjust dropdown-menu
 IMPORT BOOTSTRAP SCSS
 ************************************************/
 /*!
- * Bootstrap v4.3.0 (https://getbootstrap.com/)
+ * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -10596,7 +10596,8 @@ button.bg-dark:focus {
 .w-75 {
   width: 75% !important; }
 
-.w-100, .popover-body .btn-group-vertical {
+.w-100, .popover-body .btn-group-vertical,
+.btn-group-vertical.btn-group-full-width {
   width: 100% !important; }
 
 .w-auto {
@@ -12980,8 +12981,86 @@ BUTTON-GROUP
   .btn-group:not(.btn-group-vertical).btn-group-full-width .btn {
     flex: 1 0 10px; }
 
+.btn-group.btn-group-border, .btn-group-vertical.btn-group-border {
+  border: 1px solid #afb4ba;
+  border-radius: 0.25rem; }
+  .btn-group.btn-group-border.btn-group-sm, .btn-group-vertical.btn-group-border.btn-group-sm {
+    border-radius: 0.1875rem; }
+  .btn-group.btn-group-border.btn-group-xs, .btn-group-vertical.btn-group-border.btn-group-xs {
+    border-radius: 0.125rem; }
+
 .has-fixed-label ~ .btn-group {
   padding-top: 3px; }
+
+.btn-group-vertical .btn-group-header {
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  cursor: default;
+  padding: 0.3125rem 0.3125rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: inherit;
+  color: #495057;
+  background-color: #e9ecef;
+  line-height: 1.3;
+  width: 100%; }
+  .btn-group-vertical .btn-group-header span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .btn-group-vertical .btn-group-header span.fixed-header {
+    overflow: visible;
+    word-break: keep-all; }
+  .btn-group-vertical .btn-group-header ~ .btn {
+    padding-left: 0.625rem; }
+
+.btn-group-vertical.btn-group-sm .btn-group-header {
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  cursor: default;
+  padding: 0.25rem 0.25rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  border-radius: inherit;
+  line-height: 1.3; }
+  .btn-group-vertical.btn-group-sm .btn-group-header span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .btn-group-vertical.btn-group-sm .btn-group-header span.fixed-header {
+    overflow: visible;
+    word-break: keep-all; }
+  .btn-group-vertical.btn-group-sm .btn-group-header ~ .btn {
+    padding-left: 0.5rem; }
+
+.btn-group-vertical.btn-group-xs .btn-group-header {
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  cursor: default;
+  padding: 0.125rem 0.125rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  border-radius: inherit;
+  line-height: 1.3; }
+  .btn-group-vertical.btn-group-xs .btn-group-header span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .btn-group-vertical.btn-group-xs .btn-group-header span.fixed-header {
+    overflow: visible;
+    word-break: keep-all; }
+  .btn-group-vertical.btn-group-xs .btn-group-header ~ .btn {
+    padding-left: 0.25rem; }
+
+.btn-group-vertical + .btn-group-vertical {
+  margin-top: 0.3125rem; }
+  .btn-group-vertical + .btn-group-vertical.btn-group-sm {
+    margin-top: 0.25rem; }
+  .btn-group-vertical + .btn-group-vertical.btn-group-xs {
+    margin-top: 0.25rem; }
 
 /************************************************************
 POPOVER
