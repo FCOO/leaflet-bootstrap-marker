@@ -395,14 +395,15 @@ Base object-class for all type of markers
         _setTextColor()
         *****************************************************/
         _setTextColor: function(){
-            if (!this.$background)
-                return this;
-            var bgColorRGBStr = this.$background.first().css( this.options.setColor.cssAttrName),
-                bgColorRGB = bgColorRGBStr.split("(")[1].split(")")[0].split(','),
-                color = window.colorContrastRGB(parseInt(bgColorRGB[0]), parseInt(bgColorRGB[1]), parseInt(bgColorRGB[2])),
-                colorIsBlack = (color == '#000000');
+            if (this.$background && this.$background.first().length){
+                var bgColorRGBStr = this.$background.first().css( this.options.setColor.cssAttrName),
+                    bgColorRGB = bgColorRGBStr.split("(")[1].split(")")[0].split(','),
+                    color = window.colorContrastRGB(parseInt(bgColorRGB[0]), parseInt(bgColorRGB[1]), parseInt(bgColorRGB[2])),
+                    colorIsBlack = (color == '#000000');
                 this.$icon.toggleClass('lbm-text-is-black', colorIsBlack);
                 this.$icon.toggleClass('lbm-text-is-white', !colorIsBlack);
+            }
+            return this;
         },
 
         /*****************************************************
