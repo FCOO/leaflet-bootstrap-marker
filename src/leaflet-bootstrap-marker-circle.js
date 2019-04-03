@@ -19,8 +19,7 @@ Create L.bsMarkerCircle = a round marker with options for color, shadow and puls
             round           : true, //If false the icon is square
             optionsWithClass: optionsWithClass,
             setBorderColor: {
-                alsoAsCss  : true,
-                cssAttrName: 'border-color'
+                alsoAsCss  : false,
             }
         },
 

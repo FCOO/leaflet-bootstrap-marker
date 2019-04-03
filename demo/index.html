@@ -65,6 +65,10 @@
     var allSize = true,
         size = allSize ? 'xs' : 'xl',
         markerList = [
+{constructor: L.bsMarkerCircle, options: {
+    iconClass: 'fa-home',
+}},
+
 
             {constructor: L.bsMarkerIcon, options: {
                 iconClass: 'fa-arrow-up',
@@ -142,7 +146,7 @@
                 draggable: true,
                 colorName    : 'green',
                 thickBorder : false,
-                borderColorName: 'black',
+                borderColorName: 'red', //'black',
 
 //                puls: true,
                 transparent: true,
@@ -157,13 +161,12 @@
 
 
             marker = markerList[mfIndex].constructor(latlng, options).addTo( map );
-console.log(options, marker);
 
             marker.on('click', function(){
                 //this._tooltip.setContent('<p style="background-color:red">NY'+Math.round(Math.random()*10000)+'</p>');
 
-                this.setColor('white');
-                this.setBorderColor('orange');
+                this.setColor('orange');
+                this.setBorderColor('blue');
                 this.setDeltaDirection( 22.5 );
 
                 this.toggleOption('puls');

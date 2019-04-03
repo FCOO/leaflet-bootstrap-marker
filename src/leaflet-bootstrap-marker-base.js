@@ -100,8 +100,6 @@ Base object-class for all type of markers
             markerClassName: '', //Extra class added to the marker
 
 //HER            iconSize        : 0,         //0: normal, 1. larger with icon or number, 2: Very large (touch-mode)
-//HER            round           : true,      //If false the icon is square
-//HER            number          : undefined, //Number inside the marker
 
             draggable       : false,     //Whether the marker is draggable with mouse/touch or not.
             autoPan         : true,      //Set to true if you want the map to do panning animation when marker hits the edges.

@@ -59,6 +59,9 @@ Create class for bsMarkerCircle named $name with color and color-border
           &.lbm-color-#{$name} {
             @include marker-circle-color($color);
         }
+        &.lbm-border-color-#{$name} {
+            border-color: $border-color;
+        }
     }
 }
 
