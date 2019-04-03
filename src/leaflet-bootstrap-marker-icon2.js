@@ -24,6 +24,7 @@ Create L.bsMarkerStandard = a classic Leaflet marker with options for color, ico
         },
 
         initialize: function(latLng, options){
+            options = options || {};
             options.innerIconClass = options.innerIconClass || options.iconClass;
             options.iconClass = 'fa-map-marker';
 

@@ -182,9 +182,8 @@ Base object-class for all type of markers
         *****************************************************/
         initialize: function(latLng, options){
             //Adjust options
-            if (options && options.bigIconWhenTouch && options.draggable && window.bsIsTouch)
+            if (options && (options.bigIconWhenTouch || options.useTouchSize)  && options.draggable && window.bsIsTouch)
                 options.size = 'lg';
-
 
             L.Marker.prototype.initialize.call(this, latLng, options);
 
@@ -601,6 +600,7 @@ Create L.bsMarkerCircle = a round marker with options for color, shadow and puls
         },
 
         initialize: function(latLng, options){
+            options = options || {};
             options.innerIconClass = options.innerIconClass || options.iconClass;
             L.BsMarkerBase.prototype.initialize.call(this, latLng, options);
             if (!this.options.round)
@@ -661,6 +661,7 @@ Create L.bsMarkerIcon = a marker with only a fa-icon
         },
 
         initialize: function(latLng, options){
+            options = options || {};
             options.faClassName = options.faClassName || options.iconClass;
             L.BsMarkerBase.prototype.initialize.call(this, latLng, options);
             return this;
@@ -735,6 +736,7 @@ Create L.bsMarkerStandard = a classic Leaflet marker with options for color, ico
         },
 
         initialize: function(latLng, options){
+            options = options || {};
             options.innerIconClass = options.innerIconClass || options.iconClass;
             options.iconClass = 'fa-map-marker';
 

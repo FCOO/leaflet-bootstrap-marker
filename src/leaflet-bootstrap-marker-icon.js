@@ -37,6 +37,7 @@ Create L.bsMarkerIcon = a marker with only a fa-icon
         },
 
         initialize: function(latLng, options){
+            options = options || {};
             options.faClassName = options.faClassName || options.iconClass;
             L.BsMarkerBase.prototype.initialize.call(this, latLng, options);
             return this;

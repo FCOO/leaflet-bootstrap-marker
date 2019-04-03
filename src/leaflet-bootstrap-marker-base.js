@@ -182,9 +182,8 @@ Base object-class for all type of markers
         *****************************************************/
         initialize: function(latLng, options){
             //Adjust options
-            if (options && options.bigIconWhenTouch && options.draggable && window.bsIsTouch)
+            if (options && (options.bigIconWhenTouch || options.useTouchSize)  && options.draggable && window.bsIsTouch)
                 options.size = 'lg';
-
 
             L.Marker.prototype.initialize.call(this, latLng, options);
 
