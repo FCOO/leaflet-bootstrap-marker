@@ -12,6 +12,7 @@ Base object-class for all type of markers
     var ns = L.BsMarker = L.BsMarker || {};
 
     //size = {id: width}
+/*
     ns.ORIGINAL_size = {
         xs:  8,
         sm: 14,
@@ -19,6 +20,7 @@ Base object-class for all type of markers
         lg: 26,
         xl: 32,
     };
+*/
     ns.size = {
         xs:  8,
         sm: 14,
@@ -185,6 +187,9 @@ Base object-class for all type of markers
 
             L.Marker.prototype.initialize.call(this, latLng, options);
 
+            //Create 'dummy' $icon to allow setColor etc. before the marker is added
+            this.$icon = $('<div/>');
+
             this.on('dragstart',  this._bsMarkerBase_dragstart,  this);
             this.on('dragend',    this._bsMarkerBase_dragend,    this);
             this.on('popupopen',  this._bsMarkerBase_popupopen,  this);
@@ -273,17 +278,15 @@ Base object-class for all type of markers
 
             this.getElements();
 
-            //Set options using differnet class-names on $icon
+            //Set options using different class-names on $icon
             var _this = this;
 
             $.each(this.options.optionsWithClass, function( index, id ){
                 _this.toggleOption(id, !!_this.options[id] );
             });
 
-            if (this.options.colorName)
-                this.setColor(this.options.colorName);
-            if (this.options.borderColorName)
-                this.setBorderColor(this.options.borderColorName);
+            this.setColor(this.colorName || this.options.colorName);
+            this.setBorderColor(this.borderColorName || this.options.borderColorName);
 
             if (this.options.number !== undefined)
                 this.setNumber(this.options.number);
@@ -306,6 +309,7 @@ Base object-class for all type of markers
                 this.bindTooltip(this.options.tooltip);
 
             this.setSize(this.options.size);
+
 
             return result;
         },
@@ -361,8 +365,10 @@ Base object-class for all type of markers
         setColor( colorName )
         *****************************************************/
         setColor: function( colorName ){
-            this._setAnyColor( 'colorName', colorName, 'lbm-color-', this.$background, this.options.setColor);
-            this._setTextColor();
+            if (colorName){
+                this._setAnyColor( 'colorName', colorName, 'lbm-color-', this.$background, this.options.setColor);
+                this._setTextColor();
+            }
             return this;
         },
 
@@ -370,7 +376,7 @@ Base object-class for all type of markers
         setBorderColor( borderColorName )
         *****************************************************/
         setBorderColor: function( borderColorName ){
-            return this._setAnyColor( 'borderColorName', borderColorName, 'lbm-border-color-', this.$border, this.options.setBorderColor);
+            return borderColorName ? this._setAnyColor( 'borderColorName', borderColorName, 'lbm-border-color-', this.$border, this.options.setBorderColor) : this;
         },
 
 
@@ -380,7 +386,7 @@ Base object-class for all type of markers
             this[id] = newColorName;
 
             this.addClass(classNamePrefix + newColorName);
-            if (options.alsoAsCss)
+            if (options.alsoAsCss && $element && $element.length)
                 $element.css(options.cssAttrName, colorNameToColor[newColorName]);
             return this;
         },
@@ -389,6 +395,8 @@ Base object-class for all type of markers
         _setTextColor()
         *****************************************************/
         _setTextColor: function(){
+            if (!this.$background)
+                return this;
             var bgColorRGBStr = this.$background.first().css( this.options.setColor.cssAttrName),
                 bgColorRGB = bgColorRGBStr.split("(")[1].split(")")[0].split(','),
                 color = window.colorContrastRGB(parseInt(bgColorRGB[0]), parseInt(bgColorRGB[1]), parseInt(bgColorRGB[2])),

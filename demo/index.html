@@ -160,7 +160,12 @@
             }),
 
 
-            marker = markerList[mfIndex].constructor(latlng, options).addTo( map );
+            marker = markerList[mfIndex].constructor(latlng, options);
+            marker.setColor('yellow');
+            marker.setBorderColor('green');
+            marker.setDirection(45);
+
+            marker.addTo( map );
 
             marker.on('click', function(){
                 //this._tooltip.setContent('<p style="background-color:red">NY'+Math.round(Math.random()*10000)+'</p>');

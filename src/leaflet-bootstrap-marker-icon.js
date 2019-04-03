@@ -62,7 +62,7 @@ Create L.bsMarkerIcon = a marker with only a fa-icon
         },
 
         getElements: function(){
-            this.$icon        = $(this._icon);
+            this.$icon = $(this._icon);
             if (this.options.noFill){
                 this.$background  = this.$icon.find('.lbm-content-border, .lbm-content-shadow, .lbm-content-puls');
                 this.$border      = $();//Empty $-element

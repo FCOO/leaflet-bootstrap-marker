@@ -463,6 +463,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
   .lbm-type-circle.lbm-color-pink:before {
     box-shadow: 0 0 6px 2px pink; }
 
+.lbm-type-circle.lbm-border-color-pink {
+  border-color: pink; }
+
 .lbm-type-circle.lbm-color-purple {
   background-color: purple;
   color: #fff; }
@@ -474,6 +477,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
     box-shadow: 0px 0px 0px 5px rgba(128, 0, 128, 0.28); }
   .lbm-type-circle.lbm-color-purple:before {
     box-shadow: 0 0 6px 2px purple; }
+
+.lbm-type-circle.lbm-border-color-purple {
+  border-color: purple; }
 
 .lbm-type-circle.lbm-color-red {
   background-color: red;
@@ -487,6 +493,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
   .lbm-type-circle.lbm-color-red:before {
     box-shadow: 0 0 6px 2px red; }
 
+.lbm-type-circle.lbm-border-color-red {
+  border-color: red; }
+
 .lbm-type-circle.lbm-color-orange {
   background-color: orange;
   color: #000; }
@@ -498,6 +507,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
     box-shadow: 0px 0px 0px 5px rgba(255, 165, 0, 0.28); }
   .lbm-type-circle.lbm-color-orange:before {
     box-shadow: 0 0 6px 2px orange; }
+
+.lbm-type-circle.lbm-border-color-orange {
+  border-color: orange; }
 
 .lbm-type-circle.lbm-color-yellow {
   background-color: yellow;
@@ -511,6 +523,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
   .lbm-type-circle.lbm-color-yellow:before {
     box-shadow: 0 0 6px 2px yellow; }
 
+.lbm-type-circle.lbm-border-color-yellow {
+  border-color: yellow; }
+
 .lbm-type-circle.lbm-color-green {
   background-color: green;
   color: #fff; }
@@ -522,6 +537,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
     box-shadow: 0px 0px 0px 5px rgba(0, 128, 0, 0.28); }
   .lbm-type-circle.lbm-color-green:before {
     box-shadow: 0 0 6px 2px green; }
+
+.lbm-type-circle.lbm-border-color-green {
+  border-color: green; }
 
 .lbm-type-circle.lbm-color-cyan {
   background-color: cyan;
@@ -535,6 +553,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
   .lbm-type-circle.lbm-color-cyan:before {
     box-shadow: 0 0 6px 2px cyan; }
 
+.lbm-type-circle.lbm-border-color-cyan {
+  border-color: cyan; }
+
 .lbm-type-circle.lbm-color-blue {
   background-color: blue;
   color: #fff; }
@@ -546,6 +567,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
     box-shadow: 0px 0px 0px 5px rgba(0, 0, 255, 0.28); }
   .lbm-type-circle.lbm-color-blue:before {
     box-shadow: 0 0 6px 2px blue; }
+
+.lbm-type-circle.lbm-border-color-blue {
+  border-color: blue; }
 
 .lbm-type-circle.lbm-color-brown {
   background-color: brown;
@@ -559,6 +583,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
   .lbm-type-circle.lbm-color-brown:before {
     box-shadow: 0 0 6px 2px brown; }
 
+.lbm-type-circle.lbm-border-color-brown {
+  border-color: brown; }
+
 .lbm-type-circle.lbm-color-white {
   background-color: white;
   color: #000; }
@@ -570,6 +597,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
     box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.28); }
   .lbm-type-circle.lbm-color-white:before {
     box-shadow: 0 0 6px 2px white; }
+
+.lbm-type-circle.lbm-border-color-white {
+  border-color: white; }
 
 .lbm-type-circle.lbm-color-grey {
   background-color: grey;
@@ -583,6 +613,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
   .lbm-type-circle.lbm-color-grey:before {
     box-shadow: 0 0 6px 2px grey; }
 
+.lbm-type-circle.lbm-border-color-grey {
+  border-color: grey; }
+
 .lbm-type-circle.lbm-color-black {
   background-color: black;
   color: #fff; }
@@ -594,6 +627,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
     box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.28); }
   .lbm-type-circle.lbm-color-black:before {
     box-shadow: 0 0 6px 2px black; }
+
+.lbm-type-circle.lbm-border-color-black {
+  border-color: black; }
 
 .lbm-type-circle.lbm-color-indigo {
   background-color: indigo;
@@ -607,6 +643,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
   .lbm-type-circle.lbm-color-indigo:before {
     box-shadow: 0 0 6px 2px indigo; }
 
+.lbm-type-circle.lbm-border-color-indigo {
+  border-color: indigo; }
+
 .lbm-type-circle.lbm-color-teal {
   background-color: teal;
   color: #fff; }
@@ -618,6 +657,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
     box-shadow: 0px 0px 0px 5px rgba(0, 128, 128, 0.28); }
   .lbm-type-circle.lbm-color-teal:before {
     box-shadow: 0 0 6px 2px teal; }
+
+.lbm-type-circle.lbm-border-color-teal {
+  border-color: teal; }
 
 .lbm-type-circle.lbm-color-darkgray {
   background-color: darkgray;
@@ -631,6 +673,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
   .lbm-type-circle.lbm-color-darkgray:before {
     box-shadow: 0 0 6px 2px darkgray; }
 
+.lbm-type-circle.lbm-border-color-darkgray {
+  border-color: darkgray; }
+
 .lbm-type-circle.lbm-color-primary {
   background-color: #007bff;
   color: #000; }
@@ -642,6 +687,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
     box-shadow: 0px 0px 0px 5px rgba(0, 123, 255, 0.28); }
   .lbm-type-circle.lbm-color-primary:before {
     box-shadow: 0 0 6px 2px #007bff; }
+
+.lbm-type-circle.lbm-border-color-primary {
+  border-color: #007bff; }
 
 .lbm-type-circle.lbm-color-secondary {
   background-color: #6c757d;
@@ -655,6 +703,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
   .lbm-type-circle.lbm-color-secondary:before {
     box-shadow: 0 0 6px 2px #6c757d; }
 
+.lbm-type-circle.lbm-border-color-secondary {
+  border-color: #6c757d; }
+
 .lbm-type-circle.lbm-color-success {
   background-color: #28a745;
   color: #000; }
@@ -666,6 +717,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
     box-shadow: 0px 0px 0px 5px rgba(40, 167, 69, 0.28); }
   .lbm-type-circle.lbm-color-success:before {
     box-shadow: 0 0 6px 2px #28a745; }
+
+.lbm-type-circle.lbm-border-color-success {
+  border-color: #28a745; }
 
 .lbm-type-circle.lbm-color-info {
   background-color: #17a2b8;
@@ -679,6 +733,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
   .lbm-type-circle.lbm-color-info:before {
     box-shadow: 0 0 6px 2px #17a2b8; }
 
+.lbm-type-circle.lbm-border-color-info {
+  border-color: #17a2b8; }
+
 .lbm-type-circle.lbm-color-warning {
   background-color: #ffc107;
   color: #000; }
@@ -690,6 +747,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
     box-shadow: 0px 0px 0px 5px rgba(255, 193, 7, 0.28); }
   .lbm-type-circle.lbm-color-warning:before {
     box-shadow: 0 0 6px 2px #ffc107; }
+
+.lbm-type-circle.lbm-border-color-warning {
+  border-color: #ffc107; }
 
 .lbm-type-circle.lbm-color-danger {
   background-color: #dc3545;
@@ -703,6 +763,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
   .lbm-type-circle.lbm-color-danger:before {
     box-shadow: 0 0 6px 2px #dc3545; }
 
+.lbm-type-circle.lbm-border-color-danger {
+  border-color: #dc3545; }
+
 .lbm-type-circle.lbm-color-light {
   background-color: #f8f9fa;
   color: #000; }
@@ -714,6 +777,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
     box-shadow: 0px 0px 0px 5px rgba(248, 249, 250, 0.28); }
   .lbm-type-circle.lbm-color-light:before {
     box-shadow: 0 0 6px 2px #f8f9fa; }
+
+.lbm-type-circle.lbm-border-color-light {
+  border-color: #f8f9fa; }
 
 .lbm-type-circle.lbm-color-dark {
   background-color: #343a40;
@@ -727,6 +793,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
   .lbm-type-circle.lbm-color-dark:before {
     box-shadow: 0 0 6px 2px #343a40; }
 
+.lbm-type-circle.lbm-border-color-dark {
+  border-color: #343a40; }
+
 .lbm-type-circle.lbm-color-standard {
   background-color: #4285F4;
   color: #000; }
@@ -738,6 +807,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
     box-shadow: 0px 0px 0px 5px rgba(66, 133, 244, 0.28); }
   .lbm-type-circle.lbm-color-standard:before {
     box-shadow: 0 0 6px 2px #4285F4; }
+
+.lbm-type-circle.lbm-border-color-standard {
+  border-color: #4285F4; }
 
 /***********************************************
 
