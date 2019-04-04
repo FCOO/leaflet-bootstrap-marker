@@ -338,7 +338,7 @@ Base object-class for all type of markers
 
             if (this.$icon){
                 this.$icon.removeClass('lbm-type-'+this.options.type+' lbm-size-'+this.size);
-                className = this.$icon.attr('class');
+                className = this.$icon.attr('class') || '';
             }
 
             if (tooltip)
@@ -396,12 +396,14 @@ Base object-class for all type of markers
         *****************************************************/
         _setTextColor: function(){
             if (this.$background && this.$background.first().length){
-                var bgColorRGBStr = this.$background.first().css( this.options.setColor.cssAttrName),
-                    bgColorRGB = bgColorRGBStr.split("(")[1].split(")")[0].split(','),
-                    color = window.colorContrastRGB(parseInt(bgColorRGB[0]), parseInt(bgColorRGB[1]), parseInt(bgColorRGB[2])),
-                    colorIsBlack = (color == '#000000');
-                this.$icon.toggleClass('lbm-text-is-black', colorIsBlack);
-                this.$icon.toggleClass('lbm-text-is-white', !colorIsBlack);
+                var bgColorRGBStr = this.$background.first().css( this.options.setColor.cssAttrName ),
+                    bgColorRGB = bgColorRGBStr ? bgColorRGBStr.split("(")[1].split(")")[0].split(',') : null,
+                    color = bgColorRGB ? window.colorContrastRGB(parseInt(bgColorRGB[0]), parseInt(bgColorRGB[1]), parseInt(bgColorRGB[2])) : null;
+                if (color){
+                    var colorIsBlack = (color == '#000000');
+                    this.$icon.toggleClass('lbm-text-is-black', colorIsBlack);
+                    this.$icon.toggleClass('lbm-text-is-white', !colorIsBlack);
+                }
             }
             return this;
         },
