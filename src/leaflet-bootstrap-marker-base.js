@@ -273,7 +273,7 @@ Base object-class for all type of markers
         updateIcon
         Update the marker regarding all options except size
         *****************************************************/
-        updateIcon: function(options){
+        updateIcon: function(options, forceColor){
             this._adjustOptions(options);
 
             this.getElements();
@@ -285,8 +285,8 @@ Base object-class for all type of markers
                 _this.toggleOption(id, !!_this.options[id] );
             });
 
-            this.setColor(this.colorName || this.options.colorName);
-            this.setBorderColor(this.borderColorName || this.options.borderColorName);
+            this.setColor(this.colorName || this.options.colorName, forceColor);
+            this.setBorderColor(this.borderColorName || this.options.borderColorName, forceColor);
 
             if (this.options.number !== undefined)
                 this.setNumber(this.options.number);
@@ -357,15 +357,15 @@ Base object-class for all type of markers
             if (tooltip)
                 $(tooltip._container).addClass('leaflet-tooltip-icon-'+this.size);
 
-            this.updateIcon();
+            this.updateIcon(null, true);
             return this;
         },
 
         /*****************************************************
-        setColor( colorName )
+        setColor( colorName, force )
         *****************************************************/
-        setColor: function( colorName ){
-            if (colorName){
+        setColor: function( colorName, force ){
+            if (colorName && ((colorName != this.colorName) || force)){
                 this._setAnyColor( 'colorName', colorName, 'lbm-color-', this.$background, this.options.setColor);
                 this._setTextColor();
             }
@@ -373,12 +373,13 @@ Base object-class for all type of markers
         },
 
         /*****************************************************
-        setBorderColor( borderColorName )
+        setBorderColor( borderColorName, force )
         *****************************************************/
-        setBorderColor: function( borderColorName ){
-            return borderColorName ? this._setAnyColor( 'borderColorName', borderColorName, 'lbm-border-color-', this.$border, this.options.setBorderColor) : this;
+        setBorderColor: function( borderColorName, force ){
+            if (borderColorName && ((borderColorName != this.borderColorName) || force))
+                this._setAnyColor( 'borderColorName', borderColorName, 'lbm-border-color-', this.$border, this.options.setBorderColor);
+            return this;
         },
-
 
         _setAnyColor: function( id, newColorName, classNamePrefix, $element, options ){
             if (this[id])
