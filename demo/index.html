@@ -43,6 +43,7 @@
     window.bsIsTouch = false;
     window.bsIsTouch = (window.location.search =='?touch');
 
+
     i18next.init();
     i18next.changeLanguage('en');
 
@@ -55,6 +56,12 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>'
     }).addTo(map);
 
+    L.bsMarkerCircle([55, 12],{
+        size: 'sm',
+        draggable: true,
+        useTouchSize: true
+    }).addTo(map);
+
 
     //**************************************
     var tooltip = [
@@ -65,9 +72,9 @@
     var allSize = true,
         size = allSize ? 'xs' : 'xl',
         markerList = [
-{constructor: L.bsMarkerCircle, options: {
-    iconClass: 'fa-home',
-}},
+//HER{constructor: L.bsMarkerCircle, options: {
+//HER    iconClass: 'fa-home',
+//HER}},
 
 
             {constructor: L.bsMarkerIcon, options: {
@@ -161,9 +168,9 @@
 
 
             marker = markerList[mfIndex].constructor(latlng, options);
-            marker.setColor('yellow');
-            marker.setBorderColor('green');
-            marker.setDirection(45);
+//HER            marker.setColor('yellow');
+//HER            marker.setBorderColor('green');
+//HER            marker.setDirection(45);
 
             marker.addTo( map );
 

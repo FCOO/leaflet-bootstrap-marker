@@ -173,7 +173,9 @@ Base object-class for all type of markers
             if ($.type(options.useTouchSize) !== 'boolean')
                 options.useTouchSize = !!options.bigIconWhenTouch;
 
-            this.options = options;
+            if (options.useTouchSize && options.draggable && window.bsIsTouch)
+                options.size = 'lg';
+
             return options;
         },
 
@@ -181,10 +183,7 @@ Base object-class for all type of markers
         initialize
         *****************************************************/
         initialize: function(latLng, options){
-            //Adjust options
-            if (options && (options.bigIconWhenTouch || options.useTouchSize)  && options.draggable && window.bsIsTouch)
-                options.size = 'lg';
-
+            options = this._adjustOptions(options);
             L.Marker.prototype.initialize.call(this, latLng, options);
 
             //Create 'dummy' $icon to allow setColor etc. before the marker is added
@@ -222,7 +221,6 @@ Base object-class for all type of markers
                 width = ns.size[sizeId],
                 height = width,
                 className = 'lbm-type-'+this.options.type;
-
 
             if (this.options.markerClassName)
                 className = className + ' ' + this.options.markerClassName;
@@ -274,7 +272,7 @@ Base object-class for all type of markers
         Update the marker regarding all options except size
         *****************************************************/
         updateIcon: function(options, forceColor){
-            this._adjustOptions(options);
+            this.options = this._adjustOptions(options);
 
             this.getElements();
 
@@ -345,7 +343,7 @@ Base object-class for all type of markers
                 $(tooltip._container).removeClass('leaflet-tooltip-icon-'+this.size);
 
             this.options.size = size || this.options.size;
-            this._adjustOptions();
+            this.options = this._adjustOptions();
             this.size = this.options.size;
 
             this.options.icon = this.getIcon( this.size );
