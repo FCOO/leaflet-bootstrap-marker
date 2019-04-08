@@ -183,8 +183,8 @@ Base object-class for all type of markers
         initialize
         *****************************************************/
         initialize: function(latLng, options){
-            options = this._adjustOptions(options);
             L.Marker.prototype.initialize.call(this, latLng, options);
+            this.options = this._adjustOptions();
 
             //Create 'dummy' $icon to allow setColor etc. before the marker is added
             this.$icon = $('<div/>');
