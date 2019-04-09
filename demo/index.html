@@ -56,12 +56,13 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>'
     }).addTo(map);
 
+/*
     L.bsMarkerCircle([55, 12],{
         _size: 'sm',
         draggable: true,
         useTouchSize: true
     }).addTo(map);
-
+*/
 
     //**************************************
     var tooltip = [
@@ -72,9 +73,9 @@
     var allSize = true,
         size = allSize ? 'xs' : 'xl',
         markerList = [
-//HER{constructor: L.bsMarkerCircle, options: {
+            {constructor: L.bsMarkerCircle, options: {
 //HER    iconClass: 'fa-home',
-//HER}},
+            }},
 
 
             {constructor: L.bsMarkerIcon, options: {

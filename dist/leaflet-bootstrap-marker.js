@@ -74,12 +74,22 @@ Base object-class for all type of markers
     L.bsMarkerAsIcon
     Return the options to create a icon locking like a bsMarker[TYPE]
     with the given color and border-color
+    Can be used in two ways:
+        1: L.bsMarkerAsIcon(colorName, borderColorName, options)
+              options = {faClassName (default = 'fa-circle'), extraClassName (default = '')}
+        2: L.bsMarkerAsIcon(colorName, borderColorName, faClassName[String])
     *****************************************************/
-    L.bsMarkerAsIcon = function(colorName, borderColorName, faClassName /*options*/){
-        return $.bsMarkerIcon(
+    L.bsMarkerAsIcon = function(colorName, borderColorName, faClassNameOrOptions){
+        var options =   faClassNameOrOptions ?
+                            $.type(faClassNameOrOptions) == 'string' ?
+                                options = {faClassName: faClassNameOrOptions} :
+                                options = faClassNameOrOptions
+                            : null;
+
+        return $.bsMarkerAsIcon(
                     'fa-lbm-color-'+(colorName || 'white'),
                     'fa-lbm-border-color-'+(borderColorName || 'black'),
-                    faClassName ? {faClassName: faClassName} : null
+                    options
                );
     };
 

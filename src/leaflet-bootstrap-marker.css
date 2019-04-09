@@ -37,7 +37,7 @@ Create class for bsMarkerCircle named $name with color and color-border
 *************************************************************************/
 /***********************************************************************
 fa-lbm-color
-Create class for color and border-color used by L.bsMarkerAsIcon (and $.bsMarkerIcon)
+Create class for color and border-color used by L.bsMarkerAsIcon (and $.bsMarkerAsIcon)
 to create fa-icon looking like the marker
 *************************************************************************/
 .fa-lbm-color-pink {

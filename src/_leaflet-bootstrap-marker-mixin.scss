@@ -56,7 +56,7 @@ Create class for bsMarkerCircle named $name with color and color-border
 *************************************************************************/
 @mixin lbm-circle-and-icon-classes( $name, $color, $border-color: $color){
     .lbm-type-circle {
-          &.lbm-color-#{$name} {
+        &.lbm-color-#{$name} {
             @include marker-circle-color($color);
         }
         &.lbm-border-color-#{$name} {
@@ -80,7 +80,7 @@ Create class for bsMarkerCircle named $name with color and color-border
 
 /***********************************************************************
 fa-lbm-color
-Create class for color and border-color used by L.bsMarkerAsIcon (and $.bsMarkerIcon)
+Create class for color and border-color used by L.bsMarkerAsIcon (and $.bsMarkerAsIcon)
 to create fa-icon looking like the marker
 *************************************************************************/
 @mixin fa-lbm-color( $name, $color: $white, $border-color: $black ){
