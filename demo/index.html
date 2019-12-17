@@ -120,7 +120,7 @@
                 rotationOrigin: 'center bottom',
             }},
             {constructor: L.bsMarkerIcon, options: {
-                iconClass: 'fa-arrow-alt-up'
+                iconClass: 'fa-long-arrow-alt-up'
 
             }},
 
@@ -149,35 +149,22 @@
 
     function addMarker( latlng){
         var options = $.extend({}, markerList[mfIndex].options, {
-                size: size,
-                shadow: false,
-                draggable: true,
-                colorName    : 'green',
-                thickBorder : false,
-                borderColorName: 'red', //'black',
+                size           : size,
+                shadow         : false,
+                draggable      : true,
+                colorName      : 'green',
+                thickBorder    : false,
+                borderColorName: 'red',
+                transparent    : true,
+                hover          : true,
 
-//                puls: true,
-                transparent: true,
-                hover: true,
 
-                _tooltip: tooltip,
-                _tooltipPermanent: true,
-                tooltipHideWhenDragging: true,
-                tooltipHideWhenPopupOpen: true,
-                shadowWhenPopupOpen: true
             }),
-
-
             marker = markerList[mfIndex].constructor(latlng, options);
-//HER            marker.setColor('yellow');
-//HER            marker.setBorderColor('green');
-//HER            marker.setDirection(45);
-
+            marker.bindPopup('Davs');
             marker.addTo( map );
 
             marker.on('click', function(){
-                //this._tooltip.setContent('<p style="background-color:red">NY'+Math.round(Math.random()*10000)+'</p>');
-
                 this.setColor('orange');
                 this.setBorderColor('blue');
                 this.setDeltaDirection( 22.5 );
@@ -188,58 +175,6 @@
                 },
                 marker
             );
-
-//HER            if (options.addPopup)
-
-                marker.bindPopup({
-                    width: 234,
-                    closeButton: false,
-                    header: {
-                        icon: marker.asIcon(),
-                        text: 'Davs',
-                    },
-                    fixable: true,
-                    _icons: {
-                        back: { onClick: function(){ console.log('BACK!'); } },
-                        forward: { onClick: function(){ console.log('FORWARD!'); } }
-                    },
-                    buttons: [
-                    {
-                        icon: 'fa-map',
-                        text:'Inds.',
-                        onClick: function(){
-                            marker._popup.changeContent({
-                                content: 'NY'+Math.round(Math.random()*10000),
-                                extended: {
-                                    content: 'NY EXTENDED'+Math.round(Math.random()*10000)
-                                }
-                            });
-                        }
-                    },
-                    {
-                        icon:'fa-square',
-                        text:{da:'Skift', en:'Change'},
-                        onClick: function(){
-                            marker._popup.setContent({
-                                closeButton: true,
-                                header:'Davs igen',
-                                fixable: true,
-                                content: 'NIELS:'+Math.round(Math.random()*10000),
-                                _extended: {
-                                    content: 'Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>'
-                                }
-                            });
-                        }
-                    }],
-                    content: {icon: 'fa-square', text: 'Tekst_og_ikon_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord_ord'}, scroll: true,
-
-                    extended: {
-                        content: ['<p>Dette er en p</p>', 'Jeg vil i span', 'Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>Skide godt<br>']
-                    }
-                });
-
-
-
 
             switch (size){
                 case 'xs':  size = 'sm'; break;
