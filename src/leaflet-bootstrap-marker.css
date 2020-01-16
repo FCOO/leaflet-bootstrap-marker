@@ -227,6 +227,10 @@ to create fa-icon looking like the marker
     font-size: 10px; }
   .lbm-base.lbm-base.lbm-size-xs.lbm-scale-150 {
     font-size: 12px; }
+  .lbm-base.lbm-base.lbm-size-xs.lbm-scale-180 {
+    font-size: 14px; }
+  .lbm-base.lbm-base.lbm-size-xs.lbm-scale-200 {
+    font-size: 16px; }
 
 .lbm-base.lbm-base.lbm-size-sm {
   font-size: 14px; }
@@ -248,6 +252,10 @@ to create fa-icon looking like the marker
     font-size: 18px; }
   .lbm-base.lbm-base.lbm-size-sm.lbm-scale-150 {
     font-size: 21px; }
+  .lbm-base.lbm-base.lbm-size-sm.lbm-scale-180 {
+    font-size: 25px; }
+  .lbm-base.lbm-base.lbm-size-sm.lbm-scale-200 {
+    font-size: 28px; }
 
 .lbm-base.lbm-base.lbm-size-nl {
   font-size: 24px; }
@@ -269,6 +277,10 @@ to create fa-icon looking like the marker
     font-size: 31px; }
   .lbm-base.lbm-base.lbm-size-nl.lbm-scale-150 {
     font-size: 36px; }
+  .lbm-base.lbm-base.lbm-size-nl.lbm-scale-180 {
+    font-size: 43px; }
+  .lbm-base.lbm-base.lbm-size-nl.lbm-scale-200 {
+    font-size: 48px; }
 
 .lbm-base.lbm-base.lbm-size-lg {
   font-size: 32px; }
@@ -290,6 +302,10 @@ to create fa-icon looking like the marker
     font-size: 42px; }
   .lbm-base.lbm-base.lbm-size-lg.lbm-scale-150 {
     font-size: 48px; }
+  .lbm-base.lbm-base.lbm-size-lg.lbm-scale-180 {
+    font-size: 58px; }
+  .lbm-base.lbm-base.lbm-size-lg.lbm-scale-200 {
+    font-size: 64px; }
 
 .lbm-base.lbm-base.lbm-size-xl {
   font-size: 42px; }
@@ -311,6 +327,10 @@ to create fa-icon looking like the marker
     font-size: 55px; }
   .lbm-base.lbm-base.lbm-size-xl.lbm-scale-150 {
     font-size: 63px; }
+  .lbm-base.lbm-base.lbm-size-xl.lbm-scale-180 {
+    font-size: 76px; }
+  .lbm-base.lbm-base.lbm-size-xl.lbm-scale-200 {
+    font-size: 84px; }
 
 .lbm-base.lbm-scale-inner-40 .inner * {
   font-size: 0.4em; }
@@ -338,6 +358,12 @@ to create fa-icon looking like the marker
 
 .lbm-base.lbm-scale-inner-150 .inner * {
   font-size: 1.5em; }
+
+.lbm-base.lbm-scale-inner-180 .inner * {
+  font-size: 1.8em; }
+
+.lbm-base.lbm-scale-inner-200 .inner * {
+  font-size: 2em; }
 
 .leaflet-tooltip-icon-xs.leaflet-tooltip-bottom {
   margin-top: 7px; }
@@ -985,6 +1011,28 @@ _leaflet-bootstrap-marker-icon.scss,
     top: -3em; }
   .lbm-type-icon.lbm-scale-y-150 .lbm-content.lbm-content-border {
     top: -4.5em; }
+
+.lbm-type-icon.lbm-scale-y-180 .lbm-content {
+  line-height: 1.8; }
+  .lbm-type-icon.lbm-scale-y-180 .lbm-content.lbm-content-puls {
+    top: 0; }
+  .lbm-type-icon.lbm-scale-y-180 .lbm-content.lbm-content-shadow {
+    top: -1.8em; }
+  .lbm-type-icon.lbm-scale-y-180 .lbm-content.lbm-content-background {
+    top: -3.6em; }
+  .lbm-type-icon.lbm-scale-y-180 .lbm-content.lbm-content-border {
+    top: -5.4em; }
+
+.lbm-type-icon.lbm-scale-y-200 .lbm-content {
+  line-height: 2; }
+  .lbm-type-icon.lbm-scale-y-200 .lbm-content.lbm-content-puls {
+    top: 0; }
+  .lbm-type-icon.lbm-scale-y-200 .lbm-content.lbm-content-shadow {
+    top: -2em; }
+  .lbm-type-icon.lbm-scale-y-200 .lbm-content.lbm-content-background {
+    top: -4em; }
+  .lbm-type-icon.lbm-scale-y-200 .lbm-content.lbm-content-border {
+    top: -6em; }
 
 .lbm-type-icon.lbm-color-pink.lbm-shadow .lbm-content-shadow, .lbm-type-icon.lbm-color-pink.leaflet-drag-target .lbm-content-shadow, .lbm-type-icon.lbm-color-pink.lbm-hover:hover .lbm-content-shadow {
   -webkit-text-stroke-color: rgba(255, 192, 203, 0.28);
