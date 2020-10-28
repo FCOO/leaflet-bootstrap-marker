@@ -1,6 +1,6 @@
 {
   "name": "leaflet-bootstrap-marker",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "homepage": "https://github.com/FCOO/leaflet-bootstrap-marker",
   "authors": [
     "Niels Holt"
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "jquery": "latest",
-    "leaflet": "1.4.0",
+    "leaflet": "latest",
     "sass-color-helpers": "^2.1.1",
     "javascript-utilities": "fcoo/javascript-utilities#^1.1.0",
     "jquery-bootstrap": "fcoo/jquery-bootstrap#^1.69.2"
@@ -37,5 +37,13 @@
   ],
   "moduleType": [
     "es6"
-  ]
+  ],
+  "overrides": {
+    "leaflet": {
+      "main": [
+        "dist/leaflet-src.js",
+        "dist/leaflet.css"
+      ]
+    }
+  }
 }
