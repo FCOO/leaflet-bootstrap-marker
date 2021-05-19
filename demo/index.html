@@ -167,7 +167,7 @@
                 hover          : true,
             }, markerList[mfIndex].options),
             marker = markerList[mfIndex].constructor(latlng, options);
-            marker.bindPopup('Davs');
+            marker.bindPopup(''+L.bsMarkerAsIcon('red', 'blue'));
             marker.addTo( map );
 
             marker.on('click', function(){

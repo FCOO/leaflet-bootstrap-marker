@@ -74,21 +74,63 @@ Base object-class for all type of markers
     L.bsMarkerAsIcon
     Return the options to create a icon locking like a bsMarker[TYPE]
     with the given color and border-color
-    Can be used in two ways:
-        1: L.bsMarkerAsIcon(colorName, borderColorName, options)
-              options = {faClassName (default = 'fa-circle'), extraClassName (default = '')}
-        2: L.bsMarkerAsIcon(colorName, borderColorName, faClassName[String])
+    Can be used in four ways:
+        1:  L.bsMarkerAsIcon(options: OBJECT)
+                options = same as for BsMarkerBase BsMarkerCircle
+
+        2:  L.bsMarkerAsIcon(colorName: STRING, borderColorName: STRING, round: BOOLEAN = true)
+
+        3:  L.bsMarkerAsIcon(colorName: STRING, borderColorName: STRING, faClassName: STRING)
+
+        4:  L.bsMarkerAsIcon(colorName: STRING, borderColorName: STRING, options: OBJECT)
+                options = {
+                    faClassName   : STRING (default = 'fa-circle'),
+                    extraClassName: STRING (default = '')}
+                }
     *****************************************************/
-    L.bsMarkerAsIcon = function(colorName, borderColorName, faClassNameOrOptions){
-        var options =   faClassNameOrOptions ?
-                            $.type(faClassNameOrOptions) == 'string' ?
-                                options = {faClassName: faClassNameOrOptions} :
-                                options = faClassNameOrOptions
-                            : null;
+    L.bsMarkerAsIcon = function(a, b = '', c = true){
+        var colorName       = 'white',
+            borderColorName = 'black',
+            options         = {};
+
+        //1: (OBJECT)
+        if (typeof a === 'object'){
+            colorName       = a.colorName || colorName;
+            borderColorName = a.borderColorName || borderColorName;
+            if (a.noBorder)
+                borderColorName = colorName;
+
+            options.faClassName = a.faClassName || '';
+            if (!options.faClassName && (a.round === false))
+                options.faClassName = 'fa-square';
+        }
+        else {
+            //2:, 3:, or 4:
+            colorName = a || colorName;
+            borderColorName = b || borderColorName;
+
+            if (typeof c === 'boolean')
+                //2: (STRING, STRING, BOOLEAN)
+                if (!c)
+                    options.faClassName = 'fa-square';
+
+            else
+
+            if (typeof c === 'string')
+                //3: (STRING, STRING, STRING)
+                options.faClassName = c;
+
+            else
+
+            if (typeof c === 'object')
+                //4: (STRING, STRING, OBJECT)
+                options = c;
+
+        }
 
         return $.bsMarkerAsIcon(
-                    'fa-lbm-color-'+(colorName || 'white'),
-                    'fa-lbm-border-color-'+(borderColorName || 'black'),
+                    'fa-lbm-color-'+colorName,
+                    'fa-lbm-border-color-'+borderColorName,
                     options
                );
     };

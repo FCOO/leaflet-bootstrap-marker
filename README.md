@@ -137,6 +137,24 @@ The following values can be used for `colorName`, `borderColorName`, and `iconCo
 This type of marker requiter that [Font Awesome Pro](https://fontawesome.com/pro) is used and only icons where the regular-version is the border of the icon (eq. [fa-arrow-alt-up](https://fontawesome.com/icons/arrow-alt-up?style=solid))
 
 
+## `L.bsMarkerAsIcon`
+Return the options to create a icon locking like a BsMarker
+
+Can be used in four different ways:
+
+    1:  L.bsMarkerAsIcon(options: OBJECT)
+            options = same as for BsMarkerBase or BsMarkerCircle
+
+    2:  L.bsMarkerAsIcon(colorName: STRING, borderColorName: STRING, round: BOOLEAN = true)
+
+    3:  L.bsMarkerAsIcon(colorName: STRING, borderColorName: STRING, faClassName: STRING)
+
+    4:  L.bsMarkerAsIcon(colorName: STRING, borderColorName: STRING, options: OBJECT)
+            options = {
+                faClassName   : STRING (default = 'fa-circle'),
+                extraClassName: STRING (default = '')}
+            }
+
 
 <!-- 
 ### options
