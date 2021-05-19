@@ -70,16 +70,19 @@
             $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Lang Dansk', en:'LongEng'}})
         ];
 //HER    var allSize = false,
-    var allSize = true,
+    var allSize = false,//true,
         size = allSize ? 'xs' : 'xl',
         markerList = [
             {constructor: L.bsMarkerCircle, options: {
-innerIconClass: 'fa-home',
-                scaleInner: 180,
-                iconColorName: 'blue'
+                innerIconClass: 'fa-home',
+                //scaleInner: 180,
+                iconColorName: 'green',
+                colorName: 'yellow',
+                noBorder: true
             }},
 
             {constructor: L.bsMarkerCircle, options: {
+                iconColorName: 'green',
             }},
 
 
@@ -94,7 +97,7 @@ innerIconClass: 'fa-home',
                 scaleX   : 60
             }},
             {constructor: L.bsMarkerIcon, options: {
-                iconClass: 'fa-octagon', //'fa-rectangle-wide',
+                iconClass: 'fa-star', //'fa-rectangle-wide',
                 innerIconClass: 'fa-square',
             }},
 
@@ -153,7 +156,7 @@ innerIconClass: 'fa-home',
         mfIndex = 0;
 
     function addMarker( latlng){
-        var options = $.extend({}, markerList[mfIndex].options, {
+        var options = $.extend({}, {
                 size           : size,
                 shadow         : false,
                 draggable      : true,
@@ -162,9 +165,7 @@ innerIconClass: 'fa-home',
                 borderColorName: 'red',
                 transparent    : true,
                 hover          : true,
-
-
-            }),
+            }, markerList[mfIndex].options),
             marker = markerList[mfIndex].constructor(latlng, options);
             marker.bindPopup('Davs');
             marker.addTo( map );

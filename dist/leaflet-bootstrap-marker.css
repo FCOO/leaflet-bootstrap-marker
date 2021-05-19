@@ -451,6 +451,10 @@ https://github.com/mapshakers/leaflet-icon-pulse
   border-color: #000; }
   .lbm-type-circle.lbm-thickBorder {
     border-width: 3px; }
+  .lbm-type-circle.lbm-thinBorder {
+    border-width: 1px; }
+  .lbm-type-circle.lbm-noBorder {
+    border: none; }
   .lbm-type-circle.lbm-round {
     border-radius: 100%; }
     .lbm-type-circle.lbm-round:before {

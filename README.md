@@ -40,14 +40,18 @@ http://FCOO.github.io/leaflet-bootstrap-marker/demo/
 
             useTouchSize    : false, //True to make size = large when window.bsIsTouch == true and options.draggable == true
 
-            transparent     : false, //True to make the marker semi-transparent
-            hover           : false, //True to show shadow and 0.9 opacuity for lbm-transparent when hover
-            shadow          : false, //true to add a shadow to the marker
-            puls            : false, //true to have a pulsart icon
-            thickBorder     : false, //true to have thicker border
+            transparent: false, //True to make the marker semi-transparent
+            hover      : false, //True to show shadow and 0.9 opacuity for lbm-transparent when hover
+            shadow     : false, //true to add a shadow to the marker
+            puls       : false, //true to have a pulsart icon
 
-            colorName      : '',    //or fillColor: Name of inside fill-color of the marker
-            borderColorName: '',    //or lineColor: Name of border/line-color of the marker
+            thickBorder: false, //true to have thicker border
+            thinBorder : false, //True to have a thin border
+            noBorder   : false, //True to have no border
+
+            colorName      : '',    //or fillColorName: Name of inside fill-color of the marker
+            borderColorName: '',    //or lineColorName: Name of border/line-color of the marker
+            iconColorName  : '',    //or textColorName: Name of color of the inner icon or text
 
             noFill         : false, //When true only colorName is used and no background-icon is used
 
@@ -71,8 +75,8 @@ http://FCOO.github.io/leaflet-bootstrap-marker/demo/
             shadowWhenPopupOpen     : true      //When true a big-sdhadow is shown when the popup for the marker is open
         },
 
-### `colorName` and `borderColorName`
-The following values can be used for `colorName` and `borderColorName`
+### `colorName`, `borderColorName`, and `iconColorName`
+The following values can be used for `colorName`, `borderColorName`, and `iconColorName`
 #### Standard colors:
 
     "pink" "purple" "red" "orange" "yellow" "green" "cyan" "blue" "brown" "white" "grey" "black" "indigo" "teal" "darkgray"     
@@ -121,6 +125,7 @@ The following values can be used for `colorName` and `borderColorName`
         .setSize(size)
         .setColor( colorName )
         .setBorderColor( borderColorName )
+        .setIconColor( iconColorName )
         .setInnerIconClass( innerIconClass )
         .setNumber: function( number )
         .setDirection( direction )

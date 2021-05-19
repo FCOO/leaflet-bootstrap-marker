@@ -30,6 +30,15 @@ https://github.com/mapshakers/leaflet-icon-pulse
         border-width: $thick-border-width;
     }
 
+    &.lbm-thinBorder {
+        border-width: $thin-border-width;
+    }
+
+    &.lbm-noBorder {
+        border: none;
+    }
+
+
     &.lbm-round {
         border-radius: 100%;
         &:before { border-radius: 100%; }

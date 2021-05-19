@@ -126,11 +126,14 @@ Base object-class for all type of markers
             shadow          : false, //true to add a shadow to the marker
             puls            : false, //true to have a pulsart icon
             thickBorder     : false, //true to have thicker border
+            thinBorder      : false, //True to have a thin border
+            noBorder        : false, //True to have no border
 
-            optionsWithClass: ['transparent', 'shadow', 'hover', 'thickBorder', 'puls'],
+            optionsWithClass: ['transparent', 'shadow', 'hover', 'thickBorder', 'thinBorder', 'noBorder', 'puls'],
 
-            colorName      : '',    //or fillColor: Name of inside fill-color of the marker
-            borderColorName: '',    //or lineColor: Name of border/line-color of the marker
+            colorName      : '',    //or fillColorName: Name of inside fill-color of the marker
+            borderColorName: '',    //or lineColorName: Name of border/line-color of the marker
+            iconColorName  : '',    //or textColorName: Name of color of the inner icon or text
 
             noFill         : false, //When true only colorName is used and no background-icon is used
 
@@ -171,7 +174,9 @@ Base object-class for all type of markers
 
             options.colorName = options.colorName || options.fillColorName;
             options.borderColorName = options.borderColorName || options.lineColorName;
+            options.iconColorName = options.iconColorName || options.textColorName;
 //BRUGES MÅSKE IKKE:             options.color = options.color || options.textColor || options.iconColor;
+
             options.size = options.size.toLowerCase();
             options.size =  options.size == 'extrasmall' ? 'xs' :
                             options.size == 'small' ? 'sm' :
@@ -375,7 +380,7 @@ Base object-class for all type of markers
         setColor: function( colorName, force ){
             if (colorName && ((colorName != this.colorName) || force)){
                 this._setAnyColor( 'colorName', colorName, 'lbm-color-', this.$background, this.options.setColor);
-                this._setTextColor();
+                this._setInnerColor();
             }
             return this;
         },
@@ -389,7 +394,15 @@ Base object-class for all type of markers
             return this;
         },
 
-        _setAnyColor: function( id, newColorName, classNamePrefix, $element, options ){
+        /*****************************************************
+        setIconColor( iconColorName )
+        *****************************************************/
+        setIconColor: function( iconColorName ){
+            this.options.iconColorName = iconColorName;
+            return this._setInnerColor();
+        },
+
+        _setAnyColor: function( id, newColorName, classNamePrefix, $element, options = {}){
             if (this[id])
                 this.removeClass(classNamePrefix + this[id]);
             this[id] = newColorName;
@@ -401,24 +414,32 @@ Base object-class for all type of markers
         },
 
         /*****************************************************
-        _setTextColor()
+        _setInnerColor()
         *****************************************************/
-        _setTextColor: function(){
-            if (this.$background && this.$background.first().length){
-                var bgColorRGBStr = this.$background.first().css( this.options.setColor.cssAttrName );
+        _setInnerColor: function(){
+            //If the color of the inner text/icon is given in options.iconColorName => use it
+            if (this.options.iconColorName){
+                this.$inner.removeClass(this['iconColorName']);
+                this['iconColorName'] = 'fa-lbm-color-'+this.options.iconColorName;
+                this.$inner.addClass(this['iconColorName']);
+            }
+            else
+                //..else use white or black with the best contrast to the background-color
+                if (this.$background && this.$background.first().length){
+                    var bgColorRGBStr = this.$background.first().css( this.options.setColor.cssAttrName );
 
-                //Validate that it is rgba(123,123,123,...)
-                var regex = /\((\d{1,3}%?,\s?){3}.*\)/;
-                if (regex.test(bgColorRGBStr)) {
-                    var bgColorRGB = bgColorRGBStr ? bgColorRGBStr.split("(")[1].split(")")[0].split(',') : null,
-                        color = bgColorRGB ? window.colorContrastRGB(parseInt(bgColorRGB[0]), parseInt(bgColorRGB[1]), parseInt(bgColorRGB[2])) : null;
-                    if (color){
-                        var colorIsBlack = (color == '#000000');
-                        this.$icon.toggleClass('lbm-text-is-black', colorIsBlack);
-                        this.$icon.toggleClass('lbm-text-is-white', !colorIsBlack);
+                    //Validate that it is rgba(123,123,123,...)
+                    var regex = /\((\d{1,3}%?,\s?){3}.*\)/;
+                    if (regex.test(bgColorRGBStr)) {
+                        var bgColorRGB = bgColorRGBStr ? bgColorRGBStr.split("(")[1].split(")")[0].split(',') : null,
+                            color = bgColorRGB ? window.colorContrastRGB(parseInt(bgColorRGB[0]), parseInt(bgColorRGB[1]), parseInt(bgColorRGB[2])) : null;
+                        if (color){
+                            var colorIsBlack = (color == '#000000');
+                            this.$icon.toggleClass('lbm-text-is-black', colorIsBlack);
+                            this.$icon.toggleClass('lbm-text-is-white', !colorIsBlack);
+                        }
                     }
                 }
-            }
             return this;
         },
 
