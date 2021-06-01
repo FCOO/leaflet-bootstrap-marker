@@ -100,7 +100,9 @@ Base object-class for all type of markers
             if (a.noBorder)
                 borderColorName = colorName;
 
-            options.faClassName = a.faClassName || '';
+            if (a.faClassName)
+                options.faClassName = a.faClassName;
+
             if (!options.faClassName && (a.round === false))
                 options.faClassName = 'fa-square';
         }
