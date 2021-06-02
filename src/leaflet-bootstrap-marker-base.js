@@ -310,7 +310,8 @@ Base object-class for all type of markers
                     iconAnchor : point( width, height, this.options.iconAnchor  ),
                     popupAnchor: point( width, height, this.options.popupAnchor ),
                 },
-                iconId = sizeId + '_' + (this.options.iconClass || '') + '_' + (this.options.innerIconClass || '') + (this.options.round ? '_round' : ''),
+                //iconId = unique for the same inner-icon
+                iconId = sizeId + '_' + (this.options.iconClass || '') + '_' + (this.options.innerIconClass || '') + '_' + (this.options.scaleInner || '') + (this.options.round ? '_round' : ''),
                 result = iconList[iconId] = iconList[iconId] || this.createIcon(sizeId, iconOptions);
             return result;
         },

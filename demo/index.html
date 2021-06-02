@@ -166,7 +166,9 @@
                 transparent    : true,
                 hover          : true,
             }, markerList[mfIndex].options),
+
             marker = markerList[mfIndex].constructor(latlng, options);
+
             marker.bindPopup(''+L.bsMarkerAsIcon('red', 'blue'));
             marker.addTo( map );
 
