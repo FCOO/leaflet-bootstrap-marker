@@ -1541,6 +1541,7 @@ Class ps__rail added by jquery-scroll-container
 .scroll-at-end .jq-scroll-shadow.bottom-right {
   display: none; }
 
+@charset "UTF-8";
 /***********************************************
 	jquery-bootstrap.scss,
 
@@ -1558,11 +1559,27 @@ SET AND ADJUST BOOTSTRAP DEFAULT VALUES
 BOOTSTRAP-VARIABLES
 ************************************************************/
 /***********************************************
+FUNCTIONS TO CONVETRT FROM PX TO REM
+To make it easier to design and calculate dimensions
+the function rem defined
+************************************************/
+/***********************************************
 ADJUST BOOTSTRAP DEFAULT VALUES
+************************************************/
+/***********************************************
+Adjust bootstrap-variables to only have dimensions
+in integer px from rem
 ************************************************/
 /*Not used. No lg-buttons
 $input-btn-padding-y-lg: .75rem;
 $input-btn-padding-x-lg: $input-btn-padding-y-lg;
+*/
+/* VERSION 1.x
+//$font-size-sm = .875rem; // = 14px
+$font-size-sm: rem(13px); //<= TODO MANGLER. Skal muligvis sættes til 14px og så skal padding for buttons rettes tilsvarrende
+
+$input-btn-padding-y-sm: rem(4px);
+$input-btn-padding-x-sm: $input-btn-padding-y-sm;
 */
 /************************************************************
 Including "size" xs as in Bootstrap 3
@@ -2005,7 +2022,7 @@ code {
     color: inherit; }
 
 kbd {
-  padding: 0.2rem 0.4rem;
+  padding: 0.1875rem 0.375rem;
   font-size: 87.5%;
   color: #fff;
   background-color: #212529;
@@ -2732,7 +2749,7 @@ pre {
 
 .table-sm th,
 .table-sm td {
-  padding: 0.3rem; }
+  padding: 0.3125rem; }
 
 .table-bordered {
   border: 1px solid #dee2e6; }
@@ -3038,9 +3055,9 @@ select.form-control:focus::-ms-value {
   line-height: 1.5; }
 
 .col-form-label-sm {
-  padding-top: calc(0.25rem + 1px);
-  padding-bottom: calc(0.25rem + 1px);
-  font-size: 0.8125rem;
+  padding-top: calc(0.1875rem + 1px);
+  padding-bottom: calc(0.1875rem + 1px);
+  font-size: 0.875rem;
   line-height: 1.5; }
 
 .form-control-plaintext {
@@ -3059,9 +3076,9 @@ select.form-control:focus::-ms-value {
     padding-left: 0; }
 
 .form-control-sm, .input-group-sm > label.has-float-label > .form-control {
-  height: calc(1.5em + 0.5rem + 2px);
-  padding: 0.25rem 0.25rem;
-  font-size: 0.8125rem;
+  height: calc(1.5em + 0.375rem + 2px);
+  padding: 0.1875rem 0.25rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.1875rem; }
 
@@ -3070,7 +3087,7 @@ select.form-control:focus::-ms-value {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
-  border-radius: 0.3rem; }
+  border-radius: 0.3125rem; }
 
 select.form-control[size], select.form-control[multiple] {
   height: auto; }
@@ -3138,7 +3155,7 @@ textarea.form-control {
   max-width: 100%;
   padding: 0.25rem 0.5rem;
   margin-top: .1rem;
-  font-size: 0.7rem;
+  font-size: 0.6875rem;
   line-height: 1.5;
   color: #fff;
   background-color: rgba(40, 167, 69, 0.9);
@@ -3222,7 +3239,7 @@ textarea.form-control {
   max-width: 100%;
   padding: 0.25rem 0.5rem;
   margin-top: .1rem;
-  font-size: 0.7rem;
+  font-size: 0.6875rem;
   line-height: 1.5;
   color: #fff;
   background-color: rgba(220, 53, 69, 0.9);
@@ -3789,11 +3806,11 @@ fieldset:disabled a.btn {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
-  border-radius: 0.3rem; }
+  border-radius: 0.3125rem; }
 
 .btn-sm, .btn-group-sm > .btn {
-  padding: 0.25rem 0.25rem;
-  font-size: 0.8125rem;
+  padding: 0.1875rem 0.25rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.1875rem; }
 
@@ -4029,7 +4046,7 @@ input[type="button"].btn-block {
   display: block;
   padding: 0 1.5rem;
   margin-bottom: 0;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: #495057;
   white-space: nowrap; }
 
@@ -4243,11 +4260,11 @@ input[type="button"].btn-block {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
-  border-radius: 0.3rem; }
+  border-radius: 0.3125rem; }
 
 .input-group-sm > .form-control:not(textarea),
 .input-group-sm > .custom-select {
-  height: calc(1.5em + 0.5rem + 2px); }
+  height: calc(1.5em + 0.375rem + 2px); }
 
 .input-group-sm > .form-control,
 .input-group-sm > .custom-select,
@@ -4255,8 +4272,8 @@ input[type="button"].btn-block {
 .input-group-sm > .input-group-append > .input-group-text,
 .input-group-sm > .input-group-prepend > .btn,
 .input-group-sm > .input-group-append > .btn {
-  padding: 0.25rem 0.25rem;
-  font-size: 0.8125rem;
+  padding: 0.1875rem 0.25rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.1875rem; }
 
@@ -4437,11 +4454,11 @@ input[type="button"].btn-block {
     text-shadow: 0 0 0 #495057; }
 
 .custom-select-sm {
-  height: calc(1.5em + 0.5rem + 2px);
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+  height: calc(1.5em + 0.375rem + 2px);
+  padding-top: 0.1875rem;
+  padding-bottom: 0.1875rem;
   padding-left: 0.25rem;
-  font-size: 0.8125rem; }
+  font-size: 0.875rem; }
 
 .custom-select-lg {
   height: calc(1.5em + 1rem + 2px);
@@ -5215,16 +5232,16 @@ input[type="button"].btn-block {
   line-height: 1.5; }
 
 .pagination-lg .page-item:first-child .page-link {
-  border-top-left-radius: 0.3rem;
-  border-bottom-left-radius: 0.3rem; }
+  border-top-left-radius: 0.3125rem;
+  border-bottom-left-radius: 0.3125rem; }
 
 .pagination-lg .page-item:last-child .page-link {
-  border-top-right-radius: 0.3rem;
-  border-bottom-right-radius: 0.3rem; }
+  border-top-right-radius: 0.3125rem;
+  border-bottom-right-radius: 0.3125rem; }
 
 .pagination-sm .page-link {
   padding: 0.25rem 0.5rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.5; }
 
 .pagination-sm .page-item:first-child .page-link {
@@ -5347,7 +5364,7 @@ input[type="button"].btn-block {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
   background-color: #e9ecef;
-  border-radius: 0.3rem; }
+  border-radius: 0.3125rem; }
   @media (min-width: 576px) {
     .jumbotron {
       padding: 4rem 2rem; } }
@@ -5858,7 +5875,7 @@ a.close.disabled {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #868e96;
-  border-radius: 0.3rem;
+  border-radius: 0.3125rem;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
   outline: 0; }
 
@@ -5881,8 +5898,8 @@ a.close.disabled {
   justify-content: space-between;
   padding: 1rem 1rem;
   border-bottom: 1px solid #9aa1a8;
-  border-top-left-radius: calc(0.3rem - 1px);
-  border-top-right-radius: calc(0.3rem - 1px); }
+  border-top-left-radius: calc(0.3125rem - 1px);
+  border-top-right-radius: calc(0.3125rem - 1px); }
   .modal-header .close {
     padding: 1rem 1rem;
     margin: -1rem -1rem -1rem auto; }
@@ -5903,8 +5920,8 @@ a.close.disabled {
   justify-content: flex-end;
   padding: 0.75rem;
   border-top: 1px solid #9aa1a8;
-  border-bottom-right-radius: calc(0.3rem - 1px);
-  border-bottom-left-radius: calc(0.3rem - 1px); }
+  border-bottom-right-radius: calc(0.3125rem - 1px);
+  border-bottom-left-radius: calc(0.3125rem - 1px); }
   .modal-footer > * {
     margin: 0.25rem; }
 
@@ -5961,7 +5978,7 @@ a.close.disabled {
   word-spacing: normal;
   white-space: normal;
   line-break: auto;
-  font-size: 0.7rem;
+  font-size: 0.6875rem;
   word-wrap: break-word;
   opacity: 0; }
   .tooltip.show {
@@ -5969,8 +5986,8 @@ a.close.disabled {
   .tooltip .arrow {
     position: absolute;
     display: block;
-    width: 0.8rem;
-    height: 0.4rem; }
+    width: 0.8125rem;
+    height: 0.375rem; }
     .tooltip .arrow::before {
       position: absolute;
       content: "";
@@ -5978,43 +5995,43 @@ a.close.disabled {
       border-style: solid; }
 
 .bs-tooltip-top, .bs-tooltip-auto[x-placement^="top"] {
-  padding: 0.4rem 0; }
+  padding: 0.375rem 0; }
   .bs-tooltip-top .arrow, .bs-tooltip-auto[x-placement^="top"] .arrow {
     bottom: 0; }
     .bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
       top: 0;
-      border-width: 0.4rem 0.4rem 0;
+      border-width: 0.375rem 0.40625rem 0;
       border-top-color: #000; }
 
 .bs-tooltip-right, .bs-tooltip-auto[x-placement^="right"] {
-  padding: 0 0.4rem; }
+  padding: 0 0.375rem; }
   .bs-tooltip-right .arrow, .bs-tooltip-auto[x-placement^="right"] .arrow {
     left: 0;
-    width: 0.4rem;
-    height: 0.8rem; }
+    width: 0.375rem;
+    height: 0.8125rem; }
     .bs-tooltip-right .arrow::before, .bs-tooltip-auto[x-placement^="right"] .arrow::before {
       right: 0;
-      border-width: 0.4rem 0.4rem 0.4rem 0;
+      border-width: 0.40625rem 0.375rem 0.40625rem 0;
       border-right-color: #000; }
 
 .bs-tooltip-bottom, .bs-tooltip-auto[x-placement^="bottom"] {
-  padding: 0.4rem 0; }
+  padding: 0.375rem 0; }
   .bs-tooltip-bottom .arrow, .bs-tooltip-auto[x-placement^="bottom"] .arrow {
     top: 0; }
     .bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
       bottom: 0;
-      border-width: 0 0.4rem 0.4rem;
+      border-width: 0 0.40625rem 0.375rem;
       border-bottom-color: #000; }
 
 .bs-tooltip-left, .bs-tooltip-auto[x-placement^="left"] {
-  padding: 0 0.4rem; }
+  padding: 0 0.375rem; }
   .bs-tooltip-left .arrow, .bs-tooltip-auto[x-placement^="left"] .arrow {
     right: 0;
-    width: 0.4rem;
-    height: 0.8rem; }
+    width: 0.375rem;
+    height: 0.8125rem; }
     .bs-tooltip-left .arrow::before, .bs-tooltip-auto[x-placement^="left"] .arrow::before {
       left: 0;
-      border-width: 0.4rem 0 0.4rem 0.4rem;
+      border-width: 0.40625rem 0 0.40625rem 0.375rem;
       border-left-color: #000; }
 
 .tooltip-inner {
@@ -6046,19 +6063,19 @@ a.close.disabled {
   word-spacing: normal;
   white-space: normal;
   line-break: auto;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #868e96;
-  border-radius: 0.3rem;
+  border-radius: 0.3125rem;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); }
   .popover .arrow {
     position: absolute;
     display: block;
     width: 1rem;
     height: 0.5rem;
-    margin: 0 0.3rem; }
+    margin: 0 0.3125rem; }
     .popover .arrow::before, .popover .arrow::after {
       position: absolute;
       display: block;
@@ -6085,7 +6102,7 @@ a.close.disabled {
     left: calc(-0.5rem - 1px);
     width: 0.5rem;
     height: 1rem;
-    margin: 0.3rem 0; }
+    margin: 0.3125rem 0; }
     .bs-popover-right > .arrow::before, .bs-popover-auto[x-placement^="right"] > .arrow::before {
       left: 0;
       border-width: 0.5rem 0.5rem 0.5rem 0;
@@ -6123,7 +6140,7 @@ a.close.disabled {
     right: calc(-0.5rem - 1px);
     width: 0.5rem;
     height: 1rem;
-    margin: 0.3rem 0; }
+    margin: 0.3125rem 0; }
     .bs-popover-left > .arrow::before, .bs-popover-auto[x-placement^="left"] > .arrow::before {
       right: 0;
       border-width: 0.5rem 0 0.5rem 0.5rem;
@@ -6139,8 +6156,8 @@ a.close.disabled {
   font-size: 1rem;
   background-color: #f7f7f7;
   border-bottom: 1px solid #ebebeb;
-  border-top-left-radius: calc(0.3rem - 1px);
-  border-top-right-radius: calc(0.3rem - 1px); }
+  border-top-left-radius: calc(0.3125rem - 1px);
+  border-top-right-radius: calc(0.3125rem - 1px); }
   .popover-header:empty {
     display: none; }
 
@@ -6537,7 +6554,7 @@ button.bg-dark:focus {
   border-bottom-left-radius: 0.25rem !important; }
 
 .rounded-lg {
-  border-radius: 0.3rem !important; }
+  border-radius: 0.3125rem !important; }
 
 .rounded-circle {
   border-radius: 50% !important; }
@@ -8981,7 +8998,7 @@ select.selectpicker {
   border-radius: inherit; }
 
 .bootstrap-select.form-control-sm .dropdown-toggle, .input-group-sm > label.has-float-label > .bootstrap-select.form-control .dropdown-toggle {
-  padding: 0.25rem 0.25rem; }
+  padding: 0.1875rem 0.25rem; }
 
 
 .bootstrap-select.form-control-lg .dropdown-toggle,
@@ -9258,7 +9275,7 @@ HEADER
 Font-sizes for headers are one 'size' smaller than normal font
 $font-size-lg  : 1.25rem    20px
 $font-size-base: 1rem       16px
-$font-size-sm  : .8125rem   13px
+$font-size-sm  : .875rem;   14px
 $font-size-xs  : .75rem     12px
 ************************************************************/
 /************************************************************
@@ -9852,7 +9869,7 @@ Bootstrap allready have the following classes
 .container-icon-and-text:not(.fa-stack) > a:not(:last-child),
 .container-icon-and-text:not(.fa-stack) > .container-stacked-icons:not(:last-child):not(.fa-no-margin),
 .container-icon-and-text:not(.fa-stack) > i:not(:last-child):not(.fa-no-margin) {
-  margin-right: .4em; }
+  margin-right: 5px; }
 
 .container-icon-and-text:not(.fa-stack) > span.inline-block,
 .container-icon-and-text:not(.fa-stack) > span.d-block {
@@ -9931,8 +9948,8 @@ div.btn, div.list-group-item {
   outline: none !important;
   /************************************************************
     Special version to have transparent button
-    Default is light color on dark background
-    TODO: Add transparent-on-light to have dark color og light background
+    transparent = normal/dark color og light background
+    transparent-on-dark = Light color on dark background
     ************************************************************/
   /************************************************************
     Special version to have square buttons (with only icon)
@@ -10019,23 +10036,25 @@ div.btn, div.list-group-item {
   .btn.btn-standard > span.fa-stack {
     width: 1em;
     height: 1em;
-    line-height: 1.21875rem;
+    line-height: 1.3125rem;
     vertical-align: top; }
   .btn.btn-standard.disabled.show-as-normal, .btn.btn-standard.show-as-normal:disabled {
     opacity: 1; }
+  .btn.btn-standard.no-border {
+    border-color: transparent !important; }
   .btn.btn-standard.transparent {
     background: none;
-    color: #D4D4D4;
+    color: #515961;
     background: rgba(0, 0, 0, 0) linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0)) repeat-x;
     border: 1px solid rgba(0, 0, 0, 0.1);
     outline: none !important; }
     .mouse-hover .hover .btn.btn-standard.transparent:not(:active):not(:disabled):not(.disabled),
     .mouse-hover .btn.btn-standard.transparent.hover:not(:active):not(:disabled):not(.disabled),
     .mouse-hover .btn.btn-standard.transparent:hover:not(:active):not(:disabled):not(.disabled) {
-      color: #e1e1e1;
+      color: #454c53;
       background: rgba(0, 0, 0, 0) linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0)) repeat-x; }
     .btn.btn-standard.transparent:active {
-      color: #e7e7e7;
+      color: #40464c;
       background: rgba(0, 0, 0, 0) linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0)) repeat-x; }
     .btn.btn-standard.transparent:active, .btn.btn-standard.transparent.active {
       border-color: rgba(0, 0, 0, 0.1); }
@@ -10065,6 +10084,51 @@ div.btn, div.list-group-item {
         color: rgba(255, 255, 255, 0.65);
         background: #007bff linear-gradient(180deg, #268fff, #007bff) repeat-x; }
     .btn.btn-standard.transparent.disabled:not(.show-as-normal), .btn.btn-standard.transparent:disabled:not(.show-as-normal) {
+      opacity: 1 !important;
+      color: rgba(81, 89, 97, 0.65);
+      background: rgba(0, 0, 0, 0) linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0)) repeat-x; }
+  .btn.btn-standard.transparent-on-dark {
+    background: none;
+    color: #D4D4D4;
+    background: rgba(0, 0, 0, 0) linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0)) repeat-x;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    outline: none !important; }
+    .mouse-hover .hover .btn.btn-standard.transparent-on-dark:not(:active):not(:disabled):not(.disabled),
+    .mouse-hover .btn.btn-standard.transparent-on-dark.hover:not(:active):not(:disabled):not(.disabled),
+    .mouse-hover .btn.btn-standard.transparent-on-dark:hover:not(:active):not(:disabled):not(.disabled) {
+      color: #e1e1e1;
+      background: rgba(0, 0, 0, 0) linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0)) repeat-x; }
+    .btn.btn-standard.transparent-on-dark:active {
+      color: #e7e7e7;
+      background: rgba(0, 0, 0, 0) linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0)) repeat-x; }
+    .btn.btn-standard.transparent-on-dark:active, .btn.btn-standard.transparent-on-dark.active {
+      border-color: rgba(0, 0, 0, 0.1); }
+    .btn.btn-standard.transparent-on-dark:focus, .btn.btn-standard.transparent-on-dark.focus {
+      border-color: #80bdff; }
+    .btn.btn-standard.transparent-on-dark.disabled:not(.show-as-normal), .btn.btn-standard.transparent-on-dark:disabled:not(.show-as-normal) {
+      border-color: rgba(0, 0, 0, 0.1); }
+    .btn.btn-standard.transparent-on-dark.focus:not(:disabled):not(.disabled):not(.no-hover), .btn.btn-standard.transparent-on-dark:focus:not(:disabled):not(.disabled):not(.no-hover),
+    .mouse-hover .btn.btn-standard.transparent-on-dark:hover:not(:disabled):not(.disabled):not(.no-hover) {
+      position: relative;
+      z-index: 4; }
+    .mouse-hover .btn.btn-standard.transparent-on-dark:hover:not(:focus):not(:disabled):not(.disabled):not(.no-hover) {
+      border-color: rgba(0, 0, 0, 0.15); }
+    .btn.btn-standard.transparent-on-dark.active {
+      color: #fff;
+      background: #007bff linear-gradient(180deg, #268fff, #007bff) repeat-x; }
+      .mouse-hover .hover .btn.btn-standard.transparent-on-dark.active:not(:active):not(:disabled):not(.disabled),
+      .mouse-hover .btn.btn-standard.transparent-on-dark.active.hover:not(:active):not(:disabled):not(.disabled),
+      .mouse-hover .btn.btn-standard.transparent-on-dark.active:hover:not(:active):not(:disabled):not(.disabled) {
+        color: #f2f2f2;
+        background: #006fe6 linear-gradient(180deg, #2684e9, #006fe6) repeat-x; }
+      .btn.btn-standard.transparent-on-dark.active:active {
+        color: #ececec;
+        background: #0069d9 linear-gradient(180deg, #267fde, #0069d9) repeat-x; }
+      .btn.btn-standard.transparent-on-dark.active.disabled:not(.show-as-normal), .btn.btn-standard.transparent-on-dark.active:disabled:not(.show-as-normal) {
+        opacity: 1 !important;
+        color: rgba(255, 255, 255, 0.65);
+        background: #007bff linear-gradient(180deg, #268fff, #007bff) repeat-x; }
+    .btn.btn-standard.transparent-on-dark.disabled:not(.show-as-normal), .btn.btn-standard.transparent-on-dark:disabled:not(.show-as-normal) {
       opacity: 1 !important;
       color: rgba(212, 212, 212, 0.65);
       background: rgba(0, 0, 0, 0) linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0)) repeat-x; }
@@ -10107,12 +10171,12 @@ div.btn, div.list-group-item {
     height: 2.25rem;
     width: 2.25rem; }
     .btn.btn-standard.square.btn-sm, .btn-group-sm > .btn.btn-standard.square {
-      height: 1.84375rem;
-      width: 1.84375rem; }
+      height: 1.8125rem;
+      width: 1.8125rem; }
     .btn.btn-standard.square.big-icon {
       font-size: 1.625rem; }
     .btn.btn-standard.square.btn-sm.big-icon, .btn-group-sm > .btn.btn-standard.square.big-icon {
-      font-size: 1.3125rem; }
+      font-size: 1.375rem; }
     .btn.btn-standard.square > i.fa {
       width: 1.25em;
       height: 1em;
@@ -10205,7 +10269,7 @@ BUTTON-GROUP
   align-items: center;
   cursor: default;
   padding: 0.25rem 0.25rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: inherit;
   line-height: 1.3; }
@@ -10242,9 +10306,9 @@ BUTTON-GROUP
 .btn-group-vertical + .btn-group-vertical {
   margin-top: 0.3125rem; }
   .btn-group-vertical + .btn-group-vertical.btn-group-sm {
-    margin-top: 0.25rem; }
+    margin-top: 0.1875rem; }
   .btn-group-vertical + .btn-group-vertical.btn-group-xs {
-    margin-top: 0.25rem; }
+    margin-top: 0.1875rem; }
 
 /************************************************************
 MENU (BUTTON-GROUP)
@@ -10256,6 +10320,25 @@ MENU (BUTTON-GROUP)
 
 .bs-menu-container hr.first.before, .bs-menu-container hr.last.after, .bs-menu-container hr + hr {
   display: none; }
+
+/************************************************************
+btn-shadow and btn-shadow-sm
+classes to create "shadow-buttons"
+************************************************************/
+.btn-shadow, .btn-shadow-sm {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  visibility: hidden; }
+
+.btn-shadow {
+  width: 2.25rem;
+  height: 2.25rem; }
+
+.btn-shadow-sm {
+  width: 1.8125rem;
+  height: 1.8125rem; }
 
 /************************************************************
 POPOVER
@@ -10271,7 +10354,7 @@ POPOVER
   align-items: center;
   cursor: default;
   padding: 0.3125rem 0.3125rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: inherit;
   border-bottom: 1px solid #9aa1a8;
@@ -10300,7 +10383,7 @@ POPOVER
   align-items: center;
   cursor: default;
   padding: 0.3125rem 0.3125rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: inherit;
   color: #495057;
@@ -10505,56 +10588,62 @@ div.radio input + label::before {
 @mixin checkbox-radio-size-variant
 ***************************************************************************/
 div.checkbox, div.radio {
-  height: 2rem;
+  height: 2.125rem;
   font-size: 1rem; }
   div.checkbox input + label, div.radio input + label {
-    padding-left: 1.45rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
+    padding-left: 1.375rem;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
     font-size: 1rem; }
     div.checkbox input + label::before, div.radio input + label::before {
-      margin-top: 0.15rem;
-      width: 1.2rem;
-      height: 1.2rem; }
+      margin-top: 0.1875rem;
+      width: 1.125rem;
+      height: 1.125rem; }
     div.checkbox input + label i, div.radio input + label i {
-      font-size: 0.8rem;
-      width: 0.8rem;
-      height: 0.8rem;
-      margin-top: 0.35rem;
-      margin-left: 0.2rem; }
+      font-size: 0.875rem;
+      width: 0.875rem;
+      height: 0.875rem;
+      margin-top: 0.3125rem !important;
+      margin-left: 0.125rem !important; }
 
 div.checkbox input label::before {
   border-radius: 0.25rem; }
 
 div.radio input + label i {
-  font-size: 0.4rem;
-  margin-top: 0.55rem; }
+  font-size: 0.375rem;
+  width: 0.375rem;
+  height: 0.375rem;
+  margin-top: 0.5625rem !important;
+  margin-left: 0.375rem !important; }
 
 div.checkbox-sm, div.radio-sm {
-  height: 1.46875rem;
-  font-size: 0.8125rem; }
+  height: 1.6875rem;
+  font-size: 0.875rem; }
   div.checkbox-sm input + label, div.radio-sm input + label {
-    padding-left: 1.1625rem;
-    padding-top: 0.125rem;
-    padding-bottom: 0.125rem;
-    font-size: 0.8125rem; }
+    padding-left: 1.1875rem;
+    padding-top: 0.1875rem;
+    padding-bottom: 0.1875rem;
+    font-size: 0.875rem; }
     div.checkbox-sm input + label::before, div.radio-sm input + label::before {
-      margin-top: 0.121875rem;
-      width: 0.975rem;
-      height: 0.975rem; }
+      margin-top: 0.15625rem;
+      width: 1rem;
+      height: 1rem; }
     div.checkbox-sm input + label i, div.radio-sm input + label i {
-      font-size: 0.65rem;
-      width: 0.65rem;
-      height: 0.65rem;
-      margin-top: 0.284375rem;
-      margin-left: 0.1625rem; }
+      font-size: 0.75rem;
+      width: 0.75rem;
+      height: 0.75rem;
+      margin-top: 0.28125rem !important;
+      margin-left: 0.125rem !important; }
 
 div.checkbox-sm input label::before {
   border-radius: 0.1875rem; }
 
 div.radio-sm input + label i {
-  font-size: 0.325rem;
-  margin-top: 0.446875rem; }
+  font-size: 0.375rem;
+  width: 0.375rem;
+  height: 0.375rem;
+  margin-top: 0.46875rem !important;
+  margin-left: 0.3125rem !important; }
 
 /***************************************************************************
 checkbox-inline, radio-inline,
@@ -10643,12 +10732,12 @@ bsSelectList
     align-items: center;
     cursor: default;
     padding: 0.3125rem 0.3125rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     line-height: 1.5;
     border-radius: inherit;
     background-color: #fff;
     color: #515961;
-    line-height: 1.8461538462; }
+    line-height: 1.7142857143; }
     .dropdown-menu .dropdown-header span, .selectList .dropdown-header span {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -10658,8 +10747,8 @@ bsSelectList
       word-break: keep-all; }
 
 .selectList.selectList-sm .dropdown-item, .dropdown-menu.dropdown-menu-sm .dropdown-item {
-  padding: 0.25rem 0.25rem;
-  font-size: 0.8125rem;
+  padding: 0.1875rem 0.25rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.1875rem; }
 
@@ -10672,7 +10761,7 @@ bsSelectList
   font-size: 0.75rem;
   line-height: 1.5;
   border-radius: inherit;
-  line-height: 1.625; }
+  line-height: 1.75; }
   .selectList.selectList-sm .dropdown-header span, .dropdown-menu.dropdown-menu-sm .dropdown-header span {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -10889,7 +10978,7 @@ body.modal-open .modal {
     align-items: center;
     cursor: default;
     padding: 0.3125rem 0.3125rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     line-height: 1.5;
     border-radius: inherit;
     border-bottom: 1px solid #9aa1a8;
@@ -10933,7 +11022,7 @@ body.modal-open .modal {
     flex-grow: 1;
     padding: 0.3125rem 0.3125rem;
     font-size: 1rem;
-    border-radius: calc( 0.3rem - 1px); }
+    border-radius: calc( 0.3125rem - 1px); }
     .modal-dialog .modal-content .modal-body.modal-type-alert {
       background-color: #cce5ff;
       color: #004085; }
@@ -10960,7 +11049,7 @@ body.modal-open .modal {
     align-items: center;
     cursor: default;
     padding: 0.3125rem 0.3125rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     line-height: 1.5;
     border-radius: inherit;
     color: #495057;
@@ -11026,7 +11115,7 @@ body.modal-open .modal {
   .modal-dialog.modal-dialog-sm .modal-content .modal-body,
   .modal-dialog.modal-dialog-sm .modal-content .modal-body-fixed {
     padding: 0.3125rem 0.3125rem;
-    font-size: 0.8125rem; }
+    font-size: 0.875rem; }
   .modal-dialog.modal-dialog-sm .modal-content .modal-footer-header {
     font-weight: 400;
     display: flex;
@@ -11118,8 +11207,8 @@ body.modal-open .modal {
 
 .modal-dialog.modal-dialog-xs .modal-body-with-vertical-padding,
 .modal-dialog.modal-dialog-sm .modal-body-with-vertical-padding {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem; }
+  padding-top: 0.1875rem;
+  padding-bottom: 0.1875rem; }
 
 .modal-content .modal-body-fixed.no-vertical-padding,
 .modal-content .modal-body.no-vertical-padding {
@@ -11164,7 +11253,7 @@ Style for elements used to display any file in a modal-window
 
 .file-view-content {
   padding: 0.3125rem 0.3125rem;
-  font-size: 0.8125rem; }
+  font-size: 0.875rem; }
 
 /************************************************************
 MODAL-BACKDROP
@@ -11309,12 +11398,12 @@ The default bootstrap structure used for elements in a form is
       margin-bottom: 0; }
 
 .form-group.form-group-sm {
-  padding-top: 0.25rem;
-  padding-bottom: 0.5rem; }
+  padding-top: 0.1875rem;
+  padding-bottom: 0.375rem; }
   .form-group.form-group-sm.small-bottom-padding {
-    padding-bottom: 0.25rem; }
+    padding-bottom: 0.1875rem; }
   .form-group.form-group-sm hr.above-label {
-    margin-bottom: 0.75rem; }
+    margin-bottom: 0.5625rem; }
 
 .form-group.form-group-xs {
   padding-top: 0.125rem;
@@ -11330,7 +11419,7 @@ form-group inside a <form class="form-validation"> gets special style for valida
 ************************************************************/
 form.form-validation .form-group {
   padding-top: 0.3125rem;
-  padding-bottom: 1.4375rem; }
+  padding-bottom: 1.5rem; }
   form.form-validation .form-group .form-control-feedback {
     line-height: 1;
     padding-top: 0;
@@ -11340,22 +11429,22 @@ form.form-validation .form-group {
   form.form-validation .form-group.no-validation {
     padding-bottom: 0.3125rem; }
   form.form-validation .form-group .form-control-feedback {
-    height: 1.4375rem;
-    font-size: 0.8125rem;
+    height: 1.5rem;
+    font-size: 0.875rem;
     color: #dc3545;
     padding-left: 0.3125rem;
     vertical-align: top; }
   form.form-validation .form-group.has-warning .form-control-feedback[data-fv-result="INVALID"] {
     display: inline-block !important; }
   form.form-validation .form-group.form-group-sm {
-    padding-top: 0.25rem;
-    padding-bottom: 1.25rem; }
+    padding-top: 0.1875rem;
+    padding-bottom: 1.125rem; }
     form.form-validation .form-group.form-group-sm.has-warning {
       padding-bottom: 0px; }
     form.form-validation .form-group.form-group-sm.no-validation {
-      padding-bottom: 0.25rem; }
+      padding-bottom: 0.1875rem; }
     form.form-validation .form-group.form-group-sm .form-control-feedback {
-      height: 1.25rem;
+      height: 1.125rem;
       font-size: 0.75rem;
       color: #dc3545;
       padding-left: 0.25rem;
@@ -11414,7 +11503,7 @@ form.form-validation .form-group {
   .input-group-border.input-group-border-dark {
     border-color: black; }
   .input-group-border.input-group-sm, .input-group-border.input-group-xs {
-    padding: 0.25rem 0.25rem;
+    padding: 0.1875rem 0.25rem;
     border-radius: 0.1875rem; }
   .input-group-border.input-group-border-with-label {
     margin-top: 0.25em; }
@@ -11455,7 +11544,7 @@ Only supports the html-structure
     color: #495057;
     padding: 0 2px;
     margin-left: 1px;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     left: 0.3125rem; }
     .input-group .has-float-label > span::after {
       display: block;
@@ -11512,8 +11601,8 @@ Only supports the html-structure
 
 .input-group-sm.input-group .has-float-label .form-control-with-label.show-label-as-placeholder + *,
 .input-group-sm.input-group .has-float-label .form-control-with-label:placeholder-shown:not(:focus) + * {
-  font-size: 0.8125rem;
-  top: calc(0.25rem + 1px); }
+  font-size: 0.875rem;
+  top: calc(0.1875rem + 1px); }
 
 .input-group-xs.input-group .has-float-label > span {
   font-size: 0.65625rem;
@@ -11541,7 +11630,7 @@ Style for
   color: #495057;
   padding: 0;
   margin-left: 1px;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   left: 0.3125rem; }
   .input-group.input-group-border .has-fixed-label::after {
     display: block;
@@ -11700,7 +11789,7 @@ Adjustmernt to Bootstrap table
     display: none; }
   .table tbody tr td {
     padding: 0.3125rem 0.3125rem;
-    font-size: 0.8125rem; }
+    font-size: 0.875rem; }
     .table tbody tr td.no-horizontal-padding {
       padding-left: 0;
       padding-right: 0; }
@@ -11718,7 +11807,7 @@ Adjustmernt to Bootstrap table
   align-items: center;
   cursor: default;
   padding: 0.25rem 0.25rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: inherit; }
   .modal-dialog-sm .table thead tr th span,
@@ -11822,7 +11911,7 @@ Using Bootstrap Collapse to create accordion
       content: "\f054"; }
   .accordion .card-block {
     padding: 0.3125rem 0.3125rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     border-radius: 0.25rem; }
   .accordion .card-footer {
     font-weight: 400;
@@ -11830,7 +11919,7 @@ Using Bootstrap Collapse to create accordion
     align-items: center;
     cursor: default;
     padding: 0.3125rem 0.3125rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     line-height: 1.5;
     border-radius: inherit;
     color: #495057;
@@ -11875,7 +11964,7 @@ Using Bootstrap Collapse to create accordion
   align-items: center;
   cursor: default;
   padding: 0.25rem 0.25rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: inherit; }
   .modal-dialog-sm .accordion .card-header span,
@@ -11894,7 +11983,7 @@ Using Bootstrap Collapse to create accordion
 .modal-dialog-xs .accordion .card-block,
 .accordion-sm .card-block {
   padding: 0.3125rem 0.3125rem;
-  font-size: 0.8125rem; }
+  font-size: 0.875rem; }
 
 .modal-dialog-sm .accordion .card-footer,
 .modal-dialog-xs .accordion .card-footer,
@@ -12022,15 +12111,15 @@ for noty is copyed and modified
     margin: 4px 0;
     overflow: hidden;
     position: relative;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     border: 1px solid #868e96;
-    border-radius: 0.3rem;
+    border-radius: 0.3125rem;
     -webkit-box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5); }
     .noty_bar.noty_theme__jquery-bootstrap .noty_body {
       padding: 0.3125rem 0.3125rem;
       font-size: 1rem;
-      font-size: 0.8125rem; }
+      font-size: 0.875rem; }
       .noty_bar.noty_theme__jquery-bootstrap .noty_body * {
         white-space: pre-wrap;
         -ms-word-break: break-word;
@@ -12043,7 +12132,7 @@ for noty is copyed and modified
       margin-top: 0.3125rem;
       margin-right: 0.3125rem; }
       .noty_bar.noty_theme__jquery-bootstrap.no-header .header-icon-container.header-icon-container-sm {
-        margin-top: 0.25rem;
+        margin-top: 0.1875rem;
         margin-right: 0.25rem; }
   .noty_bar .noty-header {
     color: #495057;
@@ -12053,7 +12142,7 @@ for noty is copyed and modified
     align-items: center;
     cursor: default;
     padding: 0.3125rem 0.3125rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     line-height: 1.5;
     border-radius: inherit;
     border-bottom: 1px solid #9aa1a8;
@@ -12243,7 +12332,7 @@ TABS
 Adjustment to Bootstrap tabs
 ************************************************************/
 .nav-tabs {
-  margin-top: 0.25rem;
+  margin-top: 0.1875rem;
   padding-left: 0.625rem;
   border-bottom-color: #6c757d; }
   .tab-inner-content .nav-tabs {
@@ -12344,8 +12433,8 @@ Adjustment to Bootstrap tabs
   .nav-tabs.hide-not-selected-text a.nav-item.nav-link:not(.active) span:last-child:not(:first-child) {
     display: none; }
   .nav-tabs.nav-tabs-sm a.nav-item.nav-link {
-    padding: 0.25rem 0.25rem;
-    font-size: 0.8125rem;
+    padding: 0.1875rem 0.25rem;
+    font-size: 0.875rem;
     line-height: 1.5;
     border-radius: 0.1875rem;
     border-bottom-left-radius: 0px;
@@ -12381,7 +12470,7 @@ Adjustment to Bootstrap tabs
     background-color: #fff;
     padding: 0.3125rem 0.3125rem;
     font-size: 1rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     padding-left: 0.625rem;
     padding-right: 0.625rem; }
     .tab-content .tab-pane.active .tab-inner-content.scrollbar-vertical, .tab-content .tab-content .tab-pane.active .tab-inner-content {
@@ -12394,7 +12483,7 @@ Adjustment to Bootstrap tabs
     align-items: center;
     cursor: default;
     padding: 0.3125rem 0.3125rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     line-height: 1.5;
     border-radius: inherit;
     color: #495057;
