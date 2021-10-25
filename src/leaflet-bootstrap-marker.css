@@ -444,7 +444,7 @@ https://github.com/mapshakers/leaflet-icon-pulse
 
 .lbm-type-circle {
   opacity: 1;
-  border: 2px solid black;
+  border: 1px solid black;
   box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.5);
   background-color: #fff;
   color: #000;
@@ -479,7 +479,7 @@ https://github.com/mapshakers/leaflet-icon-pulse
     animation: pulsate 1s ease-out;
     animation-iteration-count: infinite; }
   .lbm-type-circle .inner {
-    font-size: calc(.7em - 4px); }
+    font-size: calc(.7em - 2px); }
 
 .lbm-type-circle.lbm-color-pink {
   background-color: pink;

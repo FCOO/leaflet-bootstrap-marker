@@ -27,15 +27,12 @@ lbm-hover         : When hover: get shadow and opacity: 0.9 for ibm-transparent
 @import "../bower_components/bootstrap/scss/functions";
 @import "../bower_components/bootstrap/scss/variables";
 
-//COLOR-HELPER - https://github.com/voxpelli/sass-color-helpers
-@import "../bower_components/sass-color-helpers/stylesheets/color-helpers";
-
-
 //List of available color
 @import "leaflet-bootstrap-marker-color-list";
 
-//Generel mixins (tooltip etc)
-@import "leaflet-bootstrap-marker-mixin";
+//LEAFLET-BOOTSTRAP-MARKER-MIXIN
+@import "../bower_components/leaflet-bootstrap-marker-mixin/dist/leaflet-bootstrap-marker-mixin";
+
 
 //Create all colors in $color-list as class for fa-icons
 @each $name, $color in $lbm-color-list {
