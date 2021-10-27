@@ -38,7 +38,7 @@
 
     <script>
 
-//    $.FONTAWESOME_PREFIX = 'far';
+    $.FONTAWESOME_PREFIX = 'far';
 
     window.bsIsTouch = false;
     window.bsIsTouch = (window.location.search =='?touch');
@@ -69,16 +69,23 @@
             $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Dansk', en:'Eng'}}),
             $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Lang Dansk', en:'LongEng'}})
         ];
-//HER    var allSize = false,
-    var allSize = true,
+    var allSize = false,
+//HER    var allSize = true,
         size = allSize ? 'xs' : 'xl',
         markerList = [
+{constructor: L.bsMarkerStandard, options: {
+    iconColorName: 'pink',
+    iconClass: 'fa-home',
+}},
+
+
+
             {constructor: L.bsMarkerCircle, options: {
                 innerIconClass: 'fa-home',
                 //scaleInner: 180,
                 iconColorName: 'green',
                 colorName: 'yellow',
-                noBorder: true
+                noBorder: false//true
             }},
 
             {constructor: L.bsMarkerCircle, options: {
@@ -98,11 +105,6 @@
             }},
             {constructor: L.bsMarkerIcon, options: {
                 iconClass: 'fa-star', //'fa-rectangle-wide',
-                innerIconClass: 'fa-square',
-            }},
-
-            {constructor: L.bsMarkerIcon, options: {
-                iconClass: 'fa-badge',
                 innerIconClass: 'fa-square',
             }},
 
@@ -165,16 +167,24 @@
                 borderColorName: 'red',
                 transparent    : true,
                 hover          : true,
-            }, markerList[mfIndex].options),
+            }, markerList[mfIndex].options, {
+               
+                //colorName      : 'green',
+                //borderColorName: 'red',
+                //iconColorName  : 'yellow'
+            }),
 
             marker = markerList[mfIndex].constructor(latlng, options);
 
             marker.bindPopup(''+L.bsMarkerAsIcon('red', 'blue'));
             marker.addTo( map );
 
+
+
             marker.on('click', function(){
                 this.setColor('orange');
                 this.setBorderColor('blue');
+                this.setIconColor('red');
                 this.setDeltaDirection( 22.5 );
 
                 this.toggleOption('puls');
