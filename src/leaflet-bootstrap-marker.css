@@ -13,6 +13,20 @@ lbm-transparent   : Inner color get opacity: 0.7
 lbm-hover         : When hover: get shadow and opacity: 0.9 for ibm-transparent
 ************************************************/
 /***********************************************
+leaflet-bootstrap-marker.scss
+
+lbm-type-TYPE lbm-color-COLOR [lbm-border-color-COLOR] [lbm-transparent] [lbm-puls] [lbm-hover]
+
+lbm-type-TYPE     : Sets the different type of bsMarker
+lbm-[COLOR]       : Sets inner color to [COLOR]
+lbm-border-[COLOR]: border-color = [COLOR]
+
+lbm-shadow        : Shadow in same color as inner color
+lbm-puls          : Has a pulsing ring
+lbm-transparent   : Inner color get opacity: 0.7
+lbm-hover         : When hover: get shadow and opacity: 0.9 for ibm-transparent
+************************************************/
+/***********************************************
 
 leaflet-bootstrap-marker-colors.scss
 List of avaible color-name and values
@@ -40,6 +54,9 @@ fa-lbm-color
 Create class for color and border-color used by L.bsMarkerAsIcon (and $.bsMarkerAsIcon)
 to create fa-icon looking like the marker
 *************************************************************************/
+/***********************************************
+leaflet-bootstrap-marker-base.scss
+************************************************/
 .fa-lbm-color-pink {
   color: pink; }
 

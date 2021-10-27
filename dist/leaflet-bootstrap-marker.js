@@ -313,6 +313,7 @@ Base object-class for all type of markers
                 //iconId = unique for the same inner-icon
                 iconId = sizeId + '_' + (this.options.iconClass || '') + '_' + (this.options.innerIconClass || '') + '_' + (this.options.scaleInner || '') + (this.options.round ? '_round' : ''),
                 result = iconList[iconId] = iconList[iconId] || this.createIcon(sizeId, iconOptions);
+
             return result;
         },
 
@@ -407,6 +408,7 @@ Base object-class for all type of markers
             this.size = this.options.size;
 
             this.options.icon = this.getIcon( this.size );
+
             this.setIcon( this.options.icon );
 
             this.$icon = $(this._icon);
@@ -485,6 +487,7 @@ Base object-class for all type of markers
                         }
                     }
                 }
+
             return this;
         },
 
@@ -498,6 +501,7 @@ Base object-class for all type of markers
         setInnerIcon: function(){ return this.setInnerIconClass.apply(this, arguments); },
 
         setInnerIconClass: function( innerIconClass ){
+
             //If this.$inner don't exists => create it
             if (!this.$inner || !this.$inner.length){
                 this.$inner =
@@ -505,11 +509,14 @@ Base object-class for all type of markers
                         .addClass('inner')
                         .css(this.options.innerCss)
                         .appendTo(this.$innerParent);
+
+                this._setInnerColor();
             }
             if (this.options.rotateInner || this.$inner.css('transform'))
                 this.$inner.css('transform', 'rotate('+this.options.rotateInner+'deg)');
 
             this.$inner.empty().removeClass('text');
+
             this.options.innerIconClass = innerIconClass || '';
             if (this.options.innerIconClass)
                 $._bsCreateIcon(this.options.innerIconClass, this.$inner);
@@ -776,6 +783,7 @@ Create L.bsMarkerIcon = a marker with only a fa-icon
 
         getElements: function(){
             this.$icon = $(this._icon);
+
             if (this.options.noFill){
                 this.$background  = this.$icon.find('.lbm-content-border, .lbm-content-shadow, .lbm-content-puls');
                 this.$border      = $();//Empty $-element

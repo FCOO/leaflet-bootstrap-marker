@@ -1,0 +1,67 @@
+/***********************************************
+leaflet-bootstrap-marker-base.scss
+************************************************/
+
+//Create all colors in $color-list as class for fa-icons
+@each $name, $color in $lbm-color-list {
+    @include fa-lbm-color(
+        $name        : $name,
+        $color       : $color,
+        $border-color: $color
+    );
+}
+
+.lbm-base {
+    //Container to hold number or fa-icon
+    .inner {
+        display        : flex;
+        align-items    : center;
+        justify-content: center;
+        width          : 100%;
+        height         : 100%;
+
+        background-color: transparent;
+        &.text {
+            font-family   : $font-family-monospace !important;
+            letter-spacing: 0px;
+            font-weight   : bold;
+            white-space   : nowrap;
+            width         : 100%;
+            overflow      : hidden;
+        }
+    }
+
+    //text-color for number and fa-icon
+    &.lbm-text-is-black .inner { color: $black; }
+    &.lbm-text-is-white .inner { color: $white; }
+
+    //Create different font-size
+    @each $size-id, $size in $size-list {
+        &.lbm-base.lbm-size-#{$size-id} {
+            font-size: $size * 1px;
+
+            @each $scale in $scale-list {
+                &.lbm-scale-#{$scale}  { font-size: round($size * $scale / 100 * 1px); }
+            }
+        }
+    }
+
+    //Scale the inner content
+    @each $scale in $scale-list {
+        &.lbm-scale-inner-#{$scale} .inner * {
+            font-size: 1em * $scale / 100;
+        }
+    }
+}
+
+//Create margin for tooltips for the different sizes
+@each $size-id, $size in $size-list {
+    $margin: $size / 2 + 3px;
+    .leaflet-tooltip-icon-#{$size-id} {
+        &.leaflet-tooltip-bottom { margin-top :      $margin; }
+        &.leaflet-tooltip-top    { margin-top : -1 * $margin; }
+        &.leaflet-tooltip-left   { margin-left: -1 * $margin; }
+        &.leaflet-tooltip-right  { margin-left:      $margin; }
+    }
+}
+
