@@ -1,6 +1,6 @@
 {
   "name": "leaflet-bootstrap-marker",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "homepage": "https://github.com/FCOO/leaflet-bootstrap-marker",
   "authors": [
     "Niels Holt"
@@ -20,13 +20,13 @@
     "sass-color-helpers": "^2.1.1",
     "javascript-utilities": "fcoo/javascript-utilities#^1.1.0",
     "jquery-bootstrap": "fcoo/jquery-bootstrap#^2.2.0",
-    "leaflet-bugfix": "fcoo/leaflet-bugfix#^2.0.2"
+    "leaflet-bugfix": "fcoo/leaflet-bugfix#^2.0.2",
+    "leaflet-bootstrap-marker-mixin": "fcoo/leaflet-bootstrap-marker-mixin#^1.0.0"
   },
   "devDependencies": {
     "bourbon": "latest",
     "modernizr-mixin": "latest",
-    "mathsass": "latest",
-    "leaflet-bootstrap-marker-mixin": "fcoo/leaflet-bootstrap-marker-mixin#^1.0.0"
+    "mathsass": "latest"
   },
   "license": "MIT",
   "ignore": [
