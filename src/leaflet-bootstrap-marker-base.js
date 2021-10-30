@@ -111,11 +111,11 @@ Base object-class for all type of markers
             colorName = a || colorName;
             borderColorName = b || borderColorName;
 
-            if (typeof c === 'boolean')
+            if (typeof c === 'boolean'){
                 //2: (STRING, STRING, BOOLEAN)
                 if (!c)
                     options.faClassName = 'fa-square';
-
+            }
             else
 
             if (typeof c === 'string')

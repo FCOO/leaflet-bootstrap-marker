@@ -23,15 +23,15 @@ https://github.com/mapshakers/leaflet-icon-pulse
 
 .lbm-type-circle {
     opacity      : 1;
-    border       : $border-width solid black;
-    box-shadow  : 0px 0px 0px 1px $outer-border-color;
+    border       : $lbm-border-width solid black;
+    box-shadow  : 0px 0px 0px 1px $lbm-outer-border-color;
 
     &.lbm-thickBorder {
-        border-width: $thick-border-width;
+        border-width: $lbm-thick-border-width;
     }
 
     &.lbm-thinBorder {
-        border-width: $thin-border-width;
+        border-width: $lbm-thin-border-width;
     }
 
     &.lbm-noBorder {
@@ -53,9 +53,9 @@ https://github.com/mapshakers/leaflet-icon-pulse
         display : none;
         position: absolute;
         content : "";
-        height  : calc(100% + #{$puls-width});
-        width   : calc(100% + #{$puls-width});
-        margin  : #{-0.5 * $puls-width} 0 0 #{-0.5 * $puls-width};
+        height  : calc(100% + #{$lbm-puls-width});
+        width   : calc(100% + #{$lbm-puls-width});
+        margin  : #{-0.5 * $lbm-puls-width} 0 0 #{-0.5 * $lbm-puls-width};
     }
 
     &.lbm-puls:before {
@@ -65,7 +65,7 @@ https://github.com/mapshakers/leaflet-icon-pulse
     }
 
     .inner {
-        font-size: calc(.7em - #{2 * $border-width});
+        font-size: calc(.7em - #{2 * $lbm-border-width});
     }
 }
 
