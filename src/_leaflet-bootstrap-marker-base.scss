@@ -36,18 +36,18 @@ leaflet-bootstrap-marker-base.scss
     &.lbm-text-is-white .inner { color: $white; }
 
     //Create different font-size
-    @each $size-id, $size in $size-list {
+    @each $size-id, $size in $lbm-size-list {
         &.lbm-base.lbm-size-#{$size-id} {
             font-size: $size * 1px;
 
-            @each $scale in $scale-list {
+            @each $scale in $lbm-scale-list {
                 &.lbm-scale-#{$scale}  { font-size: round($size * $scale / 100 * 1px); }
             }
         }
     }
 
     //Scale the inner content
-    @each $scale in $scale-list {
+    @each $scale in $lbm-scale-list {
         &.lbm-scale-inner-#{$scale} .inner * {
             font-size: 1em * $scale / 100;
         }
@@ -55,7 +55,7 @@ leaflet-bootstrap-marker-base.scss
 }
 
 //Create margin for tooltips for the different sizes
-@each $size-id, $size in $size-list {
+@each $size-id, $size in $lbm-size-list {
     $margin: $size / 2 + 3px;
     .leaflet-tooltip-icon-#{$size-id} {
         &.leaflet-tooltip-bottom { margin-top :      $margin; }

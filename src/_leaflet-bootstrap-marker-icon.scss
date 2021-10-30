@@ -46,8 +46,8 @@ _leaflet-bootstrap-marker-icon.scss,
             top      : -1em;
 
             //Thin white outer border
-            -webkit-text-stroke-color: $outer-border-color;
-            -moz-text-stroke-color   : $outer-border-color;
+            -webkit-text-stroke-color: $lbm-outer-border-color;
+            -moz-text-stroke-color   : $lbm-outer-border-color;
             -webkit-text-stroke-width: 2px;
             -moz-text-stroke-width   : 2px;
         }
@@ -101,11 +101,11 @@ _leaflet-bootstrap-marker-icon.scss,
     //Shadow in same color
     &.lbm-shadow, &.leaflet-drag-target, &.lbm-hover:hover {
         .lbm-content-shadow {
-            -webkit-text-stroke-color: $outer-border-color;
-            -moz-text-stroke-color   : $outer-border-color;
+            -webkit-text-stroke-color: $lbm-outer-border-color;
+            -moz-text-stroke-color   : $lbm-outer-border-color;
 
-            -webkit-text-stroke-width: 2 * $shadow-width;
-            -moz-text-stroke-width   : 2 * $shadow-width;
+            -webkit-text-stroke-width: 2 * $lbm-shadow-width;
+            -moz-text-stroke-width   : 2 * $lbm-shadow-width;
         }
     }
 
@@ -113,7 +113,7 @@ _leaflet-bootstrap-marker-icon.scss,
     &.lbm-no-fill .lbm-content-border { top: -2em; }
 
     //Ajdust line-height and top for lbm-scale-y-FACTOR
-    @each $scale in $scale-list {
+    @each $scale in $lbm-scale-list {
         &.lbm-scale-y-#{$scale} {
             $factor: $scale/100;
             .lbm-content {
@@ -132,8 +132,8 @@ _leaflet-bootstrap-marker-icon.scss,
     .lbm-type-icon.lbm-color-#{$name} {
         &.lbm-shadow, &.leaflet-drag-target, &.lbm-hover:hover {
             .lbm-content-shadow {
-                -webkit-text-stroke-color: rgba($color, $shadow-opacity);
-                -moz-text-stroke-color   : rgba($color, $shadow-opacity);
+                -webkit-text-stroke-color: rgba($color, $lbm-shadow-opacity);
+                -moz-text-stroke-color   : rgba($color, $lbm-shadow-opacity);
             }
         }
     }
