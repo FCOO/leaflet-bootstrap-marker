@@ -3,11 +3,12 @@
 
 
 ## Description
-Create different types of Leaflet markers using [FCOO/leaflet-bootstrap](https://github.com/FCOO/leaflet-bootstrap)  
+Create different types of Leaflet markers using [FCOO/leaflet-bootstrap](https://github.com/FCOO/leaflet-bootstrap)
 
 There are the following types of marker:
 
 - **`bsMarkerCircle`** Round or square marker with optional fill and border color and icon or text
+- **`bsMarkerCanvas`** Round or square marker drawn direct on the maps canvas. Used to optimize preforms when large number of markers are needed.
 - **`bsMarkerIcon`** Fontawesome icons as marker with optional fill and border color and icon or text
 - **`bsMarkerStandard`** A standard Leaflet marker with optional fill and border color and icon or text
 - **`bsMarkerRedCross`** Special marker as a red cross on the map
@@ -17,14 +18,15 @@ There are the following types of marker:
 `bower install https://github.com/FCOO/leaflet-bootstrap-marker.git --save`
 
 ## Demo
-http://FCOO.github.io/leaflet-bootstrap-marker/demo/ 
+http://FCOO.github.io/leaflet-bootstrap-marker/demo/
 
 ## Usage
 
-### options 
-- `bsMarkerCircle`: All options
-- `bsMarkerIcon`: All options except options marked with `(*)`
-- `bsMarkerRedCross`: Only standard Leaflet options plus `size`
+### options
+- `bsMarkerCircle` = All options
+- `bsMarkerCanvas` = `round, size, transparent, hover, shadow, thickBorder, thinBorder, noBorder, tooltip, shadowWhenPopupOpen`
+- `bsMarkerIcon` = All options except options marked with `(*)`
+- `bsMarkerRedCross` = Only standard Leaflet options plus `size`
 
         options: {
             type       : 'base',  //Type of the marker
@@ -79,7 +81,7 @@ http://FCOO.github.io/leaflet-bootstrap-marker/demo/
 The following values can be used for `colorName`, `borderColorName`, and `iconColorName`
 #### Standard colors:
 
-    "pink" "purple" "red" "orange" "yellow" "green" "cyan" "blue" "brown" "white" "grey" "black" "indigo" "teal" "darkgray"     
+    "pink" "purple" "red" "orange" "yellow" "green" "cyan" "blue" "brown" "white" "grey" "black" "indigo" "teal" "darkgray"
 
 #### Bootstrap colors:
 
@@ -156,7 +158,7 @@ Can be used in four different ways:
             }
 
 
-<!-- 
+<!--
 ### options
 | Id | Type | Default | Description |
 | :--: | :--: | :-----: | --- |

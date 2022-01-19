@@ -30,6 +30,7 @@
     <script src="../src/leaflet-bootstrap-marker-base.js"></script>
     <script src="../src/leaflet-bootstrap-marker-redcross.js"></script>
     <script src="../src/leaflet-bootstrap-marker-circle.js"></script>
+    <script src="../src/leaflet-bootstrap-marker-canvas.js"></script>
     <script src="../src/leaflet-bootstrap-marker-icon.js"></script>
     <script src="../src/leaflet-bootstrap-marker-icon2.js"></script>
 
@@ -47,22 +48,88 @@
     i18next.init();
     i18next.changeLanguage('en');
 
-    var map = L.map('map', {
+$(function() {
 
-    }).setView([56.2, 11.5], 6);
+    
+    var map = L.map('map', {
+      
+
+    }).setView([55.2, 12], 10);
 
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>'
-    }).addTo(map);
+    })
+    .addTo(map);
 
-/*
-    L.bsMarkerCircle([55, 12],{
-        _size: 'sm',
-        draggable: true,
-        useTouchSize: true
-    }).addTo(map);
-*/
+
+
+    var options = {
+            size: 'nl',
+            round: false,
+            //round: true,
+            colorName      : 'blue',
+            borderColorName: 'red',
+
+            shadow      : false, //true to add a shadow to the marker
+            transparent : true, //True to make the marker semi-transparent
+            hover       : true, //True to show shadow and 0.9 opacity for lbm-transparent when hover
+
+            //puls            : false, //true to have a pulsart icon
+            thickBorder    : false, //true to have thicker border
+            thinBorder     : false, //True to have a thin border
+            noBorder       : false, //True to have no border
+
+            tooltip: 'Dette er tooltip',
+            draw: function(ctx, x, y, dimension, radius, ctxOptions){
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = 'yellow';
+                ctx.arc(x, y, 4, 0, 2*Math.PI);
+            }
+        }
+
+    options.thickBorder = true;
+    options.thinBorder = false;
+    L.bsMarkerCanvas([55, 12.0], options)
+        .bindPopup('Dette er en test')
+        .addTo(map);
+
+    L.bsMarkerCircle([55, 12.2], options)
+        .addTo(map)
+        .bindPopup('Dette er en test');
+
+
+    options.thickBorder = false;
+    options.thinBorder = false;
+    L.bsMarkerCanvas([55.1, 12.0], options)
+        .bindPopup('Dette er en test')
+        .addTo(map);
+
+    L.bsMarkerCircle([55.1, 12.2], options)
+        .bindPopup('Dette er en test')
+        .addTo(map);
+
+    options.thickBorder = false;
+    options.thinBorder = true;
+    L.bsMarkerCanvas([55.2, 12.0], options)
+        .bindPopup('Dette er en test')
+        .addTo(map);
+    L.bsMarkerCircle([55.2, 12.2], options)
+        .bindPopup('Dette er en test')
+        .addTo(map);
+
+
+    options.thickBorder = false;
+    options.thinBorder = false;
+    options.noBorder = true;
+    L.bsMarkerCanvas([55.3, 12.0], options)
+        .bindPopup('Dette er en test')
+        .addTo(map);
+    L.bsMarkerCircle([55.3, 12.2], options)
+        .bindPopup('Dette er en test')
+        .addTo(map);
+
+   
 
     //**************************************
     var tooltip = [
@@ -202,7 +269,7 @@
 
 
     map.on('click', function( mouseEvent ){ addMarker( mouseEvent.latlng ); });
-
+});
 
     </script>
 </body>

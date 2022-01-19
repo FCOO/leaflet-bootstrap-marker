@@ -7,7 +7,6 @@ Base object-class for all type of markers
 (function ($, L, window/*, document, undefined*/) {
     "use strict";
 
-
     //Create name-space L.BsMarker
     var ns = L.BsMarker = L.BsMarker || {};
 
@@ -33,7 +32,7 @@ Base object-class for all type of markers
     ns.iconList = []; //[TYPE][SIZE] of L.divIcon or other icon
 
     //colorNameToColor = list of name:color.MUST match the list in src/_leaflet-bootstrap-marker-colors.scss
-    var colorNameToColor = {
+    var colorNameToColor = ns.colorNameToColor = {
             pink      : 'pink',
             purple    : 'purple',
             red       : 'red',
@@ -60,15 +59,48 @@ Base object-class for all type of markers
             standard  : '#4285F4' //= rgba(66, 133, 244) = google maps color for location icon
     };
 
+
+    var colorNameToRGB = ns.colorNameToRGB = {};
+
     //Get color-values from Bootstrap-variables
 	$(function() {
-        var $div = $('<div/>').appendTo($('body'));
+        var $div = $('<div/>').appendTo($('body')),
+            div = $div.get(0);
+
         $.each(colorNameToColor, function(colorName, color){
             if (!color)
                 colorNameToColor[colorName] = $div.removeClass().addClass('bg-'+colorName).css("background-color");
+
+            div.style.color = colorNameToColor[colorName];
+
+            var rgbStr = window.getComputedStyle(div).color,
+                sep = rgbStr.indexOf(",") > -1 ? "," : " ";
+
+           colorNameToRGB[colorName] = rgbStr.substr(4).split(")")[0].split(sep).map(Number);
         });
         $div.remove();
 	});
+
+    /*****************************************************
+    _adjustOptions
+    *****************************************************/
+    ns._adjustOptions = function(options={}){
+        options.colorName = options.colorName || options.fillColorName || 'white';
+        options.borderColorName = options.borderColorName || options.lineColorName || 'black';
+        options.iconColorName = options.iconColorName || options.textColorName || 'black';
+//BRUGES MÅSKE IKKE:             options.color = options.color || options.textColor || options.iconColor;
+
+        options.size = options.size ? options.size.toLowerCase() : 'nl';
+        options.size =  options.size == 'extrasmall' ? 'xs' :
+                        options.size == 'small' ? 'sm' :
+                        options.size == 'large' ? 'lg' :
+                        options.size == 'xlarge' ? 'xl' :
+                        options.size == 'normal' ? 'nl' :
+                        options.size;
+
+        return options;
+    };
+
 
     /*****************************************************
     L.bsMarkerAsIcon
@@ -215,19 +247,7 @@ Base object-class for all type of markers
         *****************************************************/
         _adjustOptions: function( options ){
             options = options || this.options;
-
-            options.colorName = options.colorName || options.fillColorName;
-            options.borderColorName = options.borderColorName || options.lineColorName;
-            options.iconColorName = options.iconColorName || options.textColorName;
-//BRUGES MÅSKE IKKE:             options.color = options.color || options.textColor || options.iconColor;
-
-            options.size = options.size.toLowerCase();
-            options.size =  options.size == 'extrasmall' ? 'xs' :
-                            options.size == 'small' ? 'sm' :
-                            options.size == 'large' ? 'lg' :
-                            options.size == 'xlarge' ? 'xl' :
-                            options.size == 'normal' ? 'nl' :
-                            options.size;
+            options = ns._adjustOptions( options );
 
             if ($.type(options.useTouchSize) !== 'boolean')
                 options.useTouchSize = !!options.bigIconWhenTouch;
