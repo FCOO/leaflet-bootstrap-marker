@@ -738,12 +738,6 @@ Extending L.CircleMarker with options for color, size (shadow and pulsart?)
         initialize
         *************************************************/
         initialize: function (latlng, options) {
-            options.renderer = options.renderer ||
-                L.canvas({
-                    pane   : 'markerPane',
-                    padding: options.canvasPadding || this.options.canvasPadding
-                });
-
             L.CircleMarker.prototype.initialize.apply(this, [latlng, options]);
 
             this.options = ns._adjustOptions( this.options );
@@ -798,7 +792,23 @@ Extending L.CircleMarker with options for color, size (shadow and pulsart?)
         /*************************************************
         onAdd
         *************************************************/
-        onAdd: function(){
+        onAdd: function(map){
+            //map._bsMarkerCanvasRenderer = [panName]Canvas
+            map._bsMarkerCanvasRenderer = map._bsMarkerCanvasRenderer || {};
+
+            var paneName = this.options.pane,
+                canvas   = map._bsMarkerCanvasRenderer[paneName];
+
+            if (!canvas){
+                canvas = L.canvas({
+                    pane   : paneName,
+                    padding: this.options.canvasPadding
+                });
+                canvas.addTo(map);
+                map._bsMarkerCanvasRenderer[paneName] = canvas;
+            }
+            this._renderer = canvas;
+
             var result = L.CircleMarker.prototype.onAdd.apply(this, arguments);
 
             if (this.options.tooltip)
