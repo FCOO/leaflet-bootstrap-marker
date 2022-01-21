@@ -30,12 +30,15 @@
     <script src="../src/leaflet-bootstrap-marker-base.js"></script>
     <script src="../src/leaflet-bootstrap-marker-redcross.js"></script>
     <script src="../src/leaflet-bootstrap-marker-circle.js"></script>
-    <script src="../src/leaflet-bootstrap-marker-canvas.js"></script>
     <script src="../src/leaflet-bootstrap-marker-icon.js"></script>
     <script src="../src/leaflet-bootstrap-marker-icon2.js"></script>
+    <script src="../src/leaflet-bootstrap-marker-simple.js"></script>
+    <script src="../src/leaflet-bootstrap-marker-svg.js"></script>
 
 
     <script src="../src/leaflet-map-ignoreNextEvent.js"></script>
+
+    <!-- <script src="../bower_components/Leaflet.SvgShapeMarkers/dist/leaflet-svg-markers.js"></script> -->
 
     <script>
 
@@ -54,13 +57,68 @@ $(function() {
     var map = L.map('map', {
       
 
-    }).setView([55.2, 12], 10);
+    }).setView([55.2, 12], 8);
 
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>'
     })
     .addTo(map);
+
+console.log('Start');
+    var latA = 54, latB = 56, lngA = 8, lngB = 15;
+    for (var lat = latA; lat < latB; lat = lat + (latB-latA)/20 )
+        for (var lng = lngA; lng < lngB; lng = lng + (lngB-lngA)/20 ){
+
+/*
+            L.bsMarkerIcon([lat,lng], {
+                iconClass: 'fa-caret-up',
+                scaleY   : 50,
+                scaleX   : 60
+            }).addTo(map);            
+
+//*/
+
+            L.bsMarkerSimpleRound([lat,lng]).addTo(map);
+/*
+            L.bsMarkerSimple([lat,lng], {
+                hover: true, 
+                transparent: true, 
+                //shadow: true, 
+                colorName: 'red', round: false,
+            }).addTo(map);            
+
+//*/
+
+
+
+/*
+		    L.shapeMarker([lat,lng], {
+			    fillColor: "black",
+    			color: "black",
+	    		shape: "diamond",
+		    	size: 20
+		    }).addTo(map);
+
+//*/    
+
+/*
+            //Standard L.Marker with svg-image - HURTIGSTE
+            L.marker([lat,lng], {
+                icon: L.svgMarker.icon({rgb:'rgb(255,0,0)'})
+            })
+                .addTo(map);
+//*/            
+
+/*
+            //Div-marker med svg-content
+            L.marker.svgMarker([lat,lng], {
+
+		    }).addTo(map);
+//*/
+    }
+console.log('END'); return;
+
 
 
 
@@ -90,8 +148,10 @@ $(function() {
 
     options.thickBorder = true;
     options.thinBorder = false;
-    L.bsMarkerCanvas([55, 12.0], options)
+    L.bsMarkerSVG([55, 12.0], options)
         .bindPopup('Dette er en test')
+//HER        .addTo(map)
+//HER        .removeFrom(map)
         .addTo(map);
 
     L.bsMarkerCircle([55, 12.2], options)
@@ -101,7 +161,7 @@ $(function() {
 
     options.thickBorder = false;
     options.thinBorder = false;
-    L.bsMarkerCanvas([55.1, 12.0], options)
+    L.bsMarkerSVG([55.1, 12.0], options)
         .bindPopup('Dette er en test')
         .addTo(map);
 
@@ -111,7 +171,7 @@ $(function() {
 
     options.thickBorder = false;
     options.thinBorder = true;
-    L.bsMarkerCanvas([55.2, 12.0], options)
+    L.bsMarkerSVG([55.2, 12.0], options)
         .bindPopup('Dette er en test')
         .addTo(map);
     L.bsMarkerCircle([55.2, 12.2], options)
@@ -122,7 +182,7 @@ $(function() {
     options.thickBorder = false;
     options.thinBorder = false;
     options.noBorder = true;
-    L.bsMarkerCanvas([55.3, 12.0], options)
+    L.bsMarkerSVG([55.3, 12.0], options)
         .bindPopup('Dette er en test')
         .addTo(map);
     L.bsMarkerCircle([55.3, 12.2], options)

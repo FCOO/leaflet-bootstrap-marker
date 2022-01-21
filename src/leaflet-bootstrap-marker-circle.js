@@ -23,8 +23,7 @@ Create L.bsMarkerCircle = a round marker with options for color, shadow and puls
             }
         },
 
-        initialize: function(latLng, options){
-            options = options || {};
+        initialize: function(latLng, options = {}){
             options.innerIconClass = options.innerIconClass || options.iconClass;
             L.BsMarkerBase.prototype.initialize.call(this, latLng, options);
             if (!this.options.round)

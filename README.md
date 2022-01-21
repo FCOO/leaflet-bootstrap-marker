@@ -7,8 +7,10 @@ Create different types of Leaflet markers using [FCOO/leaflet-bootstrap](https:/
 
 There are the following types of marker:
 
+- **`bsMarkerSimple`** Round or square marker without any icon
+- **`bsMarkerSimpleRound`** Round marker without any icon
+- **`bsMarkerSimpleSquare`** Square marker without any icon
 - **`bsMarkerCircle`** Round or square marker with optional fill and border color and icon or text
-- **`bsMarkerCanvas`** Round or square marker drawn direct on the maps canvas. Used to optimize preforms when large number of markers are needed.
 - **`bsMarkerIcon`** Fontawesome icons as marker with optional fill and border color and icon or text
 - **`bsMarkerStandard`** A standard Leaflet marker with optional fill and border color and icon or text
 - **`bsMarkerRedCross`** Special marker as a red cross on the map
@@ -23,8 +25,9 @@ http://FCOO.github.io/leaflet-bootstrap-marker/demo/
 ## Usage
 
 ### options
+
+- `bsMarkerSimple`, `bsMarkerSimpleRound`, and `bsMarkerSimpleSquare` = `[round], size, transparent, hover, shadow, thickBorder, thinBorder, noBorder, tooltip, shadowWhenPopupOpen`
 - `bsMarkerCircle` = All options
-- `bsMarkerCanvas` = `round, size, transparent, hover, shadow, thickBorder, thinBorder, noBorder, tooltip, shadowWhenPopupOpen`
 - `bsMarkerIcon` = All options except options marked with `(*)`
 - `bsMarkerRedCross` = Only standard Leaflet options plus `size`
 

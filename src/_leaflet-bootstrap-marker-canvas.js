@@ -1,8 +1,9 @@
 /****************************************************************************
-leaflet-bootstrap-marker-circle-CANVAS.js
+leaflet-bootstrap-marker-canvas.js
 
-Extending L.CircleMarker with options for color, size (shadow and pulsart?)
+Extending L.CircleMarker with options for color, size, shadow and pulsart?)
 
+NOTE: NOT WORKING since the canvas-layer is filling the hole map and covering other elements
 
 ****************************************************************************/
 (function ($, L /*, window, document, undefined*/) {

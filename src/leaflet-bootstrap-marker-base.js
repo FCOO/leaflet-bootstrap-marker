@@ -28,6 +28,7 @@ Base object-class for all type of markers
         xl: 42,
     };
 
+//new options: noInner:true or simple: true => no inner div and no icon, just ONE div
 
     ns.iconList = []; //[TYPE][SIZE] of L.divIcon or other icon
 
@@ -181,6 +182,7 @@ Base object-class for all type of markers
             scaleY     : null,    //Value = 40, 50, 60, 70, 80, 90, 120, 130, 150, 180 or 200: Scale height of specific icons to better fit icons with very low height
             scaleInner : null,    //Value = 40, 50, 60, 70, 80, 90, 120, 130, 150, 180 or 200: Scale inner icon in type=circle
 
+
             iconClass     : '',          //Fontawesome Font class-name ("fa-marker") for icon
             innerIconClass: '',          //Fontawesome Font class-name ("fa-home") for icon inside the marker
             faClassName   : 'fa-circle', //fa-class to be used when create the marker as fa-icon. Default is fa-circle
@@ -239,7 +241,10 @@ Base object-class for all type of markers
             tooltipPermanent        : false,    //Whether to open the tooltip permanently or only on mouseover.
             tooltipHideWhenDragging : false,    //True and tooltipPermanent: false => the tooltip is hidden when dragged
             tooltipHideWhenPopupOpen: false,    //True and tooltipPermanent: false => the tooltip is hidden when popup is displayed
-            shadowWhenPopupOpen     : true      //When true a big-sdhadow is shown when the popup for the marker is open
+            shadowWhenPopupOpen     : true,     //When true a big-sdhadow is shown when the popup for the marker is open
+
+            noPopup: false, //If true the marker will not get any popups added
+
         },
 
         /*****************************************************
@@ -268,10 +273,15 @@ Base object-class for all type of markers
             //Create 'dummy' $icon to allow setColor etc. before the marker is added
             this.$icon = $('<div/>');
 
-            this.on('dragstart',  this._bsMarkerBase_dragstart,  this);
-            this.on('dragend',    this._bsMarkerBase_dragend,    this);
-            this.on('popupopen',  this._bsMarkerBase_popupopen,  this);
-            this.on('popupclose', this._bsMarkerBase_popupclose, this);
+            if (this.options.draggable){
+                this.on('dragstart',  this._bsMarkerBase_dragstart,  this);
+                this.on('dragend',    this._bsMarkerBase_dragend,    this);
+            }
+
+            if (!this.options.noPopup){
+                this.on('popupopen',  this._bsMarkerBase_popupopen,  this);
+                this.on('popupclose', this._bsMarkerBase_popupclose, this);
+            }
 
             return this;
         },
@@ -299,7 +309,7 @@ Base object-class for all type of markers
             var iconList = ns.iconList[this.options.type] = ns.iconList[this.options.type] || [],
                 width = ns.size[sizeId],
                 height = width,
-                className = 'lbm-type-'+this.options.type;
+                className = 'lbm-type-'+(this.options.typeClassName || this.options.type);
 
             if (this.options.markerClassName)
                 className = className + ' ' + this.options.markerClassName;
@@ -333,7 +343,6 @@ Base object-class for all type of markers
                 //iconId = unique for the same inner-icon
                 iconId = sizeId + '_' + (this.options.iconClass || '') + '_' + (this.options.innerIconClass || '') + '_' + (this.options.scaleInner || '') + (this.options.round ? '_round' : ''),
                 result = iconList[iconId] = iconList[iconId] || this.createIcon(sizeId, iconOptions);
-
             return result;
         },
 
@@ -521,7 +530,6 @@ Base object-class for all type of markers
         setInnerIcon: function(){ return this.setInnerIconClass.apply(this, arguments); },
 
         setInnerIconClass: function( innerIconClass ){
-
             //If this.$inner don't exists => create it
             if (!this.$inner || !this.$inner.length){
                 this.$inner =
@@ -625,6 +633,7 @@ Base object-class for all type of markers
     L.bsMarker = function bsMarker(latlng, options) {
         var Constructor;
         switch (options.type){
+            case 'simple'  : Constructor = L.BsMarkerSimple;   break;
             case 'circle'  : Constructor = L.BsMarkerCircle;   break;
             case 'redcross': Constructor = L.BsMarkerRedCross; break;
             case 'icon'    : Constructor = L.BsMarkerIcon;     break;

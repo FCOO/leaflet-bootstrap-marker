@@ -1,6 +1,6 @@
 {
   "name": "leaflet-bootstrap-marker",
-  "version": "3.3.1",
+  "version": "3.4.0",
   "homepage": "https://github.com/FCOO/leaflet-bootstrap-marker",
   "authors": [
     "Niels Holt"
@@ -26,7 +26,9 @@
   "devDependencies": {
     "bourbon": "latest",
     "modernizr-mixin": "latest",
-    "mathsass": "latest"
+    "mathsass": "latest",
+    "Leaflet.SvgShapeMarkers": "rowanwins/Leaflet.SvgShapeMarkers",
+    "leaflet-svgicon": "iatkin/leaflet-svgicon"
   },
   "license": "MIT",
   "ignore": [
