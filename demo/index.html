@@ -33,12 +33,11 @@
     <script src="../src/leaflet-bootstrap-marker-icon.js"></script>
     <script src="../src/leaflet-bootstrap-marker-icon2.js"></script>
     <script src="../src/leaflet-bootstrap-marker-simple.js"></script>
-    <script src="../src/leaflet-bootstrap-marker-svg.js"></script>
 
 
     <script src="../src/leaflet-map-ignoreNextEvent.js"></script>
+    <script src="../src/svg.js"></script>
 
-    <!-- <script src="../bower_components/Leaflet.SvgShapeMarkers/dist/leaflet-svg-markers.js"></script> -->
 
     <script>
 
@@ -65,10 +64,47 @@ $(function() {
     })
     .addTo(map);
 
-console.log('Start');
-    var latA = 54, latB = 56, lngA = 8, lngB = 15;
-    for (var lat = latA; lat < latB; lat = lat + (latB-latA)/20 )
+//console.log('Start');
+    var latA = 54, latB = 54.1, lngA = 8, lngB = 15;
+    for (var lat = latA; lat < latB; lat = lat + (latB-latA)/1 )
         for (var lng = lngA; lng < lngB; lng = lng + (lngB-lngA)/20 ){
+
+
+//*/
+        L.bsMarkerSimpleSquare([lat,lng], {
+            colorName      : 'red',
+            borderColorName: 'green',
+            svg: '',
+            transparent: true,
+            hover: true,
+
+            svg: function(draw, dim, borderColor, backgroundColor, iconColor, marker){
+                var dim2 = dim/2;
+
+                draw
+                    .rect(dim2, dim2)
+                    .move(0, 0)
+                    .attr({ fill: 'blue' });
+                draw
+                    .rect(dim2, dim2)
+                    .move(0, dim2)
+                    .attr({ fill: 'red' });
+                draw
+                    .rect(dim2, dim2)
+                    .move(dim2, 0)
+                    .attr({ fill: 'yellow' });
+                draw
+                    .rect(dim2, dim2)
+                    .move(dim2, dim2)
+                    .attr({ fill: 'green' });
+
+       
+            }
+        }).addTo(map);
+
+//*/
+
+
 
 /*
             L.bsMarkerIcon([lat,lng], {
@@ -79,7 +115,10 @@ console.log('Start');
 
 //*/
 
+/*/
             L.bsMarkerSimpleRound([lat,lng]).addTo(map);
+
+*///
 /*
             L.bsMarkerSimple([lat,lng], {
                 hover: true, 
@@ -117,7 +156,8 @@ console.log('Start');
 		    }).addTo(map);
 //*/
     }
-console.log('END'); return;
+//console.log('END'); 
+
 
 
 
@@ -146,58 +186,15 @@ console.log('END'); return;
             }
         }
 
-    options.thickBorder = true;
-    options.thinBorder = false;
-    L.bsMarkerSVG([55, 12.0], options)
-        .bindPopup('Dette er en test')
-//HER        .addTo(map)
-//HER        .removeFrom(map)
-        .addTo(map);
-
-    L.bsMarkerCircle([55, 12.2], options)
-        .addTo(map)
-        .bindPopup('Dette er en test');
-
-
-    options.thickBorder = false;
-    options.thinBorder = false;
-    L.bsMarkerSVG([55.1, 12.0], options)
-        .bindPopup('Dette er en test')
-        .addTo(map);
-
-    L.bsMarkerCircle([55.1, 12.2], options)
-        .bindPopup('Dette er en test')
-        .addTo(map);
-
-    options.thickBorder = false;
-    options.thinBorder = true;
-    L.bsMarkerSVG([55.2, 12.0], options)
-        .bindPopup('Dette er en test')
-        .addTo(map);
-    L.bsMarkerCircle([55.2, 12.2], options)
-        .bindPopup('Dette er en test')
-        .addTo(map);
-
-
-    options.thickBorder = false;
-    options.thinBorder = false;
-    options.noBorder = true;
-    L.bsMarkerSVG([55.3, 12.0], options)
-        .bindPopup('Dette er en test')
-        .addTo(map);
-    L.bsMarkerCircle([55.3, 12.2], options)
-        .bindPopup('Dette er en test')
-        .addTo(map);
-
-   
+  
 
     //**************************************
     var tooltip = [
             $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Dansk', en:'Eng'}}),
             $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Lang Dansk', en:'LongEng'}})
         ];
-//HER    var allSize = false,
-    var allSize = true,
+    var allSize = false,
+//HER    var allSize = true,
         size = allSize ? 'xs' : 'xl',
         markerList = [
             {constructor: L.bsMarkerCircle, options: {

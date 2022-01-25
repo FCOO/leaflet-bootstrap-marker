@@ -78,6 +78,8 @@ http://FCOO.github.io/leaflet-bootstrap-marker/demo/
             tooltipHideWhenDragging : false,    //True and tooltipPermanent: false => the tooltip is hidden when dragged
             tooltipHideWhenPopupOpen: false,    //True and tooltipPermanent: false => the tooltip is hidden when popup is displayed
             shadowWhenPopupOpen     : true      //When true a big-sdhadow is shown when the popup for the marker is open
+
+            svg : function(draw, dim, borderColor, backgroundColor, iconColor, marker) that uses svg.js (https://svgjs.dev/docs/3.0/) to create optional SVG-element inside the div
         },
 
 ### `colorName`, `borderColorName`, and `iconColorName`

@@ -1,6 +1,6 @@
 {
   "name": "leaflet-bootstrap-marker",
-  "version": "3.4.0",
+  "version": "3.5.0",
   "homepage": "https://github.com/FCOO/leaflet-bootstrap-marker",
   "author": "Niels Holt nho@fcoo.dk",
   "description": "package.json is only use for building the package. see bower.json for more info",
@@ -8,7 +8,9 @@
     "type": "git",
     "url": "git://github.com/FCOO/leaflet-bootstrap-marker.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@svgdotjs/svg.js": "^3.1.1"
+  },
   "devDependencies": {
     "grunt-fcoo-grunt-plugin": "^6.0.0"
   },
