@@ -22,11 +22,8 @@ The options.svg can be a
     L.BsMarkerSimple = L.BsMarkerCircle.extend({
         createIcon: function( sizeId, options ){
             options.html = null;
-
             if (this.options.svg){
-
-
-                //Create a SVG-object to draw the icon on
+                //Create a SVG-object to draw on
                 var draw    = window.SVG().size('100%', '100%'),
                     o       = this.options,
                     dim     = ns.size[o.size],
@@ -59,10 +56,6 @@ The options.svg can be a
 
                 options.html = draw.html();
             }
-
-
-
-
 
             return L.divIcon( options );
         },

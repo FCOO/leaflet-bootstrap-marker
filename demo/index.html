@@ -65,6 +65,7 @@ $(function() {
     .addTo(map);
 
 //console.log('Start');
+    var test = 0;
     var latA = 54, latB = 54.1, lngA = 8, lngB = 15;
     for (var lat = latA; lat < latB; lat = lat + (latB-latA)/1 )
         for (var lng = lngA; lng < lngB; lng = lng + (lngB-lngA)/20 ){
@@ -74,33 +75,50 @@ $(function() {
         L.bsMarkerSimpleSquare([lat,lng], {
             colorName      : 'red',
             borderColorName: 'green',
-            svg: '',
             transparent: true,
             hover: true,
+
+            TEST: test++,
+
+            individualContent: true,
 
             svg: function(draw, dim, borderColor, backgroundColor, iconColor, marker){
                 var dim2 = dim/2;
 
-                draw
+                var group = draw.group().addClass('this-is-a-group'); 
+
+                group   //or draw
                     .rect(dim2, dim2)
                     .move(0, 0)
                     .attr({ fill: 'blue' });
-                draw
+                group   //or draw
                     .rect(dim2, dim2)
                     .move(0, dim2)
                     .attr({ fill: 'red' });
-                draw
+                group   //or draw
                     .rect(dim2, dim2)
                     .move(dim2, 0)
                     .attr({ fill: 'yellow' });
-                draw
+                group   //or draw
                     .rect(dim2, dim2)
                     .move(dim2, dim2)
                     .attr({ fill: 'green' });
 
-       
+                group   //or draw
+                    .text(marker.options.TEST)
+                    .font({size: dim, family: 'Helvetica'})
+                    .attr({
+                        stroke: 'cyan',
+                        'stroke-width': 1
+                    })
+                    .center(dim2, dim2);
+
+
+
             }
-        }).addTo(map);
+        })
+        .bindPopup(''+test)
+        .addTo(map);
 
 //*/
 

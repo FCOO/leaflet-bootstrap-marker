@@ -343,6 +343,11 @@ Base object-class for all type of markers
                 //iconId = unique for the same inner-icon
                 iconId = sizeId + '_' + (this.options.iconClass || '') + '_' + (this.options.innerIconClass || '') + '_' + (this.options.scaleInner || '') + (this.options.round ? '_round' : ''),
                 result = iconList[iconId] = iconList[iconId] || this.createIcon(sizeId, iconOptions);
+
+            //If the marker need individual creation of icon => just recreate the icon
+            if (this.options.individualContent)
+                result = this.createIcon(sizeId, iconOptions);
+
             return result;
         },
 

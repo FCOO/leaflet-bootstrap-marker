@@ -343,6 +343,11 @@ Base object-class for all type of markers
                 //iconId = unique for the same inner-icon
                 iconId = sizeId + '_' + (this.options.iconClass || '') + '_' + (this.options.innerIconClass || '') + '_' + (this.options.scaleInner || '') + (this.options.round ? '_round' : ''),
                 result = iconList[iconId] = iconList[iconId] || this.createIcon(sizeId, iconOptions);
+
+            //If the marker need individual creation of icon => just recreate the icon
+            if (this.options.individualContent)
+                result = this.createIcon(sizeId, iconOptions);
+
             return result;
         },
 
@@ -966,11 +971,8 @@ The options.svg can be a
     L.BsMarkerSimple = L.BsMarkerCircle.extend({
         createIcon: function( sizeId, options ){
             options.html = null;
-
             if (this.options.svg){
-
-
-                //Create a SVG-object to draw the icon on
+                //Create a SVG-object to draw on
                 var draw    = window.SVG().size('100%', '100%'),
                     o       = this.options,
                     dim     = ns.size[o.size],
@@ -1003,10 +1005,6 @@ The options.svg can be a
 
                 options.html = draw.html();
             }
-
-
-
-
 
             return L.divIcon( options );
         },
