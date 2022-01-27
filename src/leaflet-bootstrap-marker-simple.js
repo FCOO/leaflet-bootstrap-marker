@@ -21,6 +21,11 @@ The options.svg can be a
     *****************************************************/
     L.BsMarkerSimple = L.BsMarkerCircle.extend({
         createIcon: function( sizeId, options ){
+
+            function colorNameToRgbStr(colorName){
+                return 'rgb(' + ns.colorNameToRGB[ colorName ].join(',') + ')';
+            }
+
             options.html = null;
             if (this.options.svg){
                 //Create a SVG-object to draw on
@@ -40,9 +45,9 @@ The options.svg can be a
                     o.svg(
                         draw,
                         dim,
-                        ns.colorNameToRGB[ o.colorName ],
-                        ns.colorNameToRGB[ o.borderColorName ],
-                        ns.colorNameToRGB[ o.iconColorName ],
+                        colorNameToRgbStr(o.colorName), //ns.colorNameToRGB[ o.colorName ] ),
+                        colorNameToRgbStr(o.borderColorName), //ns.colorNameToRGB[ o.borderColorName ],
+                        colorNameToRgbStr(o.iconColorName), //ns.colorNameToRGB[ o.iconColorName ],
                         this
                     );
                 else {

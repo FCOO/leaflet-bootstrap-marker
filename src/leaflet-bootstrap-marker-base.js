@@ -62,6 +62,13 @@ Base object-class for all type of markers
 
 
     var colorNameToRGB = ns.colorNameToRGB = {};
+//HER FRA
+
+
+    function addTo_colorNameToRGB( colorName, rgbStr ){
+        var sep = rgbStr.indexOf(",") > -1 ? "," : " ";
+        colorNameToRGB[colorName] = rgbStr.substr(4).split(")")[0].split(sep).map(Number);
+    }
 
     //Get color-values from Bootstrap-variables
 	$(function() {
@@ -74,13 +81,36 @@ Base object-class for all type of markers
 
             div.style.color = colorNameToColor[colorName];
 
-            var rgbStr = window.getComputedStyle(div).color,
-                sep = rgbStr.indexOf(",") > -1 ? "," : " ";
+            addTo_colorNameToRGB( colorName, window.getComputedStyle(div).color );
 
-           colorNameToRGB[colorName] = rgbStr.substr(4).split(")")[0].split(sep).map(Number);
         });
         $div.remove();
 	});
+
+
+    /*****************************************************
+    L.BsMarker._lbmAddColorName = function(colorName)
+    Used by other packages to add css for own color-name using
+    leaflet-bootstrap-marker-mixin
+    _lbmAddColorName will add the color-values to
+    colorNameToColor and colorNameToRGB to be used for eq. svg-function
+    *****************************************************/
+    var $div = null;
+    ns._lbmAddColorName = function(colorName){
+        if (colorNameToColor[colorName])
+            return;
+
+        $div = $div || $('<div/>').appendTo($('body'));
+        $div.removeClass().addClass('fa-lbm-color-'+colorName).appendTo($('body'));
+
+        var rgbStr = window.getComputedStyle($div.get(0)).color;
+
+        colorNameToColor[colorName] = rgbStr;
+        addTo_colorNameToRGB( colorName, rgbStr );
+
+        $div.remove();
+
+    };
 
     /*****************************************************
     _adjustOptions
