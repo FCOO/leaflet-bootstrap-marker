@@ -23,6 +23,10 @@ _leaflet-bootstrap-marker-icon.scss,
         height: 100%;
     }
 
+    .lbm-content-svg {
+        position: relative;
+    }
+
     .lbm-content {
         display : block;
         position: relative;

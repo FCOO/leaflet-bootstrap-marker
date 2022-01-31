@@ -62,8 +62,6 @@ Base object-class for all type of markers
 
 
     var colorNameToRGB = ns.colorNameToRGB = {};
-//HER FRA
-
 
     function addTo_colorNameToRGB( colorName, rgbStr ){
         var sep = rgbStr.indexOf(",") > -1 ? "," : " ";
@@ -235,7 +233,7 @@ Base object-class for all type of markers
             puls            : false, //true to have a pulsart icon
             thickBorder     : false, //true to have thicker border
             thinBorder      : false, //True to have a thin border
-            noBorder        : false, //True to have no border
+            noBorder        : true, //HERfalse, //True to have no border
 
             optionsWithClass: ['transparent', 'shadow', 'hover', 'thickBorder', 'thinBorder', 'noBorder', 'puls'],
 
@@ -244,6 +242,9 @@ Base object-class for all type of markers
             iconColorName  : '',    //or textColorName: Name of color of the inner icon or text
 
             noFill         : false, //When true only colorName is used and no background-icon is used
+
+            iconHtml       : '', //The html-string used in createing L.divIcon in createIcon
+
 
             setColor : {
                 alsoAsCss  : false, //color are set by class-name, true: color are also set directly by css-attr using cssAttrName
@@ -317,10 +318,79 @@ Base object-class for all type of markers
         },
 
         /*****************************************************
+        getWH - Return [width,height] of the icon
+        *****************************************************/
+        getWH: function( sizeId ){
+            var width = ns.size[sizeId || this.size],
+                height = width;
+
+            if (this.options.scale){
+                width = Math.round( width * this.options.scale / 100 );
+                height = Math.round( height * this.options.scale / 100 );
+            }
+
+            if (this.options.scaleX)
+                width = Math.round( width * this.options.scaleX / 100 );
+
+            if (this.options.scaleY)
+                height = Math.round( height * this.options.scaleY / 100 );
+
+            return [width, height];
+
+        },
+
+        /*****************************************************
+        getIconHtml - Return the html used inside L.divIcon
+        *****************************************************/
+        getIconHtml: function(){
+            return this.options.iconHtml;
+        },
+
+        /*****************************************************
         createIcon - create the icon-object in given size (*)
         *****************************************************/
-        createIcon: function(/* sizeId, options */){
-            return null;
+        createIcon: function( sizeId, options ){
+            function colorNameToRgbStr(colorName){
+                return 'rgb(' + ns.colorNameToRGB[ colorName ].join(',') + ')';
+            }
+
+            var o       = this.options,
+                wh      = this.getWH(sizeId),
+                width   = wh[0],
+                height  = wh[1],
+                borderW = 2;
+
+            if (o.thickBorder)  borderW = 3;
+            if (o.thinBorder)   borderW = 1;
+            if (o.noBorder)     borderW = 0;
+
+            width  = width - 2*borderW;
+            height = height - 2*borderW;
+
+            options.html = this.getIconHtml();
+
+            if (this.options.svg){
+                //Create a SVG-object to draw on
+                var draw = window.SVG().size('100%', '100%');
+                o.svg({
+                    draw       : draw,
+                    width      : width,
+                    height     : height,
+                    color      : colorNameToRgbStr(o.colorName),
+                    borderColor: colorNameToRgbStr(o.borderColorName),
+                    iconColor  : colorNameToRgbStr(o.iconColorName),
+                    marker     : this
+                });
+
+                var svgHtml = draw.html();
+                //If the svg is inside with other content => place inside a adjusted DIV
+                if (options.html)
+                    svgHtml = '<div class="leaflet-marker-svg-container">' + svgHtml + '</div>';
+
+                options.html = options.html + svgHtml;
+            }
+
+            return L.divIcon( options );
         },
 
         /*****************************************************
@@ -337,29 +407,26 @@ Base object-class for all type of markers
             }
 
             var iconList = ns.iconList[this.options.type] = ns.iconList[this.options.type] || [],
-                width = ns.size[sizeId],
-                height = width,
+                wh = this.getWH(sizeId),
+                width  = wh[0],
+                height = wh[1],
                 className = 'lbm-type-'+(this.options.typeClassName || this.options.type);
 
             if (this.options.markerClassName)
                 className = className + ' ' + this.options.markerClassName;
 
-            if (this.options.scale){
-                width = Math.round( width * this.options.scale / 100 );
-                height = Math.round( height * this.options.scale / 100 );
+            if (this.options.scale)
                 className = className + ' lbm-scale-'+this.options.scale;
-            }
-            if (this.options.scaleX){
-                width = Math.round( width * this.options.scaleX / 100 );
+
+            if (this.options.scaleX)
                 className = className + ' lbm-scale-x-'+this.options.scaleX;
-            }
-            if (this.options.scaleY){
-                height = Math.round( height * this.options.scaleY / 100 );
+
+            if (this.options.scaleY)
                 className = className + ' lbm-scale-y-'+this.options.scaleY;
-            }
-            if (this.options.scaleInner){
+
+            if (this.options.scaleInner)
                 className = className + ' lbm-scale-inner-'+this.options.scaleInner;
-            }
+
             if (this.options.noFill)
                 className = className + ' lbm-no-fill';
 

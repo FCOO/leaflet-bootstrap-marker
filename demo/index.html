@@ -82,36 +82,38 @@ $(function() {
 
             individualContent: true,
 
-            svg: function(draw, dim, borderColor, backgroundColor, iconColor, marker){
-                var dim2 = dim/2;
+            svg: function(svgOptions){
+                                    
+                var w2 = svgOptions.width/2,
+                    h2 = svgOptions.height/2;
 
-                var group = draw.group().addClass('this-is-a-group'); 
+                var group = svgOptions.draw.group().addClass('this-is-a-group'); 
 
                 group   //or draw
-                    .rect(dim2, dim2)
+                    .rect(w2, h2)
                     .move(0, 0)
                     .attr({ fill: 'blue' });
                 group   //or draw
-                    .rect(dim2, dim2)
-                    .move(0, dim2)
+                    .rect(w2, h2)
+                    .move(0, h2)
                     .attr({ fill: 'red' });
                 group   //or draw
-                    .rect(dim2, dim2)
-                    .move(dim2, 0)
+                    .rect(w2, h2)
+                    .move(w2, 0)
                     .attr({ fill: 'yellow' });
                 group   //or draw
-                    .rect(dim2, dim2)
-                    .move(dim2, dim2)
+                    .rect(w2, h2)
+                    .move(w2, h2)
                     .attr({ fill: 'green' });
 
                 group   //or draw
-                    .text(marker.options.TEST)
-                    .font({size: dim, family: 'Helvetica'})
+                    .text(svgOptions.marker.options.TEST)
+                    .font({size: svgOptions.height, family: 'Helvetica'})
                     .attr({
                         stroke: 'cyan',
                         'stroke-width': 1
                     })
-                    .center(dim2, dim2);
+                    .center(w2, h2);
 
 
 
@@ -196,12 +198,7 @@ $(function() {
             thinBorder     : false, //True to have a thin border
             noBorder       : false, //True to have no border
 
-            tooltip: 'Dette er tooltip',
-            draw: function(ctx, x, y, dimension, radius, ctxOptions){
-                ctx.lineWidth = 3;
-                ctx.strokeStyle = 'yellow';
-                ctx.arc(x, y, 4, 0, 2*Math.PI);
-            }
+            tooltip: 'Dette er tooltip'
         }
 
   
@@ -212,9 +209,17 @@ $(function() {
             $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Lang Dansk', en:'LongEng'}})
         ];
     var allSize = false,
-//HER    var allSize = true,
+    //var allSize = true,
         size = allSize ? 'xs' : 'xl',
         markerList = [
+            {constructor: L.bsMarkerSimpleSquare, options: {
+                colorName: 'yellow',
+                borderColorName: 'green',
+                thickBorder: true
+            }},
+
+
+
             {constructor: L.bsMarkerCircle, options: {
                 innerIconClass: 'fa-home',
                 //scaleInner: 180,
@@ -307,6 +312,62 @@ $(function() {
                 //colorName      : 'green',
                 //borderColorName: 'red',
                 //iconColorName  : 'yellow'
+            _svg: function(svgOptions){
+                var w = svgOptions.width,
+                    h = svgOptions.height;
+
+                svgOptions.draw
+                    .rect(w, h)
+                    .move(0, 0)
+                    .stroke({ width: 4, color: 'red'})
+                    .fill('none');
+
+                svgOptions.draw
+                    .line(0, 0, w, h)
+                    .move(0, 0)
+                    .stroke({ width: 4, color: 'red'});
+
+
+
+//HER                svgOptions.draw
+//HER                    .line(0, w, 0, h)
+//HER                    .move(0, 0)
+//HER                    .stroke({ width: 2, color: 'red'});
+return;
+
+                var dim2 = dim/2;
+
+                var group = draw.group().addClass('this-is-a-group'); 
+
+                group   //or draw
+                    .rect(dim2, dim2)
+                    .move(0, 0)
+                    .attr({ fill: 'blue' });
+                group   //or draw
+                    .rect(dim2, dim2)
+                    .move(0, dim2)
+                    .attr({ fill: 'red' });
+                group   //or draw
+                    .rect(dim2, dim2)
+                    .move(dim2, 0)
+                    .attr({ fill: 'yellow' });
+                group   //or draw
+                    .rect(dim2, dim2)
+                    .move(dim2, dim2)
+                    .attr({ fill: 'green' });
+
+                group   //or draw
+                    .text(marker.options.TEST)
+                    .font({size: dim, family: 'Helvetica'})
+                    .attr({
+                        stroke: 'cyan',
+                        'stroke-width': 1
+                    })
+                    .center(dim2, dim2);
+            }
+                
+
+
             }),
 
             marker = markerList[mfIndex].constructor(latlng, options);

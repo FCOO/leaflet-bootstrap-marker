@@ -8,9 +8,6 @@ Create L.bsMarkerIcon = a marker with only a fa-icon
 (function ($, L/*, window, document, undefined*/) {
 	"use strict";
 
-    //Create name-space L.BsMarker
-//    var ns = L.BsMarker = L.BsMarker || {};
-
     /*****************************************************
     L.BsMarkerIcon
     *****************************************************/
@@ -43,46 +40,25 @@ Create L.bsMarkerIcon = a marker with only a fa-icon
             options = options || {};
             options.faClassName = options.faClassName || options.iconClass;
             L.BsMarkerBase.prototype.initialize.call(this, latLng, options);
+
+            //Create html for
+
+
+
             return this;
         },
 
-        createIcon: function( sizeId, options ){
-            var iconClassPrefixSolid  =  this.options.iconClassPrefix.solid + ' ' + this.options.iconClass,
-                iconClassPrefixBorder =  this.options.iconClassPrefix.border || ($.FONTAWESOME_PREFIX == 'fa' ? 'fas' : 'fal');
+        getIconHtml: function(){
+            var iconClassPrefixSolid  =  this.options.iconClassPrefix.solid + ' ' + this.options.iconClass + ' ' + this.options.iconClass + ' ' + (this.options.iconClassExtra.solid || ''),
+                iconClassPrefixBorder =  (this.options.iconClassPrefix.border || ($.FONTAWESOME_PREFIX == 'fa' ? 'fas' : 'fal')) + ' ' + this.options.iconClass + ' ' + (this.options.iconClassExtra.border || '');
 
-            iconClassPrefixSolid  +=  ' ' + this.options.iconClass + ' ' + (this.options.iconClassExtra.solid || '');
-            iconClassPrefixBorder +=  ' ' + this.options.iconClass + ' ' + (this.options.iconClassExtra.border || '');
+            return '<div class="lbm-content-outer">' +
+                       '<i class="' + iconClassPrefixBorder + ' lbm-content lbm-content-puls"></i>' +
+                       '<i class="' + iconClassPrefixBorder + ' lbm-content lbm-content-shadow"></i>' +
+                       (this.options.noFill ? '' : '<i class="' + iconClassPrefixSolid  + ' lbm-content lbm-content-background"></i>') +
+                       '<i class="' + iconClassPrefixBorder + ' lbm-content lbm-content-border"></i>' +
+                   '</div>';
 
-/*
-var dim = ns.size[this.options.size];
-
-var draw = SVG().size('100%', '100%');
-var rect = draw
-                .rect(dim/2, dim/2)
-                .move(dim/4, dim/4)
-                .addClass('NIELS-HOLT')
-                .attr({ fill: 'blue' })
-*/
-
-
-
-
-
-            options.html =
-                '<div class="lbm-content-outer">' +
-                    '<i class="' + iconClassPrefixBorder + ' lbm-content lbm-content-puls"></i>' +
-                    '<i class="' + iconClassPrefixBorder + ' lbm-content lbm-content-shadow"></i>' +
-                    (this.options.noFill ? '' : '<i class="' + iconClassPrefixSolid  + ' lbm-content lbm-content-background"></i>') +
-                    '<i class="' + iconClassPrefixBorder + ' lbm-content lbm-content-border"></i>' +
-
-//LATER                    '<div class="inner2 SVG">'+draw.html()+'</div>' +
-
-
-                '</div>';
-
-
-
-            return L.divIcon( options );
         },
 
         getElements: function(){

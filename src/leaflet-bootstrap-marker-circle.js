@@ -15,8 +15,11 @@ Create L.bsMarkerCircle = a round marker with options for color, shadow and puls
 
     L.BsMarkerCircle = L.BsMarkerBase.extend({
         options: {
-            type            : 'circle',
-            round           : true, //If false the icon is square
+            type    : 'circle',
+            round   : true, //If false the icon is square
+            noBorder: false, //Default = false => Default border-width = 1
+            iconHtml: '<div class="inner"></div>',
+
             optionsWithClass: optionsWithClass,
             setBorderColor: {
                 alsoAsCss  : false,
@@ -29,12 +32,7 @@ Create L.bsMarkerCircle = a round marker with options for color, shadow and puls
             if (!this.options.round)
                 this.options.faClassName = 'fa-square';
             return this;
-        },
-
-        createIcon: function( sizeId, options ){
-            options.html = '<div class="inner"></div>';
-            return L.divIcon( options );
-        },
+        }
     });
 
     L.bsMarkerCircle = function bsMarkerCircle(latlng, options) {
