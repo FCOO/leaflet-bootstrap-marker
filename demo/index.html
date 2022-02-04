@@ -66,11 +66,12 @@ $(function() {
 
 //console.log('Start');
     var test = 0;
+    var noSvg = false;
     var latA = 54, latB = 54.1, lngA = 8, lngB = 15;
     for (var lat = latA; lat < latB; lat = lat + (latB-latA)/1 )
         for (var lng = lngA; lng < lngB; lng = lng + (lngB-lngA)/20 ){
-
-
+        
+        noSvg = !noSvg;
 //*/
         L.bsMarkerSimpleSquare([lat,lng], {
             colorName      : 'red',
@@ -82,7 +83,7 @@ $(function() {
 
             individualContent: true,
 
-            svg: function(svgOptions){
+            svg: noSvg ? '' : function(svgOptions){
                                     
                 var w2 = svgOptions.width/2,
                     h2 = svgOptions.height/2;
@@ -210,6 +211,7 @@ $(function() {
         ];
     var allSize = false,
     //var allSize = true,
+        noSvg = false,
         size = allSize ? 'xs' : 'xl',
         markerList = [
             {constructor: L.bsMarkerSimpleSquare, options: {
@@ -298,6 +300,7 @@ $(function() {
         mfIndex = 0;
 
     function addMarker( latlng){
+        noSvg = !noSvg;
         var options = $.extend({}, {
                 size           : size,
                 shadow         : false,
@@ -312,7 +315,7 @@ $(function() {
                 //colorName      : 'green',
                 //borderColorName: 'red',
                 //iconColorName  : 'yellow'
-            _svg: function(svgOptions){
+            svg: noSvg ? null : function(svgOptions){
                 var w = svgOptions.width,
                     h = svgOptions.height;
 
@@ -368,9 +371,13 @@ return;
                 
 
 
-            }),
+            });
 
-            marker = markerList[mfIndex].constructor(latlng, options);
+
+            if (noSvg)
+                delete options.svg;
+            
+            var marker = markerList[mfIndex].constructor(latlng, options);
 
             marker.bindPopup(''+L.bsMarkerAsIcon('red', 'blue'));
             marker.addTo( map );

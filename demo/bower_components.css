@@ -11689,6 +11689,11 @@ form.form-validation .form-group {
   font-size: 0.75rem;
   border-radius: 0.125rem; }
 
+.input-group-with-float-label {
+  padding-top: 0.25rem; }
+  .input-group-with-float-label.input-group-sm, .input-group-with-float-label.input-group-xs {
+    padding-top: 0.1875rem; }
+
 .input-group-border {
   padding: 0.25rem 0.3125rem;
   border: 1px solid #ced4da;

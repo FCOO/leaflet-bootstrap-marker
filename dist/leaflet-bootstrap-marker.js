@@ -28,9 +28,14 @@ Base object-class for all type of markers
         xl: 42,
     };
 
-//new options: noInner:true or simple: true => no inner div and no icon, just ONE div
-
     ns.iconList = []; //[TYPE][SIZE] of L.divIcon or other icon
+    var lastSvgId = 0;
+    function stamp(obj) {
+        /*eslint-disable */
+        obj._lbm_svg_id = obj._lbm_svg_id || ++lastSvgId;
+        return obj._lbm_svg_id;
+        /* eslint-enable */
+    }
 
     //colorNameToColor = list of name:color.MUST match the list in src/_leaflet-bootstrap-marker-colors.scss
     var colorNameToColor = ns.colorNameToColor = {
@@ -437,8 +442,14 @@ Base object-class for all type of markers
                     iconAnchor : point( width, height, this.options.iconAnchor  ),
                     popupAnchor: point( width, height, this.options.popupAnchor ),
                 },
-                //iconId = unique for the same inner-icon
-                iconId = sizeId + '_' + (this.options.iconClass || '') + '_' + (this.options.innerIconClass || '') + '_' + (this.options.scaleInner || '') + (this.options.round ? '_round' : ''),
+                //iconId = unique for the same inner-icon and svg
+                iconId =    sizeId + '_' +
+                            (this.options.iconClass || '') + '_' +
+                            (this.options.innerIconClass || '') + '_' +
+                            (this.options.scaleInner || '') + '_' +
+
+                            (this.options.svg ? stamp(this.options.svg) : '') + '_' +
+                            (this.options.round ? '_round' : ''),
                 result = iconList[iconId] = iconList[iconId] || this.createIcon(sizeId, iconOptions);
 
             //If the marker need individual creation of icon => just recreate the icon
