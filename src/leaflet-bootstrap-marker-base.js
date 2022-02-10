@@ -296,7 +296,7 @@ Base object-class for all type of markers
             if (options.useTouchSize && options.draggable && window.bsIsTouch)
                 options.size = 'lg';
 
-            return options;
+            $.extend(this.options, options);
         },
 
         /*****************************************************
@@ -304,7 +304,7 @@ Base object-class for all type of markers
         *****************************************************/
         initialize: function(latLng, options){
             L.Marker.prototype.initialize.call(this, latLng, options);
-            this.options = this._adjustOptions();
+            this._adjustOptions();
 
             //Create 'dummy' $icon to allow setColor etc. before the marker is added
             this.$icon = $('<div/>');
@@ -475,7 +475,7 @@ Base object-class for all type of markers
         Update the marker regarding all options except size
         *****************************************************/
         updateIcon: function(options, forceColor){
-            this.options = this._adjustOptions(options);
+            this._adjustOptions(options);
 
             this.getElements();
 
@@ -546,7 +546,7 @@ Base object-class for all type of markers
                 $(tooltip._container).removeClass('leaflet-tooltip-icon-'+this.size);
 
             this.options.size = size || this.options.size;
-            this.options = this._adjustOptions();
+            this._adjustOptions();
             this.size = this.options.size;
 
             this.options.icon = this.getIcon( this.size );

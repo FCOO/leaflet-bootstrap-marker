@@ -49,7 +49,7 @@ NOTE: NOT WORKING since the canvas-layer is filling the hole map and covering ot
         initialize: function (latlng, options) {
             L.CircleMarker.prototype.initialize.apply(this, [latlng, options]);
 
-            this.options = ns._adjustOptions( this.options );
+            this._adjustOptions();
             this.options.dimension = ns.size[this.options.size];
 
             this.options.radius = Math.floor(this.options.dimension / 2);
