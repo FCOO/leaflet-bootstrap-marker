@@ -493,8 +493,8 @@ Base object-class for all type of markers
                 _this.toggleOption(id, !!_this.options[id] );
             });
 
-            this.setColor(this.colorName || this.options.colorName, forceColor);
-            this.setBorderColor(this.borderColorName || this.options.borderColorName, forceColor);
+            this.setColor(this.options.colorName || this.colorName, forceColor);
+            this.setBorderColor(this.options.borderColorName || this.borderColorName, forceColor);
 
             if (this.options.number !== undefined)
                 this.setNumber(this.options.number);

@@ -39290,7 +39290,14 @@ if (typeof define === 'function' && define.amd) {
 
           res = this.extendTranslation(res, keys, options, resolved, lastKey);
           if (usedKey && res === key && this.options.appendNamespaceToMissingKey) res = "".concat(namespace, ":").concat(key);
-          if ((usedKey || usedDefault) && this.options.parseMissingKeyHandler) res = this.options.parseMissingKeyHandler(res);
+
+          if ((usedKey || usedDefault) && this.options.parseMissingKeyHandler) {
+            if (this.options.compatibilityAPI !== 'v1') {
+              res = this.options.parseMissingKeyHandler(key, usedDefault ? res : undefined);
+            } else {
+              res = this.options.parseMissingKeyHandler(res);
+            }
+          }
         }
 
         return res;
@@ -70166,7 +70173,6 @@ module.exports = g;
                 _this.addClass('text-'+ options.color);
 
             //Add text
-
             $.each( textArray, function( index, text ){
                 //If text ={da,en} and both da and is html-stirng => build inside div
                 var tagName = 'span';
@@ -70256,10 +70262,23 @@ module.exports = g;
             function buildBaseSlider(options, $parent){ buildSlider(options, 'baseSlider', $parent); }
             function buildTimeSlider(options, $parent){ buildSlider(options, 'timeSlider', $parent); }
 
+            //buildTextBox - Simple multi-line text-box
             function buildTextBox( options ){
                 return $('<div/>')
-                        ._bsAddHtml( options );
+                        ._bsAddHtml( options )
+                        .addClass('input-group-with-text');
             }
+
+            //buildInlineTextBox - Inline (pre/post) with single line text
+            function buildInlineTextBox( options ){
+                var $inner =
+                        $('<div/>')
+                           ._bsAddHtml( options )
+                           .addClass('form-control-border form-control no-hover');
+
+                return options.label ? $inner._wrapLabel(options) : $inner;
+            }
+
 
             function buildHidden( options ){
                 return $.bsInput( options ).css('display', 'none');
@@ -70313,28 +70332,48 @@ module.exports = g;
                     options[id] = parentOptions[id];
             });
 
+
+            var hasPreOrPost = options.prepend || options.before || options.append || options.after;
+
             if (options.type){
                 var type = options.type.toLowerCase();
                 switch (type){
-                    case 'input'            :   buildFunc = $.bsInput;              insideFormGroup = true; break;
-                    case 'button'           :   buildFunc = $.bsButton;             break;
-                    case 'buttongroup'      :   buildFunc = $.bsButtonGroup;        break;
+                    case 'button'                : buildFunc = $.bsButton;                  break;
+                    case 'checkboxbutton'        : buildFunc = $.bsCheckboxButton;          break;
+                    case 'standardcheckboxbutton': buildFunc = $.bsStandardCheckboxButton;  break;
+                    case 'iconcheckboxbutton'    : buildFunc = $.bsIconCheckboxButton;      break;
+                    case 'buttongroup'           : buildFunc = $.bsButtonGroup;             break;
+
                     case 'menu'             :   buildFunc = $.bsMenu;               break;
                     case 'select'           :   buildFunc = $.bsSelectBox;          insideFormGroup = true; break;
                     case 'selectlist'       :   buildFunc = $.bsSelectList;         break;
                     case 'radiobuttongroup' :   buildFunc = $.bsRadioButtonGroup;   addBorder = true; insideFormGroup = true; break;
                     case 'checkbox'         :   buildFunc = $.bsCheckbox;           insideFormGroup = true; break;
+
                     case 'tabs'             :   buildFunc = $.bsTabs;               break;
                     case 'table'            :   buildFunc = $.bsTable;              break;
                     case 'list'             :   buildFunc = $.bsList;               break;
                     case 'accordion'        :   buildFunc = $.bsAccordion;          break;
                     case 'slider'           :   buildFunc = buildBaseSlider;        insideFormGroup = true; addBorder = true; buildInsideParent = true; break;
                     case 'timeslider'       :   buildFunc = buildTimeSlider;        insideFormGroup = true; addBorder = true; buildInsideParent = true; break;
-                    case 'text'             :   buildFunc = $.bsText;               insideFormGroup = true; break;
-                    case 'textarea'         :   buildFunc = $.bsTextArea;           insideFormGroup = true; break;
-                    case 'textbox'          :   buildFunc = buildTextBox;           insideFormGroup = true; addBorder = true; noValidation = true; break;
+
+                    case 'text'             ://REMOVED                        buildFunc = $.bsText;               insideFormGroup = true; break;
+                    case 'textarea'         ://REMOVED                        buildFunc = $.bsTextArea;           insideFormGroup = true; break;
+                    case 'textbox'          :   if (!options.vfFormat)
+                                                    options.text = options.text || $.EMPTY_TEXT;
+                                                if (hasPreOrPost){
+                                                    buildFunc = buildInlineTextBox; insideFormGroup = true; break;
+                                                }
+                                                else {
+                                                    buildFunc = buildTextBox;       insideFormGroup = true; addBorder = true; noValidation = true;
+
+                                                }
+                                                break;
+
                     case 'fileview'         :   buildFunc = $.bsFileView;           break;
                     case 'hidden'           :   buildFunc = buildHidden;            noValidation = true; break;
+
+                    case 'input'            :   buildFunc = $.bsInput;              insideFormGroup = true; break;
                     case 'inputgroup'       :   buildFunc = buildInputGroup;        addBorder = true; insideFormGroup = true; buildInsideParent = true; break;
 //                    case 'xx'               :   buildFunc = $.bsXx;               break;
 
@@ -70370,9 +70409,7 @@ module.exports = g;
             var $originalParent = $parent,
                 isInputGroupWithFloatLabel = !!options.label;
 
-            if (insideInputGroup || options.prepend || options.before || options.append || options.after){
-
-
+            if (insideInputGroup || hasPreOrPost){
                 //Create element inside input-group
                 var $inputGroup = $divXXGroup('input-group', options);
                 if (addBorder && !options.noBorder){
@@ -70790,7 +70827,7 @@ module.exports = g;
     $.bsCheckboxButton = function( options ){
         //Clone options to avoid reflux
         options = $.extend({}, options);
-        options.class = 'allow-zero-selected';
+        options.class = 'allow-zero-selected' + (options.class ? ' '+options.class : '');
 
         //Use modernizr-mode and classes if icon and/or text containe two values
         if ($.isArray(options.icon) && (options.icon.length == 2)){
@@ -70832,7 +70869,7 @@ module.exports = g;
 
         //Clone options to avoid reflux
         options = $.extend({}, options, {
-            class    : 'allow-zero-selected',
+            class    : 'allow-zero-selected' + (options.class ? ' '+options.class : ''),
             modernizr: true,
         });
 
@@ -70860,6 +70897,28 @@ module.exports = g;
 
         return $.bsStandardCheckboxButton( $.extend({}, options, {square: true, icon: [icon]}) );
     };
+
+
+
+
+    /**********************************************************
+    _anyBsButton( options )
+    Create a specific variant of bs-buttons based on options.type
+    **********************************************************/
+    $._anyBsButton = function( options ){
+        var type = options.type || 'button',
+            constructor;
+
+        switch (type.toLowerCase()){
+            case 'button'                : constructor = $.bsButton; break;
+            case 'checkboxbutton'        : constructor = $.bsCheckboxButton; break;
+            case 'standardcheckboxbutton': constructor = $.bsStandardCheckboxButton; break;
+            case 'iconcheckboxbutton'    : constructor = $.bsIconCheckboxButton; break;
+            default                      : constructor = $.bsButton;
+        }
+        return constructor(options);
+    },
+
 
     /**********************************************************
     bsButtonGroup( options ) - create a Bootstrap-buttonGroup
@@ -70916,7 +70975,7 @@ module.exports = g;
 
         $.each( options.list, function(index, buttonOptions ){
             if (buttonOptions.id)
-                $.bsButton( $.extend({}, options.buttonOptions, buttonOptions ) )
+                $._anyBsButton( $.extend({}, options.buttonOptions, buttonOptions ) )
                     .appendTo( result );
             else
                 $('<div/>')
@@ -72074,23 +72133,25 @@ module.exports = g;
         $.bsText( options )
         Create a <div> with text inside a <label>
         ******************************************************/
+/* REMOVED. ALL TEXT-INPUTS ARE CREATED IN _bsAppendContent
         bsText: function( options ){
             return $('<div/>')
                        ._bsAddHtml( options )
                        .addClass('form-control-border form-control no-hover')
                        ._wrapLabel(options);
         },
-
+//*/
         /******************************************************
         $.bsTextArea( options )
         Create a <div> with text inside a <label>
         ******************************************************/
+/* REMOVED. ALL TEXT-INPUTS ARE CREATED IN _bsAppendContent
         bsTextArea: function( options ){
             var $result = $.bsText( options );
             $result.children('.form-control').css('height', 'auto');
             return $result;
         }
-
+//*/
     });
 
 
@@ -73688,7 +73749,7 @@ jquery-bootstrap-modal-promise.js
                 buttonOptions.class = buttonOptions.class || buttonOptions.className || '';
 
                 var $button =
-                    $.bsButton( $.extend({}, defaultButtonOptions, buttonOptions ) )
+                    $._anyBsButton( $.extend({}, defaultButtonOptions, buttonOptions ) )
                         .appendTo( $modalButtonContainer );
 
                 //Add onClick from icons (if any)
