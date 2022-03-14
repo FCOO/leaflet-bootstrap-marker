@@ -222,13 +222,8 @@ Base object-class for all type of markers
 
             markerClassName: '', //Extra class added to the marker
 
-//HER            iconSize        : 0,         //0: normal, 1. larger with icon or number, 2: Very large (touch-mode)
-
             draggable       : false,     //Whether the marker is draggable with mouse/touch or not.
             autoPan         : true,      //Set to true if you want the map to do panning animation when marker hits the edges.
-
-//HER            useBigIcon      : false,     //True to make the icon big
-//HER            bigIconWhenTouch: false,     //True to make big icon when window.bsIsTouch == true and options.draggable == true
 
             useTouchSize    : false, //True to make size = large when window.bsIsTouch == true and options.draggable == true
 
@@ -289,9 +284,6 @@ Base object-class for all type of markers
         _adjustOptions: function( options ){
             options = options || this.options;
             options = ns._adjustOptions( options );
-
-            if ($.type(options.useTouchSize) !== 'boolean')
-                options.useTouchSize = !!options.bigIconWhenTouch;
 
             if (options.useTouchSize && options.draggable && window.bsIsTouch)
                 options.size = 'lg';
@@ -481,7 +473,7 @@ Base object-class for all type of markers
         updateIcon
         Update the marker regarding all options except size
         *****************************************************/
-        updateIcon: function(options, forceColor){
+        updateIcon: function( options ){
             this._adjustAndSetOptions(options);
 
             this.getElements();
@@ -493,8 +485,8 @@ Base object-class for all type of markers
                 _this.toggleOption(id, !!_this.options[id] );
             });
 
-            this.setColor(this.options.colorName || this.colorName, forceColor);
-            this.setBorderColor(this.options.borderColorName || this.borderColorName, forceColor);
+            this.setColor(this.options.colorName);
+            this.setBorderColor(this.options.borderColorName);
 
             if (this.options.number !== undefined)
                 this.setNumber(this.options.number);
@@ -566,27 +558,24 @@ Base object-class for all type of markers
             if (tooltip)
                 $(tooltip._container).addClass('leaflet-tooltip-icon-'+this.size);
 
-            this.updateIcon(null, true);
+            this.updateIcon();
             return this;
         },
 
         /*****************************************************
-        setColor( colorName, force )
+        setColor( colorName )
         *****************************************************/
-        setColor: function( colorName, force ){
-            if (colorName && ((colorName != this.colorName) || force)){
-                this._setAnyColor( 'colorName', colorName, 'lbm-color-', this.$background, this.options.setColor);
-                this._setInnerColor();
-            }
+        setColor: function( colorName ){
+            this._setAnyColor( 'colorName', colorName, 'lbm-color-', this.$background, this.options.setColor);
+            this._setInnerColor();
             return this;
         },
 
         /*****************************************************
-        setBorderColor( borderColorName, force )
+        setBorderColor( borderColorName )
         *****************************************************/
-        setBorderColor: function( borderColorName, force ){
-            if (borderColorName && ((borderColorName != this.borderColorName) || force))
-                this._setAnyColor( 'borderColorName', borderColorName, 'lbm-border-color-', this.$border, this.options.setBorderColor);
+        setBorderColor: function( borderColorName ){
+            this._setAnyColor( 'borderColorName', borderColorName, 'lbm-border-color-', this.$border, this.options.setBorderColor);
             return this;
         },
 
@@ -599,9 +588,9 @@ Base object-class for all type of markers
         },
 
         _setAnyColor: function( id, newColorName, classNamePrefix, $element, options = {}){
-            if (this[id])
-                this.removeClass(classNamePrefix + this[id]);
-            this[id] = newColorName;
+            if (this.options[id])
+                this.removeClass(classNamePrefix + this.options[id]);
+            this.options[id] = newColorName;
 
             this.addClass(classNamePrefix + newColorName);
             if (options.alsoAsCss && $element && $element.length)
@@ -706,7 +695,7 @@ Base object-class for all type of markers
         jquery-bootstrap content-options (eq. as header)
         *****************************************************/
         asIcon: function(){
-            return L.bsMarkerAsIcon(this.colorName, this.borderColorName, this.options.faClassName);
+            return L.bsMarkerAsIcon(this.options.colorName, this.options.borderColorName, this.options.faClassName);
         },
 
         /*****************************************************
