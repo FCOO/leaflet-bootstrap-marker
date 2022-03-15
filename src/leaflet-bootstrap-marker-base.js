@@ -674,8 +674,8 @@ Base object-class for all type of markers
         /*****************************************************
         setDirection( direction )
         *****************************************************/
-        setDirection: function( direction ){
-            this.options.direction = (direction || 0) % 360;
+        setDirection: function( direction = 0, relative){
+            this.options.direction = ((relative ? this.options.direction : 0) + direction) % 360;
             direction = (this.options.direction + this.options.directionOffset) % 360;
             this.setRotationAngle(direction);
             return this;
