@@ -295,7 +295,7 @@ Base object-class for all type of markers
         _adjustAndSetOptions
         *****************************************************/
         _adjustAndSetOptions: function( options ){
-            $.extend(this.options, this._adjustOptions(options));
+            this.options = this._adjustOptions( $.extend(this.options, options) );
         },
 
         /*****************************************************
