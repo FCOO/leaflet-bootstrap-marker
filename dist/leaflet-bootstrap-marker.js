@@ -588,11 +588,15 @@ Base object-class for all type of markers
         },
 
         _setAnyColor: function( id, newColorName, classNamePrefix, $element, options = {}){
-            if (this.options[id])
-                this.removeClass(classNamePrefix + this.options[id]);
-            this.options[id] = newColorName;
+            this.colorClassNames = this.colorClassNames || {};
+            if (this.colorClassNames[id])
+                this.removeClass(this.colorClassNames[id]);
 
-            this.addClass(classNamePrefix + newColorName);
+            this.options[id] = newColorName;
+            this.colorClassNames[id] = classNamePrefix + newColorName;
+
+            this.addClass(this.colorClassNames[id]);
+
             if (options.alsoAsCss && $element && $element.length)
                 $element.css(options.cssAttrName, colorNameToColor[newColorName]);
             return this;
