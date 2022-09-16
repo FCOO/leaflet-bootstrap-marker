@@ -148,10 +148,10 @@ leaflet-bootstrap-marker-base.scss
   color: darkgray; }
 
 .fa-lbm-color-primary {
-  color: #007bff; }
+  color: #0d6efd; }
 
 .fa-lbm-border-color-primary {
-  color: #007bff; }
+  color: #0d6efd; }
 
 .fa-lbm-color-secondary {
   color: #6c757d; }
@@ -160,16 +160,16 @@ leaflet-bootstrap-marker-base.scss
   color: #6c757d; }
 
 .fa-lbm-color-success {
-  color: #28a745; }
+  color: #198754; }
 
 .fa-lbm-border-color-success {
-  color: #28a745; }
+  color: #198754; }
 
 .fa-lbm-color-info {
-  color: #17a2b8; }
+  color: #0dcaf0; }
 
 .fa-lbm-border-color-info {
-  color: #17a2b8; }
+  color: #0dcaf0; }
 
 .fa-lbm-color-warning {
   color: #ffc107; }
@@ -190,10 +190,10 @@ leaflet-bootstrap-marker-base.scss
   color: #f8f9fa; }
 
 .fa-lbm-color-dark {
-  color: #343a40; }
+  color: #212529; }
 
 .fa-lbm-border-color-dark {
-  color: #343a40; }
+  color: #212529; }
 
 .fa-lbm-color-standard {
   color: #4285F4; }
@@ -724,19 +724,19 @@ https://github.com/mapshakers/leaflet-icon-pulse
   border-color: darkgray; }
 
 .lbm-type-circle.lbm-color-primary {
-  background-color: #007bff;
+  background-color: #0d6efd;
   color: #000; }
   .lbm-type-circle.lbm-color-primary.lbm-transparent {
-    background-color: rgba(0, 123, 255, 0.7); }
+    background-color: rgba(13, 110, 253, 0.7); }
     .lbm-type-circle.lbm-color-primary.lbm-transparent.lbm-hover:hover {
-      background-color: rgba(0, 123, 255, 0.9); }
+      background-color: rgba(13, 110, 253, 0.9); }
   .lbm-type-circle.lbm-color-primary.lbm-shadow, .lbm-type-circle.lbm-color-primary.leaflet-drag-target, .lbm-type-circle.lbm-color-primary.lbm-hover:hover {
-    box-shadow: 0px 0px 0px 5px rgba(0, 123, 255, 0.28); }
+    box-shadow: 0px 0px 0px 5px rgba(13, 110, 253, 0.28); }
   .lbm-type-circle.lbm-color-primary:before {
-    box-shadow: 0 0 6px 2px #007bff; }
+    box-shadow: 0 0 6px 2px #0d6efd; }
 
 .lbm-type-circle.lbm-border-color-primary {
-  border-color: #007bff; }
+  border-color: #0d6efd; }
 
 .lbm-type-circle.lbm-color-secondary {
   background-color: #6c757d;
@@ -754,34 +754,34 @@ https://github.com/mapshakers/leaflet-icon-pulse
   border-color: #6c757d; }
 
 .lbm-type-circle.lbm-color-success {
-  background-color: #28a745;
+  background-color: #198754;
   color: #000; }
   .lbm-type-circle.lbm-color-success.lbm-transparent {
-    background-color: rgba(40, 167, 69, 0.7); }
+    background-color: rgba(25, 135, 84, 0.7); }
     .lbm-type-circle.lbm-color-success.lbm-transparent.lbm-hover:hover {
-      background-color: rgba(40, 167, 69, 0.9); }
+      background-color: rgba(25, 135, 84, 0.9); }
   .lbm-type-circle.lbm-color-success.lbm-shadow, .lbm-type-circle.lbm-color-success.leaflet-drag-target, .lbm-type-circle.lbm-color-success.lbm-hover:hover {
-    box-shadow: 0px 0px 0px 5px rgba(40, 167, 69, 0.28); }
+    box-shadow: 0px 0px 0px 5px rgba(25, 135, 84, 0.28); }
   .lbm-type-circle.lbm-color-success:before {
-    box-shadow: 0 0 6px 2px #28a745; }
+    box-shadow: 0 0 6px 2px #198754; }
 
 .lbm-type-circle.lbm-border-color-success {
-  border-color: #28a745; }
+  border-color: #198754; }
 
 .lbm-type-circle.lbm-color-info {
-  background-color: #17a2b8;
+  background-color: #0dcaf0;
   color: #000; }
   .lbm-type-circle.lbm-color-info.lbm-transparent {
-    background-color: rgba(23, 162, 184, 0.7); }
+    background-color: rgba(13, 202, 240, 0.7); }
     .lbm-type-circle.lbm-color-info.lbm-transparent.lbm-hover:hover {
-      background-color: rgba(23, 162, 184, 0.9); }
+      background-color: rgba(13, 202, 240, 0.9); }
   .lbm-type-circle.lbm-color-info.lbm-shadow, .lbm-type-circle.lbm-color-info.leaflet-drag-target, .lbm-type-circle.lbm-color-info.lbm-hover:hover {
-    box-shadow: 0px 0px 0px 5px rgba(23, 162, 184, 0.28); }
+    box-shadow: 0px 0px 0px 5px rgba(13, 202, 240, 0.28); }
   .lbm-type-circle.lbm-color-info:before {
-    box-shadow: 0 0 6px 2px #17a2b8; }
+    box-shadow: 0 0 6px 2px #0dcaf0; }
 
 .lbm-type-circle.lbm-border-color-info {
-  border-color: #17a2b8; }
+  border-color: #0dcaf0; }
 
 .lbm-type-circle.lbm-color-warning {
   background-color: #ffc107;
@@ -829,19 +829,19 @@ https://github.com/mapshakers/leaflet-icon-pulse
   border-color: #f8f9fa; }
 
 .lbm-type-circle.lbm-color-dark {
-  background-color: #343a40;
+  background-color: #212529;
   color: #fff; }
   .lbm-type-circle.lbm-color-dark.lbm-transparent {
-    background-color: rgba(52, 58, 64, 0.7); }
+    background-color: rgba(33, 37, 41, 0.7); }
     .lbm-type-circle.lbm-color-dark.lbm-transparent.lbm-hover:hover {
-      background-color: rgba(52, 58, 64, 0.9); }
+      background-color: rgba(33, 37, 41, 0.9); }
   .lbm-type-circle.lbm-color-dark.lbm-shadow, .lbm-type-circle.lbm-color-dark.leaflet-drag-target, .lbm-type-circle.lbm-color-dark.lbm-hover:hover {
-    box-shadow: 0px 0px 0px 5px rgba(52, 58, 64, 0.28); }
+    box-shadow: 0px 0px 0px 5px rgba(33, 37, 41, 0.28); }
   .lbm-type-circle.lbm-color-dark:before {
-    box-shadow: 0 0 6px 2px #343a40; }
+    box-shadow: 0 0 6px 2px #212529; }
 
 .lbm-type-circle.lbm-border-color-dark {
-  border-color: #343a40; }
+  border-color: #212529; }
 
 .lbm-type-circle.lbm-color-standard {
   background-color: #4285F4;
@@ -1125,20 +1125,20 @@ _leaflet-bootstrap-marker-icon.scss,
   -moz-text-stroke-color: rgba(169, 169, 169, 0.28); }
 
 .lbm-type-icon.lbm-color-primary.lbm-shadow .lbm-content-shadow, .lbm-type-icon.lbm-color-primary.leaflet-drag-target .lbm-content-shadow, .lbm-type-icon.lbm-color-primary.lbm-hover:hover .lbm-content-shadow {
-  -webkit-text-stroke-color: rgba(0, 123, 255, 0.28);
-  -moz-text-stroke-color: rgba(0, 123, 255, 0.28); }
+  -webkit-text-stroke-color: rgba(13, 110, 253, 0.28);
+  -moz-text-stroke-color: rgba(13, 110, 253, 0.28); }
 
 .lbm-type-icon.lbm-color-secondary.lbm-shadow .lbm-content-shadow, .lbm-type-icon.lbm-color-secondary.leaflet-drag-target .lbm-content-shadow, .lbm-type-icon.lbm-color-secondary.lbm-hover:hover .lbm-content-shadow {
   -webkit-text-stroke-color: rgba(108, 117, 125, 0.28);
   -moz-text-stroke-color: rgba(108, 117, 125, 0.28); }
 
 .lbm-type-icon.lbm-color-success.lbm-shadow .lbm-content-shadow, .lbm-type-icon.lbm-color-success.leaflet-drag-target .lbm-content-shadow, .lbm-type-icon.lbm-color-success.lbm-hover:hover .lbm-content-shadow {
-  -webkit-text-stroke-color: rgba(40, 167, 69, 0.28);
-  -moz-text-stroke-color: rgba(40, 167, 69, 0.28); }
+  -webkit-text-stroke-color: rgba(25, 135, 84, 0.28);
+  -moz-text-stroke-color: rgba(25, 135, 84, 0.28); }
 
 .lbm-type-icon.lbm-color-info.lbm-shadow .lbm-content-shadow, .lbm-type-icon.lbm-color-info.leaflet-drag-target .lbm-content-shadow, .lbm-type-icon.lbm-color-info.lbm-hover:hover .lbm-content-shadow {
-  -webkit-text-stroke-color: rgba(23, 162, 184, 0.28);
-  -moz-text-stroke-color: rgba(23, 162, 184, 0.28); }
+  -webkit-text-stroke-color: rgba(13, 202, 240, 0.28);
+  -moz-text-stroke-color: rgba(13, 202, 240, 0.28); }
 
 .lbm-type-icon.lbm-color-warning.lbm-shadow .lbm-content-shadow, .lbm-type-icon.lbm-color-warning.leaflet-drag-target .lbm-content-shadow, .lbm-type-icon.lbm-color-warning.lbm-hover:hover .lbm-content-shadow {
   -webkit-text-stroke-color: rgba(255, 193, 7, 0.28);
@@ -1153,8 +1153,8 @@ _leaflet-bootstrap-marker-icon.scss,
   -moz-text-stroke-color: rgba(248, 249, 250, 0.28); }
 
 .lbm-type-icon.lbm-color-dark.lbm-shadow .lbm-content-shadow, .lbm-type-icon.lbm-color-dark.leaflet-drag-target .lbm-content-shadow, .lbm-type-icon.lbm-color-dark.lbm-hover:hover .lbm-content-shadow {
-  -webkit-text-stroke-color: rgba(52, 58, 64, 0.28);
-  -moz-text-stroke-color: rgba(52, 58, 64, 0.28); }
+  -webkit-text-stroke-color: rgba(33, 37, 41, 0.28);
+  -moz-text-stroke-color: rgba(33, 37, 41, 0.28); }
 
 .lbm-type-icon.lbm-color-standard.lbm-shadow .lbm-content-shadow, .lbm-type-icon.lbm-color-standard.leaflet-drag-target .lbm-content-shadow, .lbm-type-icon.lbm-color-standard.lbm-hover:hover .lbm-content-shadow {
   -webkit-text-stroke-color: rgba(66, 133, 244, 0.28);
