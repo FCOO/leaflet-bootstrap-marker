@@ -241,7 +241,7 @@ $(function() {
             }},
 
             {constructor: L.bsMarkerIcon, options: {
-                iconClass: 'fa-caret-up',
+                iconClass: 'fa-caret-up', 
                 scaleY   : 50,
                 scaleX   : 60
             }},
@@ -379,6 +379,7 @@ return;
             
             var marker = markerList[mfIndex].constructor(latlng, options);
 
+console.log(L.bsMarkerAsIcon('red', 'blue'));
             marker.bindPopup(''+L.bsMarkerAsIcon('red', 'blue'));
             marker.addTo( map );
 

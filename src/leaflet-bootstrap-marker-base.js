@@ -170,7 +170,7 @@ Base object-class for all type of markers
                 options.faClassName = a.faClassName;
 
             if (!options.faClassName && (a.round === false))
-                options.faClassName = 'fa-square';
+                options.faClassName = 'fa-square-full';
         }
         else {
             //2:, 3:, or 4:
@@ -180,7 +180,7 @@ Base object-class for all type of markers
             if (typeof c === 'boolean'){
                 //2: (STRING, STRING, BOOLEAN)
                 if (!c)
-                    options.faClassName = 'fa-square';
+                    options.faClassName = 'fa-square-full';
             }
             else
 

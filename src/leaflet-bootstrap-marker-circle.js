@@ -30,7 +30,7 @@ Create L.bsMarkerCircle = a round marker with options for color, shadow and puls
             options.innerIconClass = options.innerIconClass || options.iconClass;
             L.BsMarkerBase.prototype.initialize.call(this, latLng, options);
             if (!this.options.round)
-                this.options.faClassName = 'fa-square';
+                this.options.faClassName = 'fa-square-full';
             return this;
         }
     });
