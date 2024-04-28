@@ -124,14 +124,20 @@ Base object-class for all type of markers
         options.iconColorName = options.iconColorName || options.textColorName || 'black';
 //BRUGES MÅSKE IKKE:             options.color = options.color || options.textColor || options.iconColor;
 
-        options.size = options.size ? options.size.toLowerCase() : 'nl';
-        options.size =  options.size == 'extrasmall' ? 'xs' :
-                        options.size == 'small' ? 'sm' :
-                        options.size == 'large' ? 'lg' :
-                        options.size == 'xlarge' ? 'xl' :
-                        options.size == 'normal' ? 'nl' :
-                        options.size;
 
+        if (typeof options.size == 'number'){
+            //Individual size
+            options.indvidualSize = true;
+        }
+        else {
+            options.size = options.size ? options.size.toLowerCase() : 'nl';
+            options.size =  options.size == 'extrasmall' ? 'xs' :
+                            options.size == 'small' ? 'sm' :
+                            options.size == 'large' ? 'lg' :
+                            options.size == 'xlarge' ? 'xl' :
+                            options.size == 'normal' ? 'nl' :
+                            options.size;
+        }
         return options;
     };
 
@@ -209,7 +215,7 @@ Base object-class for all type of markers
     L.BsMarkerBase = L.Marker.extend({
         options: {
             type       : 'base',  //Type of the marker
-            size       : 'nl',    //Size of the marker. Possble values: 'extrasmall'/'sx', 'small'/'sm', '', 'large'/'lg', 'xlarge'*'xl'
+            size       : 'nl',    //Size of the marker. Possble values: 'extrasmall'/'sx', 'small'/'sm', '', 'large'/'lg', 'xlarge'*'xl' or number
 
             scale      : null,    //Value = 40, 50, 60, 70, 80, 90, 120, 130, 150, 180 or 200: Scale specific icons to fit the other icons. Only for icon-marker
             scaleY     : null,    //Value = 40, 50, 60, 70, 80, 90, 120, 130, 150, 180 or 200: Scale height of specific icons to better fit icons with very low height
@@ -285,7 +291,7 @@ Base object-class for all type of markers
             options = options || this.options;
             options = ns._adjustOptions( options );
 
-            if (options.useTouchSize && options.draggable && window.bsIsTouch)
+            if (!options.indvidualSize && options.useTouchSize && options.draggable && window.bsIsTouch)
                 options.size = 'lg';
 
             return options;
@@ -325,7 +331,7 @@ Base object-class for all type of markers
         getWH - Return [width,height] of the icon
         *****************************************************/
         getWH: function( sizeId ){
-            var width = ns.size[sizeId || this.size],
+            var width = this.options.indvidualSize ? (sizeId || this.size) : ns.size[sizeId || this.size],
                 height = width;
 
             if (this.options.scale){

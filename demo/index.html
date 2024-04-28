@@ -209,10 +209,11 @@ $(function() {
             $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Dansk', en:'Eng'}}),
             $('<div/>')._bsAddHtml({icon:'fa-home', text:{da:'Lang Dansk', en:'LongEng'}})
         ];
-    var allSize = false,
-    //var allSize = true,
+    //var allSize = false,
+    var allSize = true,
         noSvg = false,
         size = allSize ? 'xs' : 'xl',
+//        size = allSize ? 'xs' : 22,
         markerList = [
             {constructor: L.bsMarkerSimpleSquare, options: {
                 colorName: 'yellow',
@@ -379,7 +380,6 @@ return;
             
             var marker = markerList[mfIndex].constructor(latlng, options);
 
-console.log(L.bsMarkerAsIcon('red', 'blue'));
             marker.bindPopup(''+L.bsMarkerAsIcon('red', 'blue'));
             marker.addTo( map );
 
@@ -403,11 +403,11 @@ console.log(L.bsMarkerAsIcon('red', 'blue'));
                 case 'sm':  size = 'nl'; break;
                 case 'nl':  size = 'lg'; break;
                 case 'lg':  size = 'xl';break;
-                case 'xl':  size = allSize ? 'xs' : 'xl';
+                case 'xl':  size = allSize ? 88 : 'xl'; break;
+                case 88:  size = allSize ? 'xs' : 'xl';
                             mfIndex = (mfIndex+1) % markerList.length;
                             break;
             }
-
 
     }
 

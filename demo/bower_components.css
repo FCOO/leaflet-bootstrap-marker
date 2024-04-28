@@ -15545,6 +15545,7 @@ div.modal-dialog .modal-content .footer-content:empty, div.modal-dialog .modal-c
   display: none !important;
 }
 div.modal-dialog .modal-content .modal-footer {
+  --display: flex;
   flex-shrink: 0;
   flex-grow: 0;
 }
